@@ -1,0 +1,277 @@
+{
+  "page": {
+    "slug": "/amending-agreements-ontario",
+    "locale": "en-CA",
+    "region": "Ontario",
+    "brand": "Our Separation",
+    "contentType": "pillar",
+    "seo": {
+      "metaTitle": "Amending Family Law Agreements in Ontario | Our Separation",
+      "metaDescription": "Separated or married couples in Ontario can amend separation, parenting, or marriage agreements when circumstances change. Learn when and how agreements can be amended.",
+      "canonical": "/amending-agreements-ontario",
+      "robots": "index,follow",
+      "og": {
+        "title": "Amending Family Law Agreements in Ontario",
+        "description": "Plain-language Ontario guidance on amending separation agreements, parenting plans, and marriage contracts when life changes.",
+        "type": "website"
+      },
+      "keywords": [
+        "amend separation agreement Ontario",
+        "amending parenting plan Ontario",
+        "change separation agreement Ontario",
+        "vary family law agreement Ontario",
+        "amend marriage contract Ontario",
+        "update parenting agreement Ontario",
+        "Family Law Act amend agreement",
+        "Divorce Act variation parenting"
+      ]
+    }
+  },
+  "modules": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "variant": "split",
+      "eyebrow": "When Life Changes",
+      "title": "Amending Family Law Agreements in Ontario",
+      "subtitle": "Separation agreements, parenting plans, and marriage contracts are not always final. When circumstances change, Ontario law allows agreements to be amended. Our Separation helps you update agreements clearly and correctly—without court where possible.",
+      "primaryCTA": {
+        "label": "Amend an Existing Agreement",
+        "href": "/amend-agreement",
+        "style": "primary"
+      },
+      "secondaryCTA": {
+        "label": "Create a New Agreement",
+        "href": "/create-separation-agreement",
+        "style": "secondary"
+      },
+      "trustBadges": [
+        "Ontario-only guidance",
+        "Plain-language updates",
+        "Designed to avoid court",
+        "Built for enforceable amendments"
+      ]
+    },
+    {
+      "id": "intro",
+      "type": "richText",
+      "title": "Why Agreements Sometimes Need to Be Amended",
+      "body": [
+        "Family law agreements are often created at a specific point in time. As lives evolve, the terms that once worked may no longer reflect reality.",
+        "Ontario law recognizes that agreements may need to be amended when there is a meaningful change in circumstances. In many cases, couples can update their agreement by consent—without court involvement.",
+        "An amendment is not the same as starting over. It allows you to preserve what still works while changing only what is necessary."
+      ]
+    },
+    {
+      "id": "what-can-be-amended",
+      "type": "featureList",
+      "title": "What Types of Agreements Can Be Amended?",
+      "subtitle": "Most family law agreements in Ontario can be updated by written amendment.",
+      "items": [
+        {
+          "title": "Separation agreements",
+          "description": "Terms dealing with support, property, and financial obligations can often be amended by consent."
+        },
+        {
+          "title": "Parenting plans",
+          "description": "Parenting schedules, decision-making terms, and communication rules are commonly updated as children grow."
+        },
+        {
+          "title": "Marriage contracts (prenups and postnups)",
+          "description": "Spouses can amend financial and support provisions during marriage."
+        },
+        {
+          "title": "Cohabitation agreements",
+          "description": "Common-law partners may amend agreements as finances or living arrangements change."
+        }
+      ]
+    },
+    {
+      "id": "common-reasons",
+      "type": "cards",
+      "title": "Common Reasons Agreements Are Amended",
+      "cards": [
+        {
+          "title": "Changes in income",
+          "body": "Job loss, promotions, self-employment, or retirement often require updates to support terms."
+        },
+        {
+          "title": "Children's needs change",
+          "body": "School schedules, extracurricular activities, or evolving parenting needs may require new parenting arrangements."
+        },
+        {
+          "title": "Relocation",
+          "body": "A move can affect parenting time, transportation responsibilities, and expenses."
+        },
+        {
+          "title": "New relationships or families",
+          "body": "Remarriage, new children, or blended families may require financial adjustments."
+        },
+        {
+          "title": "Agreements no longer practical",
+          "body": "Terms that once worked may become unrealistic or unworkable over time."
+        }
+      ]
+    },
+    {
+      "id": "legal-standards",
+      "type": "twoColumn",
+      "title": "How Amendments Work Under Ontario Law",
+      "left": {
+        "heading": "Amending by agreement",
+        "content": [
+          "Most agreements can be amended if both parties consent.",
+          "A proper amendment should:",
+          "• Be in writing\n• Clearly identify what is being changed\n• Be signed and witnessed\n• Be based on updated disclosure where relevant",
+          "Courts generally respect consensual amendments that are fair and informed."
+        ]
+      },
+      "right": {
+        "heading": "When court involvement may be required",
+        "content": [
+          "Court involvement may be necessary if:",
+          "• One party refuses to consent\n• There is a dispute about whether circumstances have changed\n• Child-related terms are no longer in a child's best interests",
+          "Even then, a negotiated amendment is often encouraged before litigation."
+        ]
+      }
+    },
+    {
+      "id": "children-callout",
+      "type": "callout",
+      "variant": "info",
+      "title": "Important Note About Children",
+      "body": "Parenting and child support terms must always reflect the child's best interests. Even if parents agree, Ontario courts can override amended terms that are unfair or inadequate for a child."
+    },
+    {
+      "id": "process",
+      "type": "stepper",
+      "title": "How to Amend an Agreement Using Our Separation",
+      "subtitle": "A structured process designed to reduce conflict and confusion.",
+      "steps": [
+        {
+          "title": "Identify what has changed",
+          "content": "Select the clauses that no longer work and explain what has changed since the original agreement."
+        },
+        {
+          "title": "Update financial and parenting information",
+          "content": "Provide updated income, expenses, and parenting details where relevant."
+        },
+        {
+          "title": "Generate an amendment document",
+          "content": "Our Separation produces a clear amending agreement that preserves unchanged terms."
+        },
+        {
+          "title": "Optional legal review and signing",
+          "content": "Have the amendment reviewed and then properly executed to protect enforceability."
+        }
+      ],
+      "primaryCTA": {
+        "label": "Amend an Existing Agreement",
+        "href": "/amend-agreement"
+      }
+    },
+    {
+      "id": "amend-vs-new",
+      "type": "comparison",
+      "title": "Amending an Agreement vs Creating a New One",
+      "leftTitle": "Amend existing agreement",
+      "rightTitle": "Create a new agreement",
+      "rows": [
+        {
+          "left": "Keeps valid terms in place",
+          "right": "Replaces the entire agreement"
+        },
+        {
+          "left": "Faster and more targeted",
+          "right": "More comprehensive but time-consuming"
+        },
+        {
+          "left": "Lower cost",
+          "right": "Higher cost"
+        },
+        {
+          "left": "Best for limited changes",
+          "right": "Best when many terms no longer work"
+        }
+      ]
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "title": "Frequently Asked Questions About Amending Agreements (Ontario)",
+      "items": [
+        {
+          "q": "Can we amend a separation agreement without going to court?",
+          "a": "Yes. If both parties agree, most separation agreements can be amended by written agreement without court involvement."
+        },
+        {
+          "q": "Do amendments need to be witnessed?",
+          "a": "Yes. Like the original agreement, amendments should be signed and witnessed to ensure enforceability."
+        },
+        {
+          "q": "Can child support or parenting terms be amended?",
+          "a": "Yes, but they must reflect the child's best interests and comply with Ontario law."
+        },
+        {
+          "q": "What if the other person refuses to agree?",
+          "a": "You may need legal advice or court assistance, but negotiation or mediation is often encouraged first."
+        },
+        {
+          "q": "Does amending an agreement cancel the old one?",
+          "a": "No. An amendment changes only the specified terms. All other provisions remain in force."
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "ctaBanner",
+      "title": "Update Your Agreement—Without Starting Over",
+      "subtitle": "When life changes, your agreement should too. Amend your Ontario family law agreement clearly and efficiently.",
+      "primaryCTA": {
+        "label": "Amend an Agreement",
+        "href": "/amend-agreement"
+      },
+      "secondaryCTA": {
+        "label": "Create a new separation agreement",
+        "href": "/create-separation-agreement"
+      }
+    }
+  ],
+  "internalLinks": [
+    { "rel": "related", "href": "/separation-agreement-ontario", "anchor": "Separation agreements" },
+    { "rel": "related", "href": "/parenting-plans-ontario", "anchor": "Parenting plans" },
+    { "rel": "related", "href": "/prenuptial-agreement-ontario", "anchor": "Prenuptial agreements" },
+    { "rel": "related", "href": "/postnuptial-agreement-ontario", "anchor": "Postnuptial agreements" },
+    { "rel": "related", "href": "/cohabitation-agreement-ontario", "anchor": "Cohabitation agreements" }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can we amend a separation agreement without going to court?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. If both parties agree, most separation agreements can be amended by written agreement without court involvement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do amendments need to be witnessed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Amendments should be signed and witnessed to ensure enforceability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does amending an agreement cancel the old one?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. An amendment changes only the specified terms. All other provisions remain in force."
+        }
+      }
+    ]
+  }
+}

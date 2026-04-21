@@ -1,0 +1,457 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-09"
+  },
+  "silo": "cohabitation",
+  "pages": [
+    {
+      "id": "cohabitation-agreement-pillar",
+      "slug": "/cohabitation-agreement-ontario",
+      "silo": "cohabitation",
+      "title": "Cohabitation Agreements in Ontario",
+      "metaTitle": "Cohabitation Agreements in Ontario | Our Separation",
+      "metaDescription": "A cohabitation agreement lets couples in Ontario define property, support, and financial expectations before problems arise. Learn how they work and create one online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Cohabitation vs marriage contracts",
+          "href": "/marriage-vs-cohabitation-agreements-ontario"
+        },
+        {
+          "label": "Separation agreements",
+          "href": "/ontario-separation-agreements"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Cohabitation Agreements in Ontario",
+          "subhead": "A cohabitation agreement lets couples living together define property, support, and financial expectations in advance—clearly, privately, and without court. Our Separation helps you build one online, in plain language.",
+          "primaryCta": {
+            "label": "Create a Cohabitation Agreement",
+            "href": "/create-cohabitation-agreement"
+          },
+          "secondaryCta": {
+            "label": "Marriage vs Cohabitation Agreements",
+            "href": "/cohabitation-vs-marriage-contract-ontario"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Cohabitation Agreement?",
+          "html": "<p>A cohabitation agreement is a written contract between two people who are living together, or planning to live together, in a romantic relationship but are not married.</p><p>In Ontario, cohabitation agreements are authorized by the <em>Family Law Act</em>. They allow couples to set clear rules about finances and expectations during the relationship and in the event of separation.</p><p>Many couples assume that living together creates the same rights as marriage. In Ontario, that is not true—especially when it comes to property. A cohabitation agreement is often the only reliable way to avoid uncertainty later.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Cohabitation Agreements Matter in Ontario",
+          "html": "<p>Ontario law treats married and unmarried couples very differently. A cohabitation agreement lets you choose clarity over assumptions.</p><h3>No automatic property sharing</h3><p>Unlike married spouses, common-law partners in Ontario do not automatically share property on separation.</p><h3>Unclear ownership without an agreement</h3><p>Without an agreement, disputes often arise about contributions, joint purchases, and entitlement to the home.</p><h3>Spousal support can still apply</h3><p>Common-law partners may still have spousal support obligations, even without property equalization.</p><h3>Predictability and peace of mind</h3><p>A clear agreement reduces the risk of litigation and emotionally costly disputes if the relationship ends.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What a Cohabitation Agreement Can Cover",
+          "html": "<h3>Financial and property terms</h3><p>Most cohabitation agreements address:</p><ul><li>Ownership of property (including a home)</li><li>How joint purchases are treated</li><li>Bank accounts and debts</li><li>How expenses are shared</li><li>What happens if one partner moves out</li></ul><p>These clauses are especially important where one partner enters the relationship with significantly more assets.</p><h3>Support and relationship expectations</h3><p>A cohabitation agreement can also deal with:</p><ul><li>Spousal support (including waivers or limits)</li><li>How support will be calculated if the relationship ends</li><li>Treatment of gifts and inheritances</li><li>How disputes will be resolved (for example, mediation first)</li></ul><p>Agreements cannot predetermine parenting arrangements for future children, but they can address financial planning.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Common Situations Where a Cohabitation Agreement Is Especially Important",
+          "html": "<h3>One partner owns the home</h3><p>An agreement can clarify whether the other partner gains any interest in the home or is entitled only to reimbursement for specific contributions.</p><h3>Unequal incomes or assets</h3><p>Agreements can set expectations around expenses, savings, and support to avoid later disputes.</p><h3>Second relationships or blended families</h3><p>Many people use cohabitation agreements to protect assets for children from prior relationships.</p><h3>Business ownership</h3><p>A cohabitation agreement can protect a business from claims arising out of the relationship.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Are Cohabitation Agreements Enforceable?",
+          "html": "<p>In Ontario, cohabitation agreements are generally enforceable if they meet basic legal requirements.</p><p>To be valid, an agreement should:</p><ul><li>Be in writing</li><li>Be signed by both parties</li><li>Be witnessed</li><li>Be based on full and honest financial disclosure</li><li>Be entered into voluntarily, without pressure or coercion</li></ul><p>Agreements can be set aside in limited circumstances, such as serious nondisclosure or unconscionability. Clear drafting and informed decision-making significantly reduce this risk.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Our Separation Helps You Create a Cohabitation Agreement",
+          "html": "<p>Designed for clarity, speed, and Ontario-specific accuracy.</p><h3>Step 1: Answer guided questions</h3><p>We walk you through the key financial and relationship topics in plain language—no legal jargon.</p><h3>Step 2: Customize what matters</h3><p>Choose how property, expenses, and support are handled based on your actual situation.</p><h3>Step 3: Generate a structured agreement</h3><p>Your answers are converted into a clear, organized cohabitation agreement tailored to Ontario law.</p><h3>Step 4: Optional legal review</h3><p>If desired, you can have the agreement reviewed by a lawyer before signing.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "balanced",
+          "label": "Create a Cohabitation Agreement",
+          "href": "/create-cohabitation-agreement"
+        },
+        {
+          "type": "richText",
+          "heading": "Cohabitation Agreement vs Marriage Contract",
+          "html": "<table class='w-full border-collapse'><thead><tr><th class='border p-4 bg-gray-50 text-left'>Cohabitation agreement</th><th class='border p-4 bg-gray-50 text-left'>Marriage contract</th></tr></thead><tbody><tr><td class='border p-4'>For couples living together but not married</td><td class='border p-4'>For couples who are married or planning to marry</td></tr><tr><td class='border p-4'>No automatic property equalization without an agreement</td><td class='border p-4'>Marriage creates default property equalization rules</td></tr><tr><td class='border p-4'>Common-law spousal support may still apply</td><td class='border p-4'>Spousal support governed by both statute and contract</td></tr><tr><td class='border p-4'>Can be converted into a marriage contract if you later marry</td><td class='border p-4'>Applies only once married</td></tr></tbody></table><p class='mt-4'><a href='/marriage-vs-cohabitation-agreements-ontario' class='text-blue-600 hover:underline'>Learn the difference in detail →</a></p>"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Cohabitation Agreements (Ontario)",
+          "items": [
+            {
+              "q": "Do common-law partners automatically share property in Ontario?",
+              "aText": "No. Unlike married spouses, common-law partners do not have automatic property equalization rights. A cohabitation agreement is often the best way to define property expectations.",
+              "aHtml": "<p>No. Unlike married spouses, common-law partners do not have automatic property equalization rights. A cohabitation agreement is often the best way to define property expectations.</p>"
+            },
+            {
+              "q": "Can a cohabitation agreement waive spousal support?",
+              "aText": "In many cases, yes. Support waivers or limits are common, though enforceability depends on disclosure, fairness, and the circumstances at separation.",
+              "aHtml": "<p>In many cases, yes. Support waivers or limits are common, though enforceability depends on disclosure, fairness, and the circumstances at separation.</p>"
+            },
+            {
+              "q": "Do we need lawyers to create a cohabitation agreement?",
+              "aText": "Independent legal advice is strongly recommended, but many couples use online tools like Our Separation to create a clear draft before review.",
+              "aHtml": "<p>Independent legal advice is strongly recommended, but many couples use online tools like Our Separation to create a clear draft before review.</p>"
+            },
+            {
+              "q": "What happens to a cohabitation agreement if we get married?",
+              "aText": "In Ontario, a cohabitation agreement can automatically become a marriage contract if it meets the legal requirements.",
+              "aHtml": "<p>In Ontario, a cohabitation agreement can automatically become a marriage contract if it meets the legal requirements.</p>"
+            },
+            {
+              "q": "When is the best time to make a cohabitation agreement?",
+              "aText": "Ideally before or shortly after moving in together—when expectations are aligned and pressure is low.",
+              "aHtml": "<p>Ideally before or shortly after moving in together—when expectations are aligned and pressure is low.</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Create a Cohabitation Agreement",
+          "href": "/create-cohabitation-agreement"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do common-law partners automatically share property in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Unlike married spouses, common-law partners do not have automatic property equalization rights. A cohabitation agreement is often the best way to define property expectations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a cohabitation agreement waive spousal support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In many cases, yes. Support waivers or limits are common, though enforceability depends on disclosure, fairness, and the circumstances at separation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens to a cohabitation agreement if we get married?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In Ontario, a cohabitation agreement can automatically become a marriage contract if it meets the legal requirements."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prenuptial-agreement-pillar",
+      "slug": "/prenuptial-agreement-ontario",
+      "silo": "cohabitation",
+      "title": "Prenuptial Agreements in Ontario",
+      "metaTitle": "Prenuptial Agreements in Ontario | Our Separation",
+      "metaDescription": "A prenuptial agreement lets couples in Ontario define property, support, and financial expectations before marriage. Learn how prenups work and create one online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Cohabitation agreements",
+          "href": "/cohabitation-agreement-ontario"
+        },
+        {
+          "label": "Separation agreements",
+          "href": "/ontario-separation-agreements"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Prenuptial Agreements in Ontario",
+          "subhead": "A prenuptial agreement—also called a marriage contract—lets couples define property and financial expectations before marriage. Our Separation helps you create a clear, Ontario-specific prenup online, in plain language.",
+          "primaryCta": {
+            "label": "Create a Prenuptial Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Learn More",
+            "href": "#content"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Prenuptial Agreement?",
+          "html": "<p>A prenuptial agreement, known in Ontario law as a <strong>marriage contract</strong>, is a written agreement made by two people who plan to marry.</p><p>Under Ontario's <strong>Family Law Act</strong>, a marriage contract allows couples to decide in advance how property, debts, and spousal support will be handled if the marriage ends.</p><p>Prenuptial agreements are not about planning for divorce—they are about <strong>clarity, transparency, and protecting both partners</strong> from uncertainty and conflict later.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Prenuptial Agreements Matter in Ontario",
+          "html": "<p>Marriage automatically triggers legal rules about property and support. A prenup lets you customize those rules to fit your situation.</p><ul><li><strong>Automatic property equalization:</strong> Ontario marriage creates default property equalization rules that apply on separation, regardless of who paid for what.</li><li><strong>Protection of premarital assets:</strong> A prenup can protect assets you bring into the marriage, including businesses, investments, or family wealth.</li><li><strong>Clarity around spousal support:</strong> Prenuptial agreements can set expectations around spousal support, including waivers or limits.</li><li><strong>Reduced risk of litigation:</strong> Clear agreements reduce uncertainty, legal costs, and emotional stress if the relationship ends.</li></ul>"
+        },
+        {
+          "type": "richText",
+          "heading": "What a Prenuptial Agreement Can Cover",
+          "html": "<h3>Property and Financial Issues</h3><p>Most Ontario prenuptial agreements address:</p><ul><li>How property will be divided on separation</li><li>Treatment of premarital assets</li><li>Debts and liabilities</li><li>The matrimonial home (with important limits)</li><li>Exclusions for gifts and inheritances</li></ul><p>These clauses are especially important where one or both partners bring significant assets into the marriage.</p><h3>Support and Financial Planning</h3><p>Prenups commonly include:</p><ul><li>Spousal support waivers or formulas</li><li>How income changes will be treated</li><li>Protection of business interests</li><li>Dispute resolution processes (e.g., mediation before court)</li></ul><p><strong>Important:</strong> Ontario law does not allow a prenup to predetermine parenting arrangements or child support.</p>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Important Note About the Matrimonial Home",
+          "html": "<p>In Ontario, special rules apply to the matrimonial home. Even if one spouse owned the home before marriage, it may still be subject to equalization. Prenuptial agreements can manage financial consequences, but they cannot completely override statutory protections in all cases.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Common Reasons Couples Choose a Prenup",
+          "html": "<ul><li><strong>Second marriages or blended families:</strong> Many couples use prenups to protect assets for children from prior relationships.</li><li><strong>Business ownership:</strong> Prenups can shield a business from equalization claims and valuation disputes.</li><li><strong>Unequal assets or income:</strong> Agreements help manage expectations where one partner enters the marriage with substantially more wealth.</li><li><strong>Family gifts or inheritances:</strong> A prenup can protect family contributions intended to stay within one family line.</li></ul>"
+        },
+        {
+          "type": "richText",
+          "heading": "Are Prenuptial Agreements Enforceable in Ontario?",
+          "html": "<p>Prenuptial agreements are generally enforceable in Ontario if they meet statutory and fairness requirements.</p><p><strong>Key factors include:</strong></p><ul><li>Full and honest financial disclosure</li><li>Independent legal advice for each partner (strongly recommended)</li><li>Voluntary signing without pressure</li><li>Clear and understandable drafting</li></ul><p>Courts may set aside a prenup in limited circumstances, such as serious nondisclosure or unconscionability at the time of enforcement.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Our Separation Helps You Create a Prenuptial Agreement",
+          "html": "<p>Modern planning for modern relationships.</p><h3>Step 1: Guided Questions</h3><p>Answer structured, plain-language questions about assets, income, and expectations.</p><h3>Step 2: Customized Terms</h3><p>Choose how property and support will be handled based on your actual circumstances.</p><h3>Step 3: Ontario-Specific Drafting</h3><p>Your answers are converted into a structured marriage contract aligned with Ontario law.</p><h3>Step 4: Optional Legal Review</h3><p>Have the agreement reviewed by a lawyer before signing, if you choose.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Prenuptial Agreement vs Cohabitation Agreement",
+          "html": "<table class='w-full border-collapse'><thead><tr><th class='border p-4 bg-gray-50 text-left'>Prenuptial Agreement</th><th class='border p-4 bg-gray-50 text-left'>Cohabitation Agreement</th></tr></thead><tbody><tr><td class='border p-4'>For couples planning to marry</td><td class='border p-4'>For couples living together but not married</td></tr><tr><td class='border p-4'>Modifies default marital property rules</td><td class='border p-4'>Defines property rules where none exist by default</td></tr><tr><td class='border p-4'>Applies once married</td><td class='border p-4'>Can convert into a marriage contract if the couple later marries</td></tr><tr><td class='border p-4'>Often focused on asset protection before marriage</td><td class='border p-4'>Often focused on day-to-day finances while living together</td></tr></tbody></table><p class='mt-4'><a href='/cohabitation-agreement-ontario' class='text-blue-600 hover:underline'>Learn about cohabitation agreements →</a></p>"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Prenuptial Agreements (Ontario)",
+          "items": [
+            {
+              "q": "Is a prenuptial agreement legally binding in Ontario?",
+              "aText": "Yes, if it meets legal requirements such as disclosure, voluntariness, and proper execution.",
+              "aHtml": "<p>Yes, if it meets legal requirements such as disclosure, voluntariness, and proper execution.</p>"
+            },
+            {
+              "q": "Can a prenup waive spousal support?",
+              "aText": "In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable.",
+              "aHtml": "<p>In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable.</p>"
+            },
+            {
+              "q": "Can a prenup deal with children?",
+              "aText": "No. Prenuptial agreements cannot determine parenting arrangements or child support in advance.",
+              "aHtml": "<p>No. Prenuptial agreements cannot determine parenting arrangements or child support in advance.</p>"
+            },
+            {
+              "q": "Do both partners need lawyers?",
+              "aText": "Independent legal advice is strongly recommended to maximize enforceability.",
+              "aHtml": "<p>Independent legal advice is strongly recommended to maximize enforceability.</p>"
+            },
+            {
+              "q": "When should a prenup be signed?",
+              "aText": "Well before the wedding date, to avoid pressure and last-minute disputes.",
+              "aHtml": "<p>Well before the wedding date, to avoid pressure and last-minute disputes.</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "primary",
+          "label": "Create a Prenuptial Agreement",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is for general educational purposes only and does not constitute legal advice. Prenuptial agreements involve complex legal rights. You should consult with a qualified family law lawyer in Ontario before finalizing any marriage contract."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is a prenuptial agreement legally binding in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, if it meets legal requirements such as disclosure, voluntariness, and proper execution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a prenup waive spousal support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a prenup deal with children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Prenuptial agreements cannot determine parenting arrangements or child support in advance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "postnuptial-agreement-pillar",
+      "slug": "/postnuptial-agreement-ontario",
+      "silo": "cohabitation",
+      "title": "Postnuptial Agreements in Ontario",
+      "metaTitle": "Postnuptial Agreements in Ontario | Our Separation",
+      "metaDescription": "A postnuptial agreement lets married couples in Ontario define property, support, and financial expectations after marriage. Learn how postnups work and create one online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Prenuptial agreements",
+          "href": "/prenuptial-agreement-ontario"
+        },
+        {
+          "label": "Cohabitation agreements",
+          "href": "/cohabitation-agreement-ontario"
+        },
+        {
+          "label": "Separation agreements",
+          "href": "/ontario-separation-agreements"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Postnuptial Agreements in Ontario",
+          "subhead": "A postnuptial agreement—also called a marriage contract made after marriage—lets spouses clarify property and financial expectations during marriage. Our Separation helps you create a clear, Ontario-specific postnup online, in plain language.",
+          "primaryCta": {
+            "label": "Create a Postnuptial Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Learn More",
+            "href": "#content"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Postnuptial Agreement?",
+          "html": "<p>A postnuptial agreement is a written contract between spouses who are already married. In Ontario law, it is a form of <strong>marriage contract</strong> permitted under the <strong>Family Law Act</strong>.</p><p>Postnuptial agreements allow married couples to change or clarify how property, debts, and spousal support will be handled if the marriage ends.</p><p>Unlike a prenuptial agreement, a postnup is created <strong>after the wedding</strong>—often when circumstances have changed or when financial clarity becomes more important.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Couples Use Postnuptial Agreements in Ontario",
+          "html": "<p>Life rarely stays the same after marriage. A postnup lets couples adapt their financial arrangements to new realities.</p><h3>Changed financial circumstances</h3><p>Significant changes in income, assets, or debt may justify updating financial expectations.</p><h3>Business growth or new ventures</h3><p>Postnups are commonly used to protect a business started or expanded after marriage.</p><h3>Inheritance or family wealth</h3><p>Couples may wish to clarify how inheritances or family gifts will be treated.</p><h3>No prenup in place</h3><p>Many couples marry without a prenup and later realize they want certainty and structure.</p><h3>Rebuilding trust</h3><p>In some cases, a postnup helps couples reset expectations after a period of strain or uncertainty.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What a Postnuptial Agreement Can Cover",
+          "html": "<h3>Property and financial matters</h3><p>Postnuptial agreements commonly address:</p><ul><li>Division of property on separation</li><li>Treatment of assets acquired during marriage</li><li>Debts and liabilities</li><li>Business interests</li><li>Exclusions for gifts and inheritances</li></ul><p>These terms can modify Ontario's default equalization regime.</p><h3>Spousal support and planning</h3><p>A postnup may also include:</p><ul><li>Spousal support waivers or limits</li><li>Support calculation methods</li><li>Income changes over time</li><li>Dispute resolution processes (for example, mediation before court)</li></ul><p>As with prenups, postnups cannot predetermine parenting arrangements or child support.</p>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Special Rules for the Matrimonial Home",
+          "html": "<p>Ontario law provides special protections for the matrimonial home. A postnuptial agreement can address financial consequences, but it cannot fully eliminate statutory rights in all circumstances. Careful drafting and legal review are especially important.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Are Postnuptial Agreements Enforceable in Ontario?",
+          "html": "<p>Postnuptial agreements are enforceable in Ontario if they comply with statutory and fairness requirements.</p><p><strong>Courts will look closely at:</strong></p><ul><li>Full and honest financial disclosure</li><li>Voluntary agreement without pressure</li><li>Independent legal advice for each spouse (strongly recommended)</li><li>Whether the agreement is substantively fair at the time of enforcement</li></ul><p>Because postnups are signed after marriage—sometimes during periods of tension—courts may scrutinize them more carefully than prenups.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Our Separation Helps You Create a Postnuptial Agreement",
+          "html": "<p>Clear structure for complex financial conversations.</p><h3>Step 1: Guided financial disclosure</h3><p>Work through assets, debts, and income with structured prompts designed for Ontario law.</p><h3>Step 2: Customize post-marriage terms</h3><p>Define how property and support will be handled going forward and on separation.</p><h3>Step 3: Ontario-specific drafting</h3><p>Your responses are converted into a structured postnuptial marriage contract.</p><h3>Step 4: Optional legal review</h3><p>Have the agreement reviewed by a lawyer before signing to strengthen enforceability.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "primary",
+          "label": "Create a Postnuptial Agreement",
+          "href": "/start"
+        },
+        {
+          "type": "richText",
+          "heading": "Postnuptial vs Prenuptial Agreements",
+          "html": "<table class='w-full border-collapse'><thead><tr><th class='border p-4 bg-gray-50 text-left'>Postnuptial Agreement</th><th class='border p-4 bg-gray-50 text-left'>Prenuptial Agreement</th></tr></thead><tbody><tr><td class='border p-4'>Signed after marriage</td><td class='border p-4'>Signed before marriage</td></tr><tr><td class='border p-4'>Often responds to changed circumstances</td><td class='border p-4'>Focuses on planning before marriage</td></tr><tr><td class='border p-4'>May face closer scrutiny by courts</td><td class='border p-4'>Generally scrutinized less if properly executed</td></tr><tr><td class='border p-4'>Common when no prenup exists</td><td class='border p-4'>Common where assets exist before marriage</td></tr></tbody></table><p class='mt-4'><a href='/prenuptial-agreement-ontario' class='text-blue-600 hover:underline'>Learn about prenuptial agreements →</a></p>"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Postnuptial Agreements (Ontario)",
+          "items": [
+            {
+              "q": "Are postnuptial agreements legal in Ontario?",
+              "aText": "Yes. Ontario's Family Law Act allows spouses to enter into marriage contracts at any time, including after marriage.",
+              "aHtml": "<p>Yes. Ontario's Family Law Act allows spouses to enter into marriage contracts at any time, including after marriage.</p>"
+            },
+            {
+              "q": "Are postnups harder to enforce than prenups?",
+              "aText": "They can be more closely scrutinized, especially if signed during conflict or without legal advice. Proper disclosure and fairness are critical.",
+              "aHtml": "<p>They can be more closely scrutinized, especially if signed during conflict or without legal advice. Proper disclosure and fairness are critical.</p>"
+            },
+            {
+              "q": "Can a postnup deal with children?",
+              "aText": "No. Like prenups, postnuptial agreements cannot determine parenting arrangements or child support.",
+              "aHtml": "<p>No. Like prenups, postnuptial agreements cannot determine parenting arrangements or child support.</p>"
+            },
+            {
+              "q": "Do both spouses need lawyers?",
+              "aText": "Independent legal advice is strongly recommended to improve enforceability.",
+              "aHtml": "<p>Independent legal advice is strongly recommended to improve enforceability.</p>"
+            },
+            {
+              "q": "When should a postnuptial agreement be considered?",
+              "aText": "When financial circumstances change, a business grows, inheritances are received, or when spouses want clarity after marriage.",
+              "aHtml": "<p>When financial circumstances change, a business grows, inheritances are received, or when spouses want clarity after marriage.</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "primary",
+          "label": "Create a Postnuptial Agreement",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is for general educational purposes only and does not constitute legal advice. Postnuptial agreements involve complex legal rights. You should consult with a qualified family law lawyer in Ontario before finalizing any marriage contract."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are postnuptial agreements legal in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Ontario's Family Law Act allows spouses to enter into marriage contracts at any time, including after marriage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are postnups harder to enforce than prenups?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "They can be more closely scrutinized, especially if signed during conflict or without legal advice. Proper disclosure and fairness are critical."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a postnup deal with children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Like prenups, postnuptial agreements cannot determine parenting arrangements or child support."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

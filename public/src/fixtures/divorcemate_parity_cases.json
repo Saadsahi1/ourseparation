@@ -1,0 +1,193 @@
+{
+  "case1_os_calculation_2": {
+    "description": "OS Calculation 2 - Moderate income gap, 2 children (under-6 + over-6)",
+    "inputs": {
+      "payorGrossIncome": 150000,
+      "recipientGrossIncome": 50000,
+      "relationshipYears": 10.5,
+      "children": [
+        { "age": 4, "disabilitySupplementEligible": false },
+        { "age": 9, "disabilitySupplementEligible": false }
+      ],
+      "parentingArrangement": "sole_recipient",
+      "payorDeductions": {
+        "rrspContributions": 0,
+        "unionDues": 0,
+        "otherDeductions": 0
+      },
+      "recipientDeductions": {
+        "rrspContributions": 0,
+        "unionDues": 0,
+        "otherDeductions": 0
+      },
+      "taxYear": 2025
+    },
+    "expected": {
+      "childSupport": {
+        "monthly": 2135,
+        "toleranceMonthly": 5
+      },
+      "notionalTableAmount": {
+        "annual": 8928,
+        "monthly": 744,
+        "toleranceMonthly": 5
+      },
+      "spousalSupport": {
+        "low": 89,
+        "mid": 755,
+        "high": 1488,
+        "toleranceMonthly": 25
+      },
+      "indiAtHigh": {
+        "payor": {
+          "annual": 68148,
+          "percent": 0.54
+        },
+        "recipient": {
+          "annual": 58051,
+          "percent": 0.46
+        },
+        "tolerancePercent": 0.002
+      },
+      "benefitsAtHigh": {
+        "recipient": {
+          "ccb": 10708,
+          "gst": 0,
+          "ocb": 170,
+          "otb": 0,
+          "cwb": 0,
+          "totalAnnual": 10878,
+          "totalMonthly": 906.5,
+          "toleranceMonthly": 10
+        }
+      }
+    }
+  },
+  "case2_os_calculation_3": {
+    "description": "OS Calculation 3 - High income, narrow gap, 1 older child",
+    "inputs": {
+      "payorGrossIncome": 150000,
+      "recipientGrossIncome": 110000,
+      "relationshipYears": 10.5,
+      "children": [
+        { "age": 13, "disabilitySupplementEligible": false }
+      ],
+      "parentingArrangement": "sole_recipient",
+      "payorDeductions": {
+        "rrspContributions": 0,
+        "unionDues": 0,
+        "otherDeductions": 0
+      },
+      "recipientDeductions": {
+        "rrspContributions": 0,
+        "unionDues": 0,
+        "otherDeductions": 0
+      },
+      "taxYear": 2025
+    },
+    "expected": {
+      "childSupport": {
+        "monthly": 1327,
+        "toleranceMonthly": 5
+      },
+      "notionalTableAmount": {
+        "annual": 12156,
+        "monthly": 1013,
+        "toleranceMonthly": 5
+      },
+      "spousalSupport": {
+        "low": 0,
+        "mid": 0,
+        "high": 36,
+        "toleranceMonthly": 25
+      },
+      "indiAtHigh": {
+        "payor": {
+          "annual": 87702,
+          "percent": 0.54
+        },
+        "recipient": {
+          "annual": 74708,
+          "percent": 0.46
+        },
+        "tolerancePercent": 0.002
+      },
+      "benefitsAtHigh": {
+        "recipient": {
+          "ccb": 2785,
+          "gst": 0,
+          "ocb": 0,
+          "otb": 0,
+          "cwb": 0,
+          "totalAnnual": 2785,
+          "totalMonthly": 232,
+          "toleranceMonthly": 10
+        }
+      }
+    }
+  },
+  "case3_os_calculation_4": {
+    "description": "OS Calculation 4 - Low income, benefits-heavy, 2 children",
+    "inputs": {
+      "payorGrossIncome": 70000,
+      "recipientGrossIncome": 25000,
+      "relationshipYears": 10.5,
+      "children": [
+        { "age": 13, "disabilitySupplementEligible": false },
+        { "age": 5, "disabilitySupplementEligible": false }
+      ],
+      "parentingArrangement": "sole_recipient",
+      "payorDeductions": {
+        "rrspContributions": 0,
+        "unionDues": 0,
+        "otherDeductions": 0
+      },
+      "recipientDeductions": {
+        "rrspContributions": 0,
+        "unionDues": 0,
+        "otherDeductions": 0
+      },
+      "taxYear": 2025
+    },
+    "expected": {
+      "childSupport": {
+        "monthly": 1072,
+        "toleranceMonthly": 5
+      },
+      "notionalTableAmount": {
+        "annual": 5304,
+        "monthly": 442,
+        "toleranceMonthly": 5
+      },
+      "spousalSupport": {
+        "low": 0,
+        "mid": 0,
+        "high": 0,
+        "toleranceMonthly": 25
+      },
+      "indiAtS0": {
+        "payor": {
+          "annual": 40605,
+          "percent": 0.499
+        },
+        "recipient": {
+          "annual": 40831,
+          "percent": 0.501
+        },
+        "tolerancePercent": 0.002
+      },
+      "benefitsAtS0": {
+        "recipient": {
+          "ccb": 14744,
+          "gst": 1066,
+          "ocb": 3452,
+          "otb": 1110,
+          "cwb": 0,
+          "totalAnnual": 20372,
+          "totalMonthly": 1698,
+          "toleranceMonthly": 10
+        }
+      }
+    }
+  }
+}

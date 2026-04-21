@@ -1,0 +1,55 @@
+{
+  "name": "Four children, mixed ages",
+  "description": "Large family with varied child ages, higher CCB reduction rate",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 22,
+    "payor": {
+      "grossIncome": 135000,
+      "rrspContributions": 8000,
+      "unionDues": 900,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 42000,
+      "rrspContributions": 0,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 5, "disabilitySupplementEligible": false },
+      { "age": 8, "disabilitySupplementEligible": false },
+      { "age": 11, "disabilitySupplementEligible": false },
+      { "age": 14, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 2417,
+      "tolerance": 10
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 1100,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 1400,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 1700,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

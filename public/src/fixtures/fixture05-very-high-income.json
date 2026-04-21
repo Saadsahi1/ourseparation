@@ -1,0 +1,52 @@
+{
+  "name": "Very high income, one child",
+  "description": "Income exceeds child support table maximum, uses percentage formula",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 20,
+    "payor": {
+      "grossIncome": 250000,
+      "rrspContributions": 15000,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 50000,
+      "rrspContributions": 0,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 14, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 2200,
+      "tolerance": 20
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 2500,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 100,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 3100,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 100,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 3700,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 100,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

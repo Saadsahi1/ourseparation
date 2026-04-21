@@ -1,0 +1,53 @@
+{
+  "name": "Multiple young children under 6",
+  "description": "Higher CCB benefits for children under 6 years old",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 6,
+    "payor": {
+      "grossIncome": 110000,
+      "rrspContributions": 5000,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 38000,
+      "rrspContributions": 0,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 2, "disabilitySupplementEligible": false },
+      { "age": 4, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 1663,
+      "tolerance": 5
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 900,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 1150,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 1400,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

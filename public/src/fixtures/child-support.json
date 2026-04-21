@@ -1,0 +1,323 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-05"
+  },
+  "silo": "child-support",
+  "pages": [
+    {
+      "id": "child-support-pillar",
+      "slug": "/child-support-ontario",
+      "silo": "child-support",
+      "title": "Child Support in Ontario",
+      "metaTitle": "Child Support in Ontario | Our Separation",
+      "metaDescription": "Understand how child support is determined in Ontario, including guideline tables, shared parenting, and section 7 expenses.",
+      "lastUpdated": "2026-01-05",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Separation Agreements in Ontario",
+          "href": "/ontario-separation-agreements"
+        },
+        {
+          "label": "Spousal Support in Ontario",
+          "href": "/spousal-support-ontario"
+        },
+        {
+          "label": "Section 7 Expenses in Ontario",
+          "href": "/section-7-expenses-ontario"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Child Support in Ontario",
+          "subhead": "Understand how child support is determined in Ontario, including guideline tables, shared parenting, and section 7 expenses.",
+          "primaryCta": {
+            "label": "Start Your Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Lawyer Review",
+            "href": "/lawyer-review"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "Child Support in Ontario: How It Is Determined",
+          "html": "<p>Child support is a legal obligation owed by one parent to another for the benefit of their child. In Ontario, child support is governed by the <strong>Federal Child Support Guidelines</strong>, which establish how support is calculated and enforced. Child support belongs to the child, and parents cannot bargain it away.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Who Pays Child Support?",
+          "html": "<p>Typically, the parent with less parenting time pays child support. Parenting arrangements are commonly categorized as primary residence, shared parenting (40% or more with each parent), and split parenting (each parent has at least one child primarily). Each arrangement affects how support is calculated.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "The Child Support Guidelines Explained",
+          "html": "<p>The Guidelines establish base table support amounts, adjustments for shared parenting, and the treatment of special expenses (section 7). Support is generally determined using <strong>gross annual income</strong>.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "balanced",
+          "label": "Use Our Separation to build a legally structured Ontario agreement.",
+          "href": "/start"
+        },
+        {
+          "type": "richText",
+          "heading": "Table Child Support",
+          "html": "<p>Table support depends on income, province, and number of children. Ontario has its own support tables.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Shared Parenting and Child Support",
+          "html": "<p>In shared parenting cases, courts consider table support for each parent, increased costs of shared parenting, and the conditions, means, and needs of the child. Support is not automatically “offset” without analysis.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Section 7 Expenses",
+          "html": "<p>Special or extraordinary expenses may include childcare, medical and dental costs, extracurricular activities, and post-secondary education. These are usually shared proportionally based on income.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Changing Child Support",
+          "html": "<p>Child support can be changed where income changes, parenting arrangements change, or a child becomes independent. Support is reviewed to maintain fairness and consistency with the Guidelines.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Our Separation Helps",
+          "html": "<p><strong>Our Separation</strong> can calculate guideline child support, adjust for parenting arrangements, and integrate support clauses directly into your agreement.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Start with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions",
+          "items": [
+            {
+              "q": "Is child support mandatory in Ontario?",
+              "aText": "Yes. Child support is a legal obligation and cannot be permanently waived.",
+              "aHtml": "<p>Yes. Child support is a legal obligation and cannot be permanently waived.</p>"
+            },
+            {
+              "q": "How is child support calculated?",
+              "aText": "Child support is calculated using the Federal Child Support Guidelines based on income, number of children, and parenting arrangements.",
+              "aHtml": "<p>Child support is calculated using the Federal Child Support Guidelines based on income, number of children, and parenting arrangements.</p>"
+            }
+          ]
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is child support mandatory in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Child support is a legal obligation and cannot be permanently waived."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is child support calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Child support is calculated using the Federal Child Support Guidelines based on income, number of children, and parenting arrangements."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "section7-expenses-ontario",
+      "slug": "/section-7-expenses-ontario",
+      "silo": "child-support",
+      "title": "Section 7 Expenses in Ontario",
+      "metaTitle": "Section 7 Expenses in Ontario (Special or Extraordinary Expenses) | Our Separation",
+      "metaDescription": "A comprehensive Ontario guide to section 7 child support expenses: what qualifies, how costs are shared, approval rules, common disputes, and how to draft enforceable terms in a separation agreement.",
+      "lastUpdated": "2026-01-08",
+      "toc": true,
+      "internalLinks": [
+        { "label": "Child Support in Ontario", "href": "/child-support-ontario" },
+        { "label": "Separation Agreements in Ontario", "href": "/ontario-separation-agreements" },
+        { "label": "Parenting Plans in Ontario", "href": "/parenting-plans-ontario" }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Section 7 Expenses in Ontario",
+          "subhead": "A complete guide to special or extraordinary child support expenses, including what qualifies, how costs are shared, and how to draft clear agreement terms.",
+          "primaryCta": { "label": "Start Your Agreement", "href": "/start" },
+          "secondaryCta": { "label": "Lawyer Review", "href": "/lawyer-review" }
+        },
+        {
+          "type": "richText",
+          "heading": "Overview",
+          "html": "<p>When parents separate in Ontario, child support is not limited to the basic monthly table amount. Many children incur additional costs that go beyond ordinary day-to-day living expenses. These costs are known as <strong>special or extraordinary expenses</strong>, commonly referred to as <strong>section 7 expenses</strong>.</p><p>Section 7 expenses can be one of the most contentious issues in family law. Disputes often arise over what qualifies, how expenses should be shared, whether an expense is reasonable, and what happens when parents disagree.</p><p>This guide explains everything separating parents need to know about section 7 expenses in Ontario, including what qualifies, how expenses are shared, how courts assess reasonableness, and how these expenses should be addressed in a separation agreement.</p><p><strong>Our Separation</strong> helps parents identify, allocate, and document section 7 expenses to reduce conflict and avoid court.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What Are Section 7 Expenses?",
+          "html": "<p>Section 7 expenses take their name from <strong>section 7 of the Federal Child Support Guidelines</strong>. These expenses are defined as <strong>special or extraordinary expenses</strong> incurred for the benefit of a child, in addition to basic child support.</p><p>Unlike table child support, section 7 expenses are <strong>not automatically included</strong> in monthly support payments. They are addressed separately and typically shared between parents.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Section 7 Expenses Exist",
+          "html": "<p>The child support tables are designed to cover ordinary costs of raising a child, such as food, clothing, housing, basic transportation, and ordinary school supplies. However, many children incur additional expenses that are not captured by the tables. Section 7 exists to ensure these costs are shared fairly and in proportion to each parent's financial ability.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "balanced",
+          "label": "Want Section 7 terms handled clearly and fairly? Build your Ontario separation agreement with Our Separation.",
+          "href": "/start"
+        },
+        {
+          "type": "richText",
+          "heading": "Categories of Section 7 Expenses",
+          "html": "<p>The Guidelines identify several categories of expenses that may qualify as section 7 expenses. Each category has its own legal considerations.</p><h3>1. Childcare Expenses</h3><p>Childcare expenses incurred as a result of a parent's employment, education, training, illness, or disability may qualify. Common examples include daycare, before- and after-school care, and childcare required for work. Childcare expenses are among the most commonly accepted section 7 expenses.</p><h3>2. Medical and Dental Expenses</h3><p>Medical and dental expenses may qualify where they are not covered by insurance (or exceed insurance coverage). Examples include orthodontics, prescription medication, counselling or therapy, physiotherapy, and psychological assessments. Courts often require evidence the treatment is medically necessary rather than elective.</p><h3>3. Health Insurance Premiums</h3><p>The portion of health or dental insurance premiums that relates specifically to the child may qualify as a section 7 expense, particularly where one parent pays employment benefits.</p><h3>4. Extraordinary Educational Expenses</h3><p>Educational expenses may qualify where they are special or extraordinary, such as private school tuition, tutoring for learning disabilities, or special education programs. Courts consider whether private schooling existed prior to separation and whether it is reasonable given the parents' means.</p><h3>5. Post-Secondary Education Expenses</h3><p>Post-secondary expenses frequently qualify, including tuition, books, compulsory fees, and reasonable living/residence expenses. Courts also consider scholarships and grants, the child's own contribution, and income from part-time or summer work.</p><h3>6. Extraordinary Extracurricular Activities</h3><p>Extracurricular activities may qualify if extraordinary in cost or commitment, such as elite competitive sports, high-level music or arts training, or travel teams. Ordinary activities are usually covered by table support.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What Does Not Qualify as a Section 7 Expense?",
+          "html": "<p>Not every expense related to a child qualifies as a section 7 expense. Items that often do not qualify include ordinary clothing, routine school supplies, standard recreation, everyday transportation, and casual extracurricular activities. The central question is whether the expense is <strong>special or extraordinary</strong> given the child's needs and the parents' financial circumstances.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "The Legal Test for Section 7 Expenses",
+          "html": "<p>Ontario courts generally apply a two-step analysis:</p><h3>Step 1: Is the Expense Special or Extraordinary?</h3><p>An expense may be extraordinary if it is unusually high relative to the parents' incomes, exceeds what is typically covered by table support, or is necessary due to the child's needs.</p><h3>Step 2: Is the Expense Reasonable and Necessary?</h3><p>Courts consider the child's best interests, the parents' means, the family's spending patterns before separation, and whether the expense was agreed to in advance.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Are Section 7 Expenses Shared?",
+          "html": "<p>Section 7 expenses are usually shared <strong>proportionally to income</strong>, not equally. For example, if Parent A earns 60% of combined income and Parent B earns 40%, the expense is typically shared 60/40 regardless of parenting time.</p><h3>Adjustments Before Sharing</h3><p>Before sharing, courts may deduct tax deductions or credits, subsidies, and insurance reimbursements. Typically, only the <strong>net cost</strong> is shared.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Do Parents Need to Agree in Advance?",
+          "html": "<p>Advance agreement is not strictly required, but it is strongly preferred. Courts often consider whether the expense was discussed beforehand, whether one parent acted unilaterally, and whether the expense was reasonably foreseeable. Separation agreements should clearly state approval requirements for section 7 expenses.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Common Disputes About Section 7 Expenses",
+          "html": "<p>Disputes commonly arise over whether an expense qualifies, whether it is affordable, whether it was necessary, whether prior consent was required, and whether one parent can unilaterally enroll a child. Clear drafting dramatically reduces these disputes.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Section 7 Expenses in Shared Parenting Arrangements",
+          "html": "<p>Shared parenting does not eliminate section 7 expenses. Even where parents share parenting time equally, section 7 expenses are typically shared based on income, not time.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Section 7 Expenses in Separation Agreements",
+          "html": "<p>A well-drafted separation agreement should address: which expenses qualify, how expenses are approved, how costs are shared, timelines for reimbursement, exchange of receipts, and dispute resolution mechanisms. <strong>Our Separation</strong> prompts parents to address each of these issues clearly.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Retroactive Section 7 Expenses",
+          "html": "<p>Courts may order retroactive contribution where expenses were necessary, the other parent had notice, and the expense was reasonable. Unilateral expenses without notice are more vulnerable to challenge.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Enforcement of Section 7 Expenses",
+          "html": "<p>If included in a court order or properly filed separation agreement, section 7 obligations may be enforceable through court processes and, in some circumstances, through the Family Responsibility Office. Clear documentation is critical.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Tax Considerations",
+          "html": "<p>Some section 7 expenses may generate tax credits or deductions. Agreements should clarify who claims credits and how tax benefits are factored into the sharing of net costs.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Our Separation Helps With Section 7 Expenses",
+          "html": "<p><strong>Our Separation</strong> reduces conflict around section 7 expenses by identifying qualifying categories, supporting proportional sharing, embedding approval rules, documenting reimbursement processes, and integrating section 7 clauses directly into your agreement.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Start your agreement and document Section 7 terms clearly",
+          "href": "/start"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions",
+          "items": [
+            {
+              "q": "What are section 7 expenses in Ontario?",
+              "aHtml": "<p>Section 7 expenses are special or extraordinary child-related expenses that may be shared between parents in addition to basic guideline child support.</p>",
+              "aText": "Section 7 expenses are special or extraordinary child-related expenses that may be shared between parents in addition to basic guideline child support."
+            },
+            {
+              "q": "How are section 7 expenses shared?",
+              "aHtml": "<p>Section 7 expenses are usually shared proportionally based on each parent's income, after deducting reimbursements, subsidies, and relevant tax benefits to determine the net cost.</p>",
+              "aText": "Section 7 expenses are usually shared proportionally based on each parent's income, after deducting reimbursements, subsidies, and relevant tax benefits to determine the net cost."
+            },
+            {
+              "q": "Do extracurricular activities count as section 7 expenses?",
+              "aHtml": "<p>Only extracurricular activities that are extraordinary in cost or commitment typically qualify. Ordinary activities are usually covered by the table amount.</p>",
+              "aText": "Only extracurricular activities that are extraordinary in cost or commitment typically qualify. Ordinary activities are usually covered by the table amount."
+            },
+            {
+              "q": "Do parents need to agree before incurring section 7 expenses?",
+              "aHtml": "<p>Advance agreement is strongly preferred. Separation agreements should define approval rules, notice requirements, and reimbursement timelines to reduce disputes.</p>",
+              "aText": "Advance agreement is strongly preferred. Separation agreements should define approval rules, notice requirements, and reimbursement timelines to reduce disputes."
+            }
+          ]
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are section 7 expenses in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Section 7 expenses are special or extraordinary child-related expenses that may be shared between parents in addition to basic guideline child support."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are section 7 expenses shared?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Section 7 expenses are usually shared proportionally based on each parent's income, after deducting reimbursements, subsidies, and relevant tax benefits to determine the net cost."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do extracurricular activities count as section 7 expenses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only extracurricular activities that are extraordinary in cost or commitment typically qualify. Ordinary activities are usually covered by the table amount."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do parents need to agree before incurring section 7 expenses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Advance agreement is strongly preferred. Separation agreements should define approval rules, notice requirements, and reimbursement timelines to reduce disputes."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Shared custody, one child",
+  "description": "Shared parenting arrangement with 50/50 custody split",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 8,
+    "payor": {
+      "grossIncome": 120000,
+      "rrspContributions": 6000,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 80000,
+      "rrspContributions": 4000,
+      "unionDues": 500,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 10, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "shared"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 350,
+      "tolerance": 10
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 500,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 650,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 800,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

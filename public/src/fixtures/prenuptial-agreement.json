@@ -1,0 +1,395 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-09"
+  },
+  "silo": "prenuptial-agreement",
+  "pages": [
+    {
+      "id": "prenuptial-agreement-pillar",
+      "slug": "/prenuptial-agreement-ontario",
+      "silo": "prenuptial-agreement",
+      "title": "Prenuptial Agreements in Ontario",
+      "metaTitle": "Prenuptial Agreements in Ontario | Our Separation",
+      "metaDescription": "A prenuptial agreement lets couples in Ontario define property, support, and financial expectations before marriage. Learn how prenups work and create one online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Cohabitation Agreements",
+          "href": "/cohabitation-agreement-ontario"
+        },
+        {
+          "label": "Postnuptial Agreements",
+          "href": "/postnuptial-agreement-ontario"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Prenuptial Agreements in Ontario",
+          "subhead": "A prenuptial agreement—also called a marriage contract—lets couples define property and financial expectations before marriage. Our Separation helps you create a clear, Ontario-specific prenup online, in plain language.",
+          "primaryCta": {
+            "label": "Create a Prenuptial Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Learn More",
+            "href": "#content"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Prenuptial Agreement?",
+          "html": "<p>A prenuptial agreement, known in Ontario law as a <strong>marriage contract</strong>, is a written agreement made by two people who plan to marry.</p><p>Under Ontario's <strong>Family Law Act</strong>, a marriage contract allows couples to decide in advance how property, debts, and spousal support will be handled if the marriage ends.</p><p>Prenuptial agreements are not about planning for divorce—they are about <strong>clarity, transparency, and protecting both partners</strong> from uncertainty and conflict later.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Prenuptial Agreements Matter in Ontario",
+          "html": "<p>Marriage automatically triggers legal rules about property and support. A prenup lets you customize those rules to fit your situation.</p><ul><li><strong>Automatic property equalization:</strong> Ontario marriage creates default property equalization rules that apply on separation, regardless of who paid for what.</li><li><strong>Protection of premarital assets:</strong> A prenup can protect assets you bring into the marriage, including businesses, investments, or family wealth.</li><li><strong>Clarity around spousal support:</strong> Prenuptial agreements can set expectations around spousal support, including waivers or limits.</li><li><strong>Reduced risk of litigation:</strong> Clear agreements reduce uncertainty, legal costs, and emotional stress if the relationship ends.</li></ul>"
+        },
+        {
+          "type": "richText",
+          "heading": "What a Prenuptial Agreement Can Cover",
+          "html": "<h3>Property and Financial Issues</h3><p>Most Ontario prenuptial agreements address:</p><ul><li>How property will be divided on separation</li><li>Treatment of premarital assets</li><li>Debts and liabilities</li><li>The matrimonial home (with important limits)</li><li>Exclusions for gifts and inheritances</li></ul><p>These clauses are especially important where one or both partners bring significant assets into the marriage.</p><h3>Support and Financial Planning</h3><p>Prenups commonly include:</p><ul><li>Spousal support waivers or formulas</li><li>How income changes will be treated</li><li>Protection of business interests</li><li>Dispute resolution processes (e.g., mediation before court)</li></ul><p><strong>Important:</strong> Ontario law does not allow a prenup to predetermine parenting arrangements or child support.</p>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Important Note About the Matrimonial Home",
+          "html": "<p>In Ontario, special rules apply to the matrimonial home. Even if one spouse owned the home before marriage, it may still be subject to equalization. Prenuptial agreements can manage financial consequences, but they cannot completely override statutory protections in all cases.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Common Reasons Couples Choose a Prenup",
+          "html": "<ul><li><strong>Second marriages or blended families:</strong> Many couples use prenups to protect assets for children from prior relationships.</li><li><strong>Business ownership:</strong> Prenups can shield a business from equalization claims and valuation disputes.</li><li><strong>Unequal assets or income:</strong> Agreements help manage expectations where one partner enters the marriage with substantially more wealth.</li><li><strong>Family gifts or inheritances:</strong> A prenup can protect family contributions intended to stay within one family line.</li></ul>"
+        },
+        {
+          "type": "richText",
+          "heading": "Are Prenuptial Agreements Enforceable in Ontario?",
+          "html": "<p>Prenuptial agreements are generally enforceable in Ontario if they meet statutory and fairness requirements.</p><p><strong>Key factors include:</strong></p><ul><li>Full and honest financial disclosure</li><li>Independent legal advice for each partner (strongly recommended)</li><li>Voluntary signing without pressure</li><li>Clear and understandable drafting</li></ul><p>Courts may set aside a prenup in limited circumstances, such as serious nondisclosure or unconscionability at the time of enforcement.</p>"
+        },
+        {
+          "type": "steps",
+          "heading": "How Our Separation Helps You Create a Prenuptial Agreement",
+          "items": [
+            {
+              "title": "Guided Questions",
+              "html": "<p>Answer structured, plain-language questions about assets, income, and expectations.</p>"
+            },
+            {
+              "title": "Customized Terms",
+              "html": "<p>Choose how property and support will be handled based on your actual circumstances.</p>"
+            },
+            {
+              "title": "Ontario-Specific Drafting",
+              "html": "<p>Your answers are converted into a structured marriage contract aligned with Ontario law.</p>"
+            },
+            {
+              "title": "Optional Legal Review",
+              "html": "<p>Have the agreement reviewed by a lawyer before signing, if you choose.</p>"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "heading": "Prenuptial Agreement vs Cohabitation Agreement",
+          "columns": ["Prenuptial Agreement", "Cohabitation Agreement"],
+          "rows": [
+            ["For couples planning to marry", "For couples living together but not married"],
+            ["Modifies default marital property rules", "Defines property rules where none exist by default"],
+            ["Applies once married", "Can convert into a marriage contract if the couple later marries"],
+            ["Often focused on asset protection before marriage", "Often focused on day-to-day finances while living together"]
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Prenuptial Agreements (Ontario)",
+          "items": [
+            {
+              "q": "Is a prenuptial agreement legally binding in Ontario?",
+              "aText": "Yes, if it meets legal requirements such as disclosure, voluntariness, and proper execution.",
+              "aHtml": "<p>Yes, if it meets legal requirements such as disclosure, voluntariness, and proper execution.</p>"
+            },
+            {
+              "q": "Can a prenup waive spousal support?",
+              "aText": "In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable.",
+              "aHtml": "<p>In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable.</p>"
+            },
+            {
+              "q": "Can a prenup deal with children?",
+              "aText": "No. Prenuptial agreements cannot determine parenting arrangements or child support in advance.",
+              "aHtml": "<p>No. Prenuptial agreements cannot determine parenting arrangements or child support in advance.</p>"
+            },
+            {
+              "q": "Do both partners need lawyers?",
+              "aText": "Independent legal advice is strongly recommended to maximize enforceability.",
+              "aHtml": "<p>Independent legal advice is strongly recommended to maximize enforceability.</p>"
+            },
+            {
+              "q": "When should a prenup be signed?",
+              "aText": "Well before the wedding date, to avoid pressure and last-minute disputes.",
+              "aHtml": "<p>Well before the wedding date, to avoid pressure and last-minute disputes.</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "primary",
+          "label": "Create a Prenuptial Agreement",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is for general educational purposes only and does not constitute legal advice. Prenuptial agreements involve complex legal rights. You should consult with a qualified family law lawyer in Ontario before finalizing any marriage contract."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is a prenuptial agreement legally binding in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, if it meets legal requirements such as disclosure, voluntariness, and proper execution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a prenup waive spousal support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a prenup deal with children?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Prenuptial agreements cannot determine parenting arrangements or child support in advance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do both partners need lawyers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Independent legal advice is strongly recommended to maximize enforceability."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When should a prenup be signed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Well before the wedding date, to avoid pressure and last-minute disputes."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "postnuptial-agreement-pillar",
+      "slug": "/postnuptial-agreement-ontario",
+      "silo": "prenuptial-agreement",
+      "title": "Postnuptial Agreements in Ontario",
+      "metaTitle": "Postnuptial Agreements in Ontario | Our Separation",
+      "metaDescription": "A postnuptial agreement lets married couples in Ontario define property, support, and financial expectations after marriage. Learn how postnups work and create one online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Prenuptial Agreements",
+          "href": "/prenuptial-agreement-ontario"
+        },
+        {
+          "label": "Separation Agreements",
+          "href": "/ontario-separation-agreements"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Postnuptial Agreements in Ontario",
+          "subhead": "A postnuptial agreement—also called a marriage contract—lets married couples define property and financial expectations after marriage. Our Separation helps you create a clear, Ontario-specific postnup online, in plain language.",
+          "primaryCta": {
+            "label": "Create a Postnuptial Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Learn More",
+            "href": "#content"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Postnuptial Agreement?",
+          "html": "<p>A postnuptial agreement, known in Ontario law as a <strong>marriage contract</strong>, is a written agreement made by two people who are already married.</p><p>Under Ontario's <strong>Family Law Act</strong>, a marriage contract allows married couples to decide how property, debts, and spousal support will be handled if the marriage ends—even years after the wedding.</p><p>Postnuptial agreements serve the same legal purpose as prenuptial agreements, but they are signed <strong>after marriage has begun</strong>. Many couples use them to address changed circumstances, clarify expectations, or resolve financial uncertainty.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Couples Choose Postnuptial Agreements in Ontario",
+          "html": "<p>Life changes after marriage. A postnup lets you adapt your financial arrangements to reflect new realities.</p><ul><li><strong>Changed financial circumstances:</strong> One spouse inherits wealth, starts a business, or experiences a major income change.</li><li><strong>Reconciliation after separation:</strong> Couples who separate and then reconcile often use postnups to clarify terms going forward.</li><li><strong>Blended families:</strong> Spouses with children from previous relationships may want to protect inheritances for their children.</li><li><strong>Addressing new assets:</strong> Significant purchases like a business, investment property, or inheritance may warrant new agreements.</li><li><strong>Financial transparency:</strong> Some couples use postnups to formalize expectations around spending, debt, or support.</li></ul>"
+        },
+        {
+          "type": "richText",
+          "heading": "What a Postnuptial Agreement Can Cover",
+          "html": "<h3>Property and Financial Issues</h3><p>Ontario postnuptial agreements commonly address:</p><ul><li>Division of property on separation</li><li>Treatment of assets acquired during marriage</li><li>Business interests and investments</li><li>Debts and liabilities</li><li>The matrimonial home (subject to important statutory limits)</li><li>Gifts and inheritances</li></ul><h3>Support and Planning</h3><p>Postnups can also include:</p><ul><li>Spousal support waivers or formulas</li><li>Income-sharing arrangements</li><li>Estate planning coordination</li><li>Dispute resolution clauses (e.g., mediation or arbitration)</li></ul><p><strong>Important:</strong> Like prenuptial agreements, postnups cannot predetermine parenting arrangements or child support.</p>"
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Postnuptial Agreements vs Separation Agreements",
+          "html": "<p>A postnuptial agreement is signed while the couple intends to stay married. A separation agreement is signed when the couple has decided to separate or divorce. If you are already separated, you likely need a <a href='/ontario-separation-agreements'>separation agreement</a>, not a postnup.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Are Postnuptial Agreements Enforceable in Ontario?",
+          "html": "<p>Yes. Ontario law treats postnuptial agreements the same as prenuptial agreements—both are forms of marriage contracts under the <em>Family Law Act</em>.</p><p><strong>To be enforceable, a postnup must meet these requirements:</strong></p><ul><li><strong>Full financial disclosure:</strong> Both spouses must honestly disclose their assets, debts, and income.</li><li><strong>Independent legal advice:</strong> Each spouse should receive independent legal advice before signing.</li><li><strong>Voluntary agreement:</strong> The agreement must be signed freely, without pressure or coercion.</li><li><strong>Fair and reasonable:</strong> Courts may set aside agreements that are unconscionable at the time of enforcement.</li></ul><p>Postnuptial agreements signed <strong>during marriage difficulties</strong> may face closer scrutiny to ensure both parties entered into them fairly.</p>"
+        },
+        {
+          "type": "steps",
+          "heading": "How to Create a Postnuptial Agreement with Our Separation",
+          "items": [
+            {
+              "title": "Answer Guided Questions",
+              "html": "<p>Provide information about your current assets, income, debts, and expectations for the future.</p>"
+            },
+            {
+              "title": "Customize Your Terms",
+              "html": "<p>Choose how property, support, and other financial matters will be handled if you separate.</p>"
+            },
+            {
+              "title": "Generate Ontario-Compliant Document",
+              "html": "<p>Your answers are converted into a structured marriage contract that follows Ontario legal requirements.</p>"
+            },
+            {
+              "title": "Get Legal Review",
+              "html": "<p>Both spouses should have their own lawyer review the agreement before signing to maximize enforceability.</p>"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "heading": "Postnuptial vs Prenuptial vs Separation Agreement",
+          "columns": ["Agreement Type", "Timing", "Purpose"],
+          "rows": [
+            ["Prenuptial Agreement", "Before marriage", "Set financial expectations before getting married"],
+            ["Postnuptial Agreement", "During marriage", "Adjust financial terms after marriage has begun"],
+            ["Separation Agreement", "After separation", "Formalize all terms of separation or divorce"]
+          ]
+        },
+        {
+          "type": "richText",
+          "heading": "Common Reasons for a Postnuptial Agreement",
+          "html": "<ul><li><strong>Inheritance protection:</strong> One spouse receives or expects a significant inheritance and wants to keep it separate.</li><li><strong>Business growth:</strong> One spouse starts or grows a business and wants to protect it from equalization.</li><li><strong>Rebuilding trust:</strong> After financial issues or infidelity, couples may use a postnup to rebuild financial trust.</li><li><strong>Income disparity:</strong> One spouse's income changes dramatically, and the couple wants to clarify expectations.</li><li><strong>Estate planning:</strong> Spouses with children from previous relationships want to ensure assets flow to specific heirs.</li></ul>"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Postnuptial Agreements (Ontario)",
+          "items": [
+            {
+              "q": "Can you make a postnuptial agreement in Ontario?",
+              "aText": "Yes. Ontario's Family Law Act allows married couples to enter into marriage contracts at any time, including after marriage.",
+              "aHtml": "<p>Yes. Ontario's Family Law Act allows married couples to enter into marriage contracts at any time, including after marriage.</p>"
+            },
+            {
+              "q": "Is a postnup the same as a prenup?",
+              "aText": "Legally, yes—both are marriage contracts. The only difference is timing: prenups are signed before marriage, postnups after.",
+              "aHtml": "<p>Legally, yes—both are marriage contracts. The only difference is timing: prenups are signed before marriage, postnups after.</p>"
+            },
+            {
+              "q": "When should you consider a postnuptial agreement?",
+              "aText": "When circumstances change significantly—such as inheritance, business growth, reconciliation after separation, or major income changes.",
+              "aHtml": "<p>When circumstances change significantly—such as inheritance, business growth, reconciliation after separation, or major income changes.</p>"
+            },
+            {
+              "q": "Do both spouses need separate lawyers?",
+              "aText": "Independent legal advice is strongly recommended to ensure the agreement is enforceable and fair to both parties.",
+              "aHtml": "<p>Independent legal advice is strongly recommended to ensure the agreement is enforceable and fair to both parties.</p>"
+            },
+            {
+              "q": "Can a postnup waive spousal support?",
+              "aText": "In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable.",
+              "aHtml": "<p>In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable.</p>"
+            },
+            {
+              "q": "What's the difference between a postnup and a separation agreement?",
+              "aText": "A postnup is signed while the couple intends to stay married. A separation agreement is signed when they have decided to separate or divorce.",
+              "aHtml": "<p>A postnup is signed while the couple intends to stay married. A separation agreement is signed when they have decided to separate or divorce.</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "primary",
+          "label": "Create a Postnuptial Agreement",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is for general educational purposes only and does not constitute legal advice. Postnuptial agreements involve complex legal rights. You should consult with a qualified family law lawyer in Ontario before finalizing any marriage contract."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can you make a postnuptial agreement in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Ontario's Family Law Act allows married couples to enter into marriage contracts at any time, including after marriage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is a postnup the same as a prenup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Legally, yes—both are marriage contracts. The only difference is timing: prenups are signed before marriage, postnups after."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When should you consider a postnuptial agreement?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When circumstances change significantly—such as inheritance, business growth, reconciliation after separation, or major income changes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do both spouses need separate lawyers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Independent legal advice is strongly recommended to ensure the agreement is enforceable and fair to both parties."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a postnup waive spousal support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In many cases, yes. However, courts may review support waivers if enforcement would be unconscionable."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between a postnup and a separation agreement?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A postnup is signed while the couple intends to stay married. A separation agreement is signed when they have decided to separate or divorce."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

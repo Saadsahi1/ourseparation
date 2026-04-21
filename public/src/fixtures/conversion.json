@@ -1,0 +1,137 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-05"
+  },
+  "silo": "conversion",
+  "pages": [
+    {
+      "id": "online-sep-agreement",
+      "slug": "/online-separation-agreement-ontario",
+      "silo": "conversion",
+      "title": "Online Separation Agreement – Ontario",
+      "metaTitle": "Online Separation Agreement – Ontario | Our Separation",
+      "metaDescription": "Ontario-focused information about online separation agreement – ontario and how Our Separation can help you reach a clear, legally structured outcome.",
+      "lastUpdated": "2026-01-05",
+      "toc": true,
+      "internalLinks": [],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Online Separation Agreement – Ontario",
+          "subhead": "Draft pending (content pack stub).",
+          "primaryCta": {
+            "label": "Start Your Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Lawyer Review",
+            "href": "/lawyer-review"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "Content coming soon",
+          "html": "<p>Draft pending.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Start with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        }
+      ],
+      "faqSchemaJsonLd": null
+    },
+    {
+      "id": "lawyer-review",
+      "slug": "/lawyer-review",
+      "silo": "conversion",
+      "title": "Lawyer Review",
+      "metaTitle": "Lawyer Review | Our Separation",
+      "metaDescription": "Ontario-focused information about lawyer review and how Our Separation can help you reach a clear, legally structured outcome.",
+      "lastUpdated": "2026-01-05",
+      "toc": true,
+      "internalLinks": [],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Lawyer Review",
+          "subhead": "Draft pending (content pack stub).",
+          "primaryCta": {
+            "label": "Start Your Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Lawyer Review",
+            "href": "/lawyer-review"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "Content coming soon",
+          "html": "<p>Draft pending.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Start with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        }
+      ],
+      "faqSchemaJsonLd": null
+    },
+    {
+      "id": "cost-sep-agreement",
+      "slug": "/separation-agreement-cost-ontario",
+      "silo": "conversion",
+      "title": "Cost of a Separation Agreement in Ontario",
+      "metaTitle": "Cost of a Separation Agreement in Ontario | Our Separation",
+      "metaDescription": "Ontario-focused information about cost of a separation agreement in ontario and how Our Separation can help you reach a clear, legally structured outcome.",
+      "lastUpdated": "2026-01-05",
+      "toc": true,
+      "internalLinks": [],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Cost of a Separation Agreement in Ontario",
+          "subhead": "Draft pending (content pack stub).",
+          "primaryCta": {
+            "label": "Start Your Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Lawyer Review",
+            "href": "/lawyer-review"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "Content coming soon",
+          "html": "<p>Draft pending.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Start with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        }
+      ],
+      "faqSchemaJsonLd": null
+    }
+  ]
+}

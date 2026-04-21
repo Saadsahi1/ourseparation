@@ -1,0 +1,52 @@
+{
+  "name": "Moderate income, single child age 8",
+  "description": "Mid-range incomes with one school-age child in sole custody with recipient",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 10,
+    "payor": {
+      "grossIncome": 100000,
+      "rrspContributions": 5000,
+      "unionDues": 500,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 45000,
+      "rrspContributions": 0,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 8, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 831,
+      "tolerance": 5
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 750,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 950,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 1150,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

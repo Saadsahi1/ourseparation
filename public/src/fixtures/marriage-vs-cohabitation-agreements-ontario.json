@@ -1,0 +1,288 @@
+{
+  "page": {
+    "slug": "/marriage-vs-cohabitation-agreements-ontario",
+    "locale": "en-CA",
+    "region": "Ontario",
+    "brand": "Our Separation",
+    "contentType": "pillar",
+    "seo": {
+      "metaTitle": "Marriage Contracts vs Cohabitation Agreements in Ontario | Our Separation",
+      "metaDescription": "Marriage contracts and cohabitation agreements serve different purposes in Ontario. Learn the key legal differences and choose the right agreement for your relationship.",
+      "canonical": "/marriage-vs-cohabitation-agreements-ontario",
+      "robots": "index,follow",
+      "og": {
+        "title": "Marriage Contracts vs Cohabitation Agreements in Ontario",
+        "description": "Plain-language Ontario guidance comparing marriage contracts (prenups/postnups) and cohabitation agreements—what they do, how they differ, and which one you need.",
+        "type": "website"
+      },
+      "keywords": [
+        "marriage contract vs cohabitation agreement Ontario",
+        "prenup vs cohabitation agreement Ontario",
+        "cohabitation agreement Ontario",
+        "marriage contract Ontario",
+        "Family Law Act marriage contract",
+        "common law vs married property Ontario",
+        "protect assets Ontario relationship",
+        "which agreement do I need Ontario"
+      ]
+    }
+  },
+  "modules": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "variant": "split",
+      "eyebrow": "Choosing the Right Agreement",
+      "title": "Marriage Contracts vs Cohabitation Agreements in Ontario",
+      "subtitle": "Ontario law treats married and unmarried couples very differently. Marriage contracts and cohabitation agreements serve similar goals—but apply in different legal contexts. Our Separation helps you choose and create the right agreement for your relationship.",
+      "primaryCTA": {
+        "label": "Find the Right Agreement",
+        "href": "/start",
+        "style": "primary"
+      },
+      "secondaryCTA": {
+        "label": "Create an Agreement Online",
+        "href": "/create-agreement",
+        "style": "secondary"
+      },
+      "trustBadges": [
+        "Ontario-only guidance",
+        "Plain-language explanations",
+        "Designed to prevent future disputes",
+        "Built for enforceable agreements"
+      ]
+    },
+    {
+      "id": "intro",
+      "type": "richText",
+      "title": "Why the Distinction Matters in Ontario",
+      "body": [
+        "Couples often use the terms \"prenup,\" \"cohabitation agreement,\" and \"marriage contract\" interchangeably. In Ontario law, these are not the same thing.",
+        "The agreement you need depends primarily on whether you are married or not. Ontario's Family Law Act creates very different default rules for married spouses and unmarried (common-law) partners.",
+        "Understanding this distinction is critical. Using the wrong type of agreement—or assuming one applies when it does not—can leave you exposed to significant financial risk."
+      ]
+    },
+    {
+      "id": "definitions",
+      "type": "twoColumn",
+      "title": "What Each Agreement Is",
+      "left": {
+        "heading": "Marriage contracts",
+        "content": [
+          "A marriage contract is an agreement between spouses or soon-to-be spouses.",
+          "Marriage contracts include:",
+          "• Prenuptial agreements (signed before marriage)\n• Postnuptial agreements (signed after marriage)",
+          "They are used to modify or replace Ontario's default rules for married couples, particularly around property equalization and spousal support."
+        ]
+      },
+      "right": {
+        "heading": "Cohabitation agreements",
+        "content": [
+          "A cohabitation agreement is an agreement between unmarried partners who live together or plan to live together.",
+          "Because Ontario law does not automatically divide property for common-law partners, cohabitation agreements often create structure where none exists by default.",
+          "If the couple later marries, a cohabitation agreement can automatically become a marriage contract."
+        ]
+      }
+    },
+    {
+      "id": "key-differences",
+      "type": "comparison",
+      "title": "Key Legal Differences in Ontario",
+      "leftTitle": "Marriage contract",
+      "rightTitle": "Cohabitation agreement",
+      "rows": [
+        {
+          "left": "Applies only if the parties are married",
+          "right": "Applies only if the parties are not married"
+        },
+        {
+          "left": "Modifies default property equalization rules",
+          "right": "Creates property rules where none exist by default"
+        },
+        {
+          "left": "Equalization of net family property applies unless altered",
+          "right": "No automatic property sharing without an agreement"
+        },
+        {
+          "left": "Special statutory rules apply to the matrimonial home",
+          "right": "No matrimonial home regime applies"
+        },
+        {
+          "left": "Often used to protect premarital assets",
+          "right": "Often used to define ownership during cohabitation"
+        }
+      ]
+    },
+    {
+      "id": "property-focus",
+      "type": "featureList",
+      "title": "How Property Is Treated Differently",
+      "subtitle": "Property is the single biggest legal difference between married and unmarried couples in Ontario.",
+      "items": [
+        {
+          "title": "Married couples",
+          "description": "Ontario law requires equalization of net family property on separation, regardless of whose name assets are in—subject to limited exclusions."
+        },
+        {
+          "title": "Common-law couples",
+          "description": "There is no automatic right to share property. Ownership is determined by title, trust claims, or agreement."
+        },
+        {
+          "title": "Why agreements matter",
+          "description": "Marriage contracts can limit or alter equalization. Cohabitation agreements can create predictability where the law otherwise provides none."
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "type": "featureList",
+      "title": "Spousal Support Considerations",
+      "items": [
+        {
+          "title": "Marriage contracts",
+          "description": "Can include spousal support waivers, limits, or formulas, subject to fairness and disclosure."
+        },
+        {
+          "title": "Cohabitation agreements",
+          "description": "Can also address spousal support, even though property rights differ for common-law partners."
+        },
+        {
+          "title": "Important limitation",
+          "description": "Neither type of agreement can predetermine child support or parenting arrangements."
+        }
+      ]
+    },
+    {
+      "id": "which-one",
+      "type": "cards",
+      "title": "Which Agreement Do You Need?",
+      "cards": [
+        {
+          "title": "You are planning to marry",
+          "body": "You need a prenuptial agreement (marriage contract).",
+          "link": { "label": "Learn about prenuptial agreements", "href": "/prenuptial-agreement-ontario" }
+        },
+        {
+          "title": "You are already married",
+          "body": "You need a postnuptial agreement (marriage contract after marriage).",
+          "link": { "label": "Learn about postnuptial agreements", "href": "/postnuptial-agreement-ontario" }
+        },
+        {
+          "title": "You live together but are not married",
+          "body": "You need a cohabitation agreement.",
+          "link": { "label": "Learn about cohabitation agreements", "href": "/cohabitation-agreement-ontario" }
+        },
+        {
+          "title": "You may marry in the future",
+          "body": "A cohabitation agreement can later convert into a marriage contract.",
+          "link": { "label": "Plan ahead with a cohabitation agreement", "href": "/cohabitation-agreement-ontario" }
+        }
+      ]
+    },
+    {
+      "id": "our-separation-process",
+      "type": "stepper",
+      "title": "How Our Separation Helps You Choose and Create the Right Agreement",
+      "subtitle": "Built to match Ontario law to real relationships.",
+      "steps": [
+        {
+          "title": "Identify your relationship status",
+          "content": "We start by confirming whether you are married, unmarried, or planning marriage."
+        },
+        {
+          "title": "Map your financial reality",
+          "content": "Assets, debts, income, businesses, and family considerations are addressed in plain language."
+        },
+        {
+          "title": "Generate the correct agreement",
+          "content": "Our platform produces the appropriate agreement type—properly framed for Ontario law."
+        },
+        {
+          "title": "Optional legal review",
+          "content": "You can have the agreement reviewed by a lawyer before signing, if you choose."
+        }
+      ],
+      "primaryCTA": {
+        "label": "Get Started",
+        "href": "/start"
+      }
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "title": "Frequently Asked Questions (Ontario)",
+      "items": [
+        {
+          "q": "Is a cohabitation agreement the same as a prenup?",
+          "a": "No. A cohabitation agreement applies to unmarried couples. A prenup is a marriage contract that applies once the couple marries."
+        },
+        {
+          "q": "What happens if we sign a cohabitation agreement and later marry?",
+          "a": "In Ontario, a cohabitation agreement can automatically become a marriage contract if it meets legal requirements."
+        },
+        {
+          "q": "Do both agreements need to be in writing?",
+          "a": "Yes. Both marriage contracts and cohabitation agreements must be in writing, signed, and witnessed."
+        },
+        {
+          "q": "Can either agreement deal with children?",
+          "a": "No. Parenting arrangements and child support cannot be predetermined in these agreements."
+        },
+        {
+          "q": "Which agreement offers more protection?",
+          "a": "Neither is inherently stronger. The right agreement depends on whether you are married and what risks you are trying to manage."
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "ctaBanner",
+      "title": "Choose the Right Agreement—With Confidence",
+      "subtitle": "Marriage contracts and cohabitation agreements solve different problems. Our Separation helps you choose and create the right one for your relationship.",
+      "primaryCTA": {
+        "label": "Start Now",
+        "href": "/start"
+      },
+      "secondaryCTA": {
+        "label": "Create a cohabitation agreement",
+        "href": "/cohabitation-agreement-ontario"
+      }
+    }
+  ],
+  "internalLinks": [
+    { "rel": "related", "href": "/prenuptial-agreement-ontario", "anchor": "Prenuptial agreements" },
+    { "rel": "related", "href": "/postnuptial-agreement-ontario", "anchor": "Postnuptial agreements" },
+    { "rel": "related", "href": "/cohabitation-agreement-ontario", "anchor": "Cohabitation agreements" },
+    { "rel": "related", "href": "/separation-agreement-ontario", "anchor": "Separation agreements" }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is a cohabitation agreement the same as a prenup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. A cohabitation agreement applies to unmarried couples, while a prenup is a marriage contract that applies once the couple marries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if we sign a cohabitation agreement and later marry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Ontario, a cohabitation agreement can automatically become a marriage contract if it meets legal requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can these agreements deal with children?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Parenting arrangements and child support cannot be predetermined in marriage contracts or cohabitation agreements."
+        }
+      }
+    ]
+  }
+}

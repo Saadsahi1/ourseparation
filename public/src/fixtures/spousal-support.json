@@ -1,0 +1,210 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-05"
+  },
+  "silo": "spousal-support",
+  "pages": [
+    {
+      "id": "spousal-support-pillar",
+      "slug": "/spousal-support-ontario",
+      "silo": "spousal-support",
+      "title": "Spousal Support in Ontario",
+      "metaTitle": "Spousal Support in Ontario | How Entitlement, Amount, and Duration Are Determined",
+      "metaDescription": "A complete Ontario guide to spousal support: entitlement, compensatory vs non-compensatory claims, SSAG ranges, duration, tax treatment, waivers, reviews, and how to draft enforceable spousal support terms.",
+      "lastUpdated": "2026-01-08",
+      "toc": true,
+      "internalLinks": [
+        { "label": "Separation Agreements in Ontario", "href": "/ontario-separation-agreements" },
+        { "label": "Child Support in Ontario", "href": "/child-support-ontario" },
+        { "label": "Property Division in Ontario", "href": "/property-division-ontario" }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Spousal Support in Ontario",
+          "subhead": "A comprehensive guide to entitlement, amount, duration, and how spousal support is determined under Ontario law.",
+          "primaryCta": { "label": "Start Your Agreement", "href": "/start" },
+          "secondaryCta": { "label": "Lawyer Review", "href": "/lawyer-review" }
+        },
+        {
+          "type": "richText",
+          "heading": "Overview",
+          "html": "<p>Spousal support is one of the most complex, discretionary, and frequently disputed issues in Ontario family law. Unlike child support, spousal support is <strong>not automatic</strong>. Whether spousal support is payable, how much should be paid, and for how long depends on a detailed legal analysis of the parties' relationship, finances, and roles during the relationship.</p><p>Many separating spouses assume spousal support follows a simple formula. It does not. Courts apply statutory objectives, evolving case law, and advisory guidelines to reach outcomes that are highly fact-specific.</p><p>This guide explains spousal support in Ontario in depth: entitlement, compensatory and non-compensatory claims, the Spousal Support Advisory Guidelines (SSAGs), duration, tax treatment, waivers, reviews, and how to properly document spousal support in a separation agreement.</p><p><strong>Our Separation</strong> is designed to help separating spouses understand spousal support, explore realistic outcomes, and document clear, enforceable terms without unnecessary litigation.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What Is Spousal Support?",
+          "html": "<p>Spousal support is financial support paid by one spouse or partner to the other following separation or divorce. Its purpose is to address economic consequences arising from the relationship or its breakdown.</p><p>In Ontario, spousal support is governed by both the <em>Family Law Act</em> (for married and unmarried spouses) and the <em>Divorce Act</em> (for married spouses who are divorcing).</p><p>Spousal support may be payable on a temporary or long-term basis and may be periodic (monthly) or lump-sum.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Is Spousal Support Automatic in Ontario?",
+          "html": "<p>No. Spousal support is <strong>never automatic</strong>. A spouse must first establish <strong>entitlement</strong> before a court will consider amount or duration.</p><p>This is one of the most common misconceptions in family law. Many people believe that a longer relationship or income disparity automatically results in spousal support. While these factors are relevant, they do not guarantee entitlement.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Who Can Claim Spousal Support?",
+          "html": "<p>Spousal support may be claimed by:</p><ul><li>married spouses</li><li>divorcing spouses</li><li>unmarried spouses who cohabited continuously for at least three years</li><li>unmarried spouses in a relationship of some permanence with a child</li></ul><p>Casual dating relationships do not give rise to spousal support entitlement.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "balanced",
+          "label": "Not sure whether spousal support applies to your situation? Use Our Separation to explore entitlement and options.",
+          "href": "/start"
+        },
+        {
+          "type": "richText",
+          "heading": "The Legal Basis for Spousal Support",
+          "html": "<p>Ontario courts recognize three primary bases for spousal support:</p><h3>1. Compensatory Support</h3><p>Compensatory support addresses economic disadvantage suffered by a spouse as a result of the relationship or its breakdown. This commonly arises where one spouse assumed primary caregiving responsibilities, reduced employment opportunities, or supported the other spouse's career advancement.</p><h3>2. Non-Compensatory (Needs-Based) Support</h3><p>Non-compensatory support is based on economic need arising from the breakdown of the relationship, even where there is no clear career sacrifice.</p><h3>3. Contractual Support</h3><p>Spousal support obligations may arise from domestic contracts, including marriage contracts, cohabitation agreements, or separation agreements.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Compensatory Spousal Support Explained",
+          "html": "<p>Compensatory support recognizes that relationships often involve a division of labour. One spouse may forego education, career advancement, or earning capacity to support the family or the other spouse's career.</p><p>Common examples include:</p><ul><li>leaving the workforce to raise children</li><li>working part-time to manage household responsibilities</li><li>relocating for the other spouse's employment</li></ul><p>Courts view compensatory claims as particularly strong where caregiving roles limited a spouse's long-term earning capacity.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Non-Compensatory (Needs-Based) Spousal Support",
+          "html": "<p>Needs-based support focuses on the recipient spouse's financial need and the payor spouse's ability to pay, even in the absence of clear career sacrifice.</p><p>This type of support is more common in shorter relationships or relationships without children, but it remains highly discretionary.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Contractual Spousal Support",
+          "html": "<p>Spousal support may arise from an agreement between the parties. Courts generally respect negotiated agreements, provided they were entered into with proper disclosure and without unfairness.</p><p>However, courts retain jurisdiction to review and, in some cases, override contractual spousal support terms where circumstances justify intervention.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "The Spousal Support Advisory Guidelines (SSAGs)",
+          "html": "<p>The Spousal Support Advisory Guidelines (SSAGs) are non-binding guidelines used by courts, lawyers, and mediators across Ontario to determine appropriate ranges for spousal support.</p><p>The SSAGs do not determine entitlement. They apply only after entitlement is established.</p><p>The Guidelines generate ranges for amount and duration based on factors such as:</p><ul><li>length of the relationship</li><li>ages of the parties</li><li>incomes</li><li>whether there are dependent children</li></ul>"
+        },
+        {
+          "type": "richText",
+          "heading": "With-Child Support vs Without-Child Support Formulas",
+          "html": "<p>The SSAGs contain two different formulas:</p><h3>Without-Child Support Formula</h3><p>This formula applies where there are no dependent children or where child support is no longer payable.</p><h3>With-Child Support Formula</h3><p>This formula applies where child support is being paid. It focuses on the spouses' net disposable incomes after child support and taxes.</p><p>The distinction is critical, as outcomes can differ significantly.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Amount of Spousal Support Is Determined",
+          "html": "<p>Once entitlement is established, courts consider:</p><ul><li>income disparity</li><li>length of the relationship</li><li>roles during the relationship</li><li>standard of living during the relationship</li><li>ability of the recipient to become self-sufficient</li></ul><p>The SSAGs provide a range rather than a fixed number, allowing flexibility.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Duration of Spousal Support",
+          "html": "<p>Duration is one of the most contentious aspects of spousal support. Support may be:</p><ul><li>time-limited</li><li>reviewable</li><li>indefinite (subject to variation)</li></ul><p>Longer relationships, particularly those involving children and caregiving roles, are more likely to result in long-term or indefinite support.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "The Rule of 65",
+          "html": "<p>Under the SSAGs, the &quot;Rule of 65&quot; applies where the recipient's age plus years of relationship equals or exceeds 65. In such cases, spousal support is more likely to be indefinite.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Spousal Support and Self-Sufficiency",
+          "html": "<p>Ontario law encourages self-sufficiency where reasonably possible. However, self-sufficiency does not mean immediate or complete independence. Courts recognize that economic disadvantages may persist long after separation.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Tax Treatment of Spousal Support",
+          "html": "<p>Periodic spousal support is generally deductible to the payor and taxable to the recipient, provided it meets statutory requirements. Lump-sum spousal support is typically neither deductible nor taxable.</p><p>Tax treatment should always be considered when negotiating amount and structure.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Lump-Sum vs Periodic Spousal Support",
+          "html": "<p>Spousal support may be paid as periodic monthly payments or as a lump-sum. Lump-sum support may be used to achieve finality, manage tax implications, or offset property equalization.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Review, Variation, and Termination of Spousal Support",
+          "html": "<p>Spousal support may be reviewed or varied where there is a material change in circumstances, such as changes in income, health, employment, or cohabitation with a new partner.</p><p>Well-drafted agreements often include review triggers and termination events.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Waiving Spousal Support",
+          "html": "<p>Spousal support may be waived by agreement. However, courts scrutinize waivers carefully, particularly where there is economic vulnerability or lack of independent legal advice.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Spousal Support in Separation Agreements",
+          "html": "<p>A properly drafted separation agreement should clearly address entitlement, amount, duration, review mechanisms, tax treatment, and enforcement. Ambiguity is one of the leading causes of future litigation.</p><p><strong>Our Separation</strong> helps spouses document spousal support terms clearly and consistently with Ontario law.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Build clear, enforceable spousal support terms with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Spousal Support",
+          "items": [
+            {
+              "q": "How long do you have to be together for spousal support in Ontario?",
+              "aHtml": "<p>Unmarried spouses must generally cohabit for at least three years, or have a relationship of some permanence with a child, to claim spousal support.</p>",
+              "aText": "Unmarried spouses must generally cohabit for at least three years, or have a relationship of some permanence with a child, to claim spousal support."
+            },
+            {
+              "q": "Does remarriage end spousal support?",
+              "aHtml": "<p>Remarriage does not automatically terminate spousal support, but it may be a factor in reviewing entitlement and need.</p>",
+              "aText": "Remarriage does not automatically terminate spousal support, but it may be a factor in reviewing entitlement and need."
+            },
+            {
+              "q": "Can spousal support be changed?",
+              "aHtml": "<p>Yes. Spousal support may be varied where there has been a material change in circumstances.</p>",
+              "aText": "Yes. Spousal support may be varied where there has been a material change in circumstances."
+            },
+            {
+              "q": "Is spousal support deductible for tax purposes?",
+              "aHtml": "<p>Periodic spousal support is generally deductible to the payor and taxable to the recipient, provided statutory requirements are met.</p>",
+              "aText": "Periodic spousal support is generally deductible to the payor and taxable to the recipient, provided statutory requirements are met."
+            }
+          ]
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is spousal support automatic in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Spousal support is not automatic. A spouse must first establish entitlement before amount and duration are considered."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is spousal support calculated in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Once entitlement is established, courts commonly use the Spousal Support Advisory Guidelines to determine ranges for amount and duration based on income, length of relationship, and whether there are children."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can spousal support be waived?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, spousal support can be waived by agreement, but courts closely scrutinize waivers for fairness, disclosure, and legal advice."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does spousal support last?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Duration depends on the length of the relationship, roles during the relationship, and the recipient's ability to become self-sufficient. Some support is time-limited, while other cases result in indefinite support."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

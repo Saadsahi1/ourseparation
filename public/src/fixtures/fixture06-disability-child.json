@@ -1,0 +1,52 @@
+{
+  "name": "Child with disability supplement",
+  "description": "One child eligible for disability tax credit, affects CCB calculation",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 10,
+    "payor": {
+      "grossIncome": 90000,
+      "rrspContributions": 4500,
+      "unionDues": 500,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 40000,
+      "rrspContributions": 0,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 7, "disabilitySupplementEligible": true }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 750,
+      "tolerance": 5
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 700,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 875,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 1050,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

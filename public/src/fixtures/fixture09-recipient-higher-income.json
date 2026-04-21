@@ -1,0 +1,52 @@
+{
+  "name": "Recipient has higher income",
+  "description": "Recipient earns more, may result in reverse spousal support or nil",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 5,
+    "payor": {
+      "grossIncome": 55000,
+      "rrspContributions": 2000,
+      "unionDues": 400,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 95000,
+      "rrspContributions": 5000,
+      "unionDues": 700,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 11, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 459,
+      "tolerance": 5
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 0,
+        "recipientINDIPercent": 52.0,
+        "toleranceAmount": 10,
+        "tolerancePercent": 2.0
+      },
+      "mid": {
+        "monthly": 0,
+        "recipientINDIPercent": 52.0,
+        "toleranceAmount": 10,
+        "tolerancePercent": 2.0
+      },
+      "high": {
+        "monthly": 0,
+        "recipientINDIPercent": 52.0,
+        "toleranceAmount": 10,
+        "tolerancePercent": 2.0
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "High income, two children",
+  "description": "High earner with two children, recipient has moderate income",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 15,
+    "payor": {
+      "grossIncome": 200000,
+      "rrspContributions": 10000,
+      "unionDues": 0,
+      "otherDeductions": 2000
+    },
+    "recipient": {
+      "grossIncome": 60000,
+      "rrspContributions": 3000,
+      "unionDues": 600,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 6, "disabilitySupplementEligible": false },
+      { "age": 10, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 2802,
+      "tolerance": 10
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 1800,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 2200,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 2600,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-05"
+  },
+  "silos": [
+    {
+      "id": "separation-agreements",
+      "label": "Separation Agreements",
+      "file": "silos/separation-agreements.json",
+      "order": 1
+    },
+    {
+      "id": "child-support",
+      "label": "Child Support",
+      "file": "silos/child-support.json",
+      "order": 2
+    },
+    {
+      "id": "property-division",
+      "label": "Property Division",
+      "file": "silos/property-division.json",
+      "order": 3
+    },
+    {
+      "id": "spousal-support",
+      "label": "Spousal Support",
+      "file": "silos/spousal-support.json",
+      "order": 4
+    },
+    {
+      "id": "conversion",
+      "label": "Get Started",
+      "file": "silos/conversion.json",
+      "order": 5
+    },
+    {
+      "id": "parenting",
+      "label": "Parenting & Decision-Making",
+      "file": "silos/parenting.json",
+      "order": 6
+    },
+    {
+      "id": "cohabitation",
+      "label": "Cohabitation Agreements",
+      "file": "silos/cohabitation.json",
+      "order": 7
+    }
+  ],
+  "routeMap": [
+    {
+      "slug": "/ontario-separation-agreements",
+      "pageId": "sep-agreements-pillar"
+    },
+    {
+      "slug": "/child-support-ontario",
+      "pageId": "child-support-pillar"
+    },
+    {
+      "slug": "/section-7-expenses-ontario",
+      "pageId": "section7-expenses-ontario"
+    },
+    {
+      "slug": "/property-division-ontario",
+      "pageId": "property-division-pillar"
+    },
+    {
+      "slug": "/spousal-support-ontario",
+      "pageId": "spousal-support-pillar"
+    },
+    {
+      "slug": "/online-separation-agreement-ontario",
+      "pageId": "online-sep-agreement"
+    },
+    {
+      "slug": "/lawyer-review",
+      "pageId": "lawyer-review"
+    },
+    {
+      "slug": "/separation-agreement-cost-ontario",
+      "pageId": "cost-sep-agreement"
+    },
+    {
+      "slug": "/custody-decision-making-ontario",
+      "pageId": "custody-decision-making-pillar"
+    },
+    {
+      "slug": "/cohabitation-agreement-ontario",
+      "pageId": "cohabitation-agreement-pillar"
+    },
+    {
+      "slug": "/prenuptial-agreement-ontario",
+      "pageId": "prenuptial-agreement-pillar"
+    },
+    {
+      "slug": "/postnuptial-agreement-ontario",
+      "pageId": "postnuptial-agreement-pillar"
+    },
+    {
+      "slug": "/separation-agreement-ontario",
+      "pageId": "separation-agreement-product"
+    }
+  ]
+}

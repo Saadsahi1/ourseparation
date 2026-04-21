@@ -1,0 +1,192 @@
+[
+  {
+    "caseId": "CCB001",
+    "description": "Single child under 6, low AFNI - should receive maximum benefit",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "sourceUrl": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-family-benefits-calculator.html",
+    "period": "2025-07_to_2026-06",
+    "afni": 25000,
+    "children": [
+      { "age": 3, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 7997,
+    "expectedMonthlyCCB": 666.42,
+    "tolerance": 0.50,
+    "notes": "AFNI below T1 ($37,487), full maximum for child under 6. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB002",
+    "description": "Single child 6-17, low AFNI - maximum benefit",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "sourceUrl": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-family-benefits-calculator.html",
+    "period": "2025-07_to_2026-06",
+    "afni": 25000,
+    "children": [
+      { "age": 10, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 6748,
+    "expectedMonthlyCCB": 562.33,
+    "tolerance": 0.50,
+    "notes": "AFNI below T1, full benefit for age 6-17. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB003",
+    "description": "Two children (one under 6, one 6-17), at threshold",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 37487,
+    "children": [
+      { "age": 4, "disabilitySupplementEligible": false },
+      { "age": 9, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 14745,
+    "expectedMonthlyCCB": 1228.75,
+    "tolerance": 1.00,
+    "notes": "AFNI exactly at T1 ($37,487), full benefit. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB004",
+    "description": "Single child, AFNI above threshold - reduced benefit",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 50000,
+    "children": [
+      { "age": 8, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 5872.09,
+    "expectedMonthlyCCB": 489.34,
+    "tolerance": 1.00,
+    "notes": "Phase 1 reduction: line6=$12,513 × 7% = $875.91. Annual: $6,748 - $875.91 = $5,872.09. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB005",
+    "description": "Two children, moderate AFNI - phase 1 reduction",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 60000,
+    "children": [
+      { "age": 5, "disabilitySupplementEligible": false },
+      { "age": 12, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 11705.75,
+    "expectedMonthlyCCB": 975.48,
+    "tolerance": 2.00,
+    "notes": "Phase 1 reduction: line6=$22,513 × 13.5% = $3,039.26. Annual: $14,745 - $3,039.26 = $11,705.75. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB006",
+    "description": "Three children, higher AFNI - phase 1 reduction",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 70000,
+    "children": [
+      { "age": 3, "disabilitySupplementEligible": false },
+      { "age": 7, "disabilitySupplementEligible": false },
+      { "age": 14, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 15315.53,
+    "expectedMonthlyCCB": 1276.29,
+    "tolerance": 3.00,
+    "notes": "Phase 1 reduction: line6=$32,513 × 19% = $6,177.47. Annual: $21,493 - $6,177.47 = $15,315.53. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB007",
+    "description": "Four children, high AFNI - phase 1 reduction",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 75000,
+    "children": [
+      { "age": 2, "disabilitySupplementEligible": false },
+      { "age": 6, "disabilitySupplementEligible": false },
+      { "age": 10, "disabilitySupplementEligible": false },
+      { "age": 15, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 19613.01,
+    "expectedMonthlyCCB": 1634.42,
+    "tolerance": 5.00,
+    "notes": "Phase 1 reduction: line6=$37,513 × 23% = $8,627.99. Annual: $28,241 - $8,627.99 = $19,613.01. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB008",
+    "description": "Single child with disability supplement, low AFNI",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 30000,
+    "children": [
+      { "age": 9, "disabilitySupplementEligible": true }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 10159,
+    "expectedMonthlyCCB": 846.58,
+    "tolerance": 1.00,
+    "notes": "Base CCB $6,748 + Disability supplement $3,411 = $10,159. AFNI below T1, no reduction. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB009",
+    "description": "Shared custody, single child - 50% allocation",
+    "source": "CRA CCB Calculator July 2025-June 2026 (shared custody)",
+    "period": "2025-07_to_2026-06",
+    "afni": 40000,
+    "children": [
+      { "age": 7, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "shared",
+    "expectedAnnualCCB": 3286.04,
+    "expectedMonthlyCCB": 273.84,
+    "tolerance": 1.00,
+    "notes": "Phase 1 reduction: line6=$2,513 × 7% = $175.91. Sole: $6,572.09. Shared (50%): $3,286.04 annual, $273.84 monthly. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB010",
+    "description": "Very high AFNI approaching phase 2 threshold",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 75000,
+    "children": [
+      { "age": 8, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 4122.09,
+    "expectedMonthlyCCB": 343.51,
+    "tolerance": 2.00,
+    "notes": "Phase 1 reduction: line6=$37,513 × 7% = $2,625.91. Annual: $6,748 - $2,625.91 = $4,122.09. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB011",
+    "description": "AFNI above phase 2 threshold - double reduction",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 90000,
+    "children": [
+      { "age": 10, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 344.65,
+    "expectedMonthlyCCB": 28.72,
+    "tolerance": 2.00,
+    "notes": "Phase 1: line6=$43,735 × 7% = $3,061.45. Phase 2: line10=$8,778, reduction2 = $3,061 + 0.032×$8,778 = $3,341.90. Total reduction: $6,403.35. Annual: $6,748 - $6,403.35 = $344.65. T1=$37,487, T2=$81,222"
+  },
+  {
+    "caseId": "CCB012",
+    "description": "Two young children both under 6 - maximum benefit",
+    "source": "CRA CCB Calculator July 2025-June 2026",
+    "period": "2025-07_to_2026-06",
+    "afni": 35000,
+    "children": [
+      { "age": 2, "disabilitySupplementEligible": false },
+      { "age": 4, "disabilitySupplementEligible": false }
+    ],
+    "custodyType": "sole",
+    "expectedAnnualCCB": 15994,
+    "expectedMonthlyCCB": 1332.83,
+    "tolerance": 1.00,
+    "notes": "Two children under 6: $7,997 × 2 = $15,994. AFNI below T1, full benefit. T1=$37,487, T2=$81,222"
+  }
+]

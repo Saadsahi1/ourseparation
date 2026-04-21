@@ -1,0 +1,299 @@
+[
+  {
+    "caseId": "TAX001",
+    "description": "Low income - first federal bracket only",
+    "source": "TaxTips.ca 2024 Calculator",
+    "sourceUrl": "https://www.taxtips.ca/calculators/canadian-tax/canadian-tax-calculator.htm",
+    "employmentIncome": 35000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 35000,
+      "federalTax": 2894,
+      "ontarioTax": 1142,
+      "totalTax": 4036,
+      "cppContributions": 1874,
+      "eiContributions": 581,
+      "healthPremium": 300,
+      "totalDeductions": 6791,
+      "netIncome": 28209
+    },
+    "tolerance": {
+      "tax": 10,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 5,
+      "netIncome": 20
+    },
+    "notes": "Income $35,000 - first federal bracket (15%), first Ontario bracket (5.05%). CPP on ($35,000 - $3,500) × 5.95% = $1,874. EI on $35,000 × 1.66% = $581. Health premium graduated."
+  },
+  {
+    "caseId": "TAX002",
+    "description": "Middle income - second federal bracket",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 70000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 70000,
+      "federalTax": 8975,
+      "ontarioTax": 3265,
+      "totalTax": 12240,
+      "cppContributions": 3868,
+      "eiContributions": 1049,
+      "healthPremium": 600,
+      "totalDeductions": 17757,
+      "netIncome": 52243
+    },
+    "tolerance": {
+      "tax": 15,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 5,
+      "netIncome": 30
+    },
+    "notes": "Income $70,000 - second federal bracket (20.5% on portion above $55,867). CPP maximum reached. EI on $63,200 × 1.66% = $1,049 (max). Health premium $600."
+  },
+  {
+    "caseId": "TAX003",
+    "description": "High income - third federal bracket, CPP/EI maximums",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 120000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 120000,
+      "federalTax": 21137,
+      "ontarioTax": 8866,
+      "totalTax": 30003,
+      "cppContributions": 3868,
+      "cpp2Contributions": 188,
+      "eiContributions": 1049,
+      "healthPremium": 900,
+      "totalDeductions": 36008,
+      "netIncome": 83992
+    },
+    "tolerance": {
+      "tax": 20,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 5,
+      "netIncome": 40
+    },
+    "notes": "Income $120,000 - third federal bracket (26% on portion above $111,733). CPP maximum $3,868 + CPP2 on portion above $68,500. EI maximum $1,049. Health premium maximum $900."
+  },
+  {
+    "caseId": "TAX004",
+    "description": "Very high income - fourth federal bracket",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 200000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 200000,
+      "federalTax": 44351,
+      "ontarioTax": 23153,
+      "totalTax": 67504,
+      "cppContributions": 3868,
+      "cpp2Contributions": 188,
+      "eiContributions": 1049,
+      "healthPremium": 900,
+      "totalDeductions": 73509,
+      "netIncome": 126491
+    },
+    "tolerance": {
+      "tax": 30,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 5,
+      "netIncome": 60
+    },
+    "notes": "Income $200,000 - fourth federal bracket (29% on portion above $173,205). Ontario fourth bracket (12.16% above $150,000). All deductions at maximum."
+  },
+  {
+    "caseId": "TAX005",
+    "description": "With RRSP contributions - reduces taxable income",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 100000,
+    "rrspContributions": 10000,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 90000,
+      "federalTax": 15669,
+      "ontarioTax": 5991,
+      "totalTax": 21660,
+      "cppContributions": 3868,
+      "cpp2Contributions": 188,
+      "eiContributions": 1049,
+      "healthPremium": 700,
+      "totalDeductions": 27465,
+      "netIncome": 72535
+    },
+    "tolerance": {
+      "tax": 20,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 10,
+      "netIncome": 40
+    },
+    "notes": "Gross $100,000 - RRSP $10,000 = Taxable $90,000. RRSP reduces tax bracket exposure. Health premium on taxable income."
+  },
+  {
+    "caseId": "TAX006",
+    "description": "With union dues - reduces taxable income",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 75000,
+    "rrspContributions": 0,
+    "unionDues": 1200,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 73800,
+      "federalTax": 9734,
+      "ontarioTax": 3474,
+      "totalTax": 13208,
+      "cppContributions": 3868,
+      "eiContributions": 1049,
+      "healthPremium": 650,
+      "totalDeductions": 18775,
+      "netIncome": 56225
+    },
+    "tolerance": {
+      "tax": 15,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 10,
+      "netIncome": 30
+    },
+    "notes": "Union dues $1,200 deducted from taxable income. CPP on gross income (before deductions). Health premium on taxable income."
+  },
+  {
+    "caseId": "TAX007",
+    "description": "Paying spousal support - tax deductible",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 100000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 12000,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 88000,
+      "federalTax": 15135,
+      "ontarioTax": 5807,
+      "totalTax": 20942,
+      "cppContributions": 3868,
+      "cpp2Contributions": 188,
+      "eiContributions": 1049,
+      "healthPremium": 650,
+      "totalDeductions": 26647,
+      "netIncome": 73353
+    },
+    "tolerance": {
+      "tax": 20,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 10,
+      "netIncome": 40
+    },
+    "notes": "Spousal support $12,000 paid is deductible. Taxable income = $100,000 - $12,000 = $88,000. Reduces tax burden significantly."
+  },
+  {
+    "caseId": "TAX008",
+    "description": "Receiving spousal support - taxable income",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 45000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 12000,
+    "expected": {
+      "taxableIncome": 57000,
+      "federalTax": 6409,
+      "ontarioTax": 2254,
+      "totalTax": 8663,
+      "cppContributions": 2469,
+      "eiContributions": 747,
+      "healthPremium": 400,
+      "totalDeductions": 12279,
+      "netIncome": 44721
+    },
+    "tolerance": {
+      "tax": 15,
+      "cpp": 2,
+      "ei": 1,
+      "healthPremium": 10,
+      "netIncome": 30
+    },
+    "notes": "Spousal support $12,000 received is taxable. Taxable income = $45,000 + $12,000 = $57,000. CPP based on employment income only ($45,000)."
+  },
+  {
+    "caseId": "TAX009",
+    "description": "Maximum RRSP and deductions",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 150000,
+    "rrspContributions": 27000,
+    "unionDues": 1500,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 121500,
+      "federalTax": 21590,
+      "ontarioTax": 9158,
+      "totalTax": 30748,
+      "cppContributions": 3868,
+      "cpp2Contributions": 188,
+      "eiContributions": 1049,
+      "healthPremium": 900,
+      "totalDeductions": 36753,
+      "netIncome": 113247
+    },
+    "tolerance": {
+      "tax": 25,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 5,
+      "netIncome": 50
+    },
+    "notes": "Large RRSP contribution ($27,000) significantly reduces taxable income from $150,000 to $121,500. Union dues $1,500."
+  },
+  {
+    "caseId": "TAX010",
+    "description": "Top tax bracket - highest rates",
+    "source": "TaxTips.ca 2024 Calculator",
+    "employmentIncome": 300000,
+    "rrspContributions": 0,
+    "unionDues": 0,
+    "spousalSupportPaid": 0,
+    "spousalSupportReceived": 0,
+    "expected": {
+      "taxableIncome": 300000,
+      "federalTax": 74852,
+      "ontarioTax": 36333,
+      "totalTax": 111185,
+      "cppContributions": 3868,
+      "cpp2Contributions": 188,
+      "eiContributions": 1049,
+      "healthPremium": 900,
+      "totalDeductions": 117190,
+      "netIncome": 182810
+    },
+    "tolerance": {
+      "tax": 50,
+      "cpp": 1,
+      "ei": 1,
+      "healthPremium": 5,
+      "netIncome": 100
+    },
+    "notes": "Income $300,000 - top federal bracket (33% over $246,752), top Ontario bracket (13.16% over $220,000). Effective tax rate ~37%."
+  }
+]

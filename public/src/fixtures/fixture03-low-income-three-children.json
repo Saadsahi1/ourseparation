@@ -1,0 +1,54 @@
+{
+  "name": "Low income, three children",
+  "description": "Lower income earner with three children, CCB impact significant",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 12,
+    "payor": {
+      "grossIncome": 65000,
+      "rrspContributions": 2000,
+      "unionDues": 800,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 35000,
+      "rrspContributions": 0,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 5, "disabilitySupplementEligible": false },
+      { "age": 8, "disabilitySupplementEligible": false },
+      { "age": 12, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 984,
+      "tolerance": 5
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 400,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 550,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 700,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

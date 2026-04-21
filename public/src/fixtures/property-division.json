@@ -1,0 +1,97 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-08"
+  },
+  "silo": "property-division",
+  "pages": [
+    {
+      "id": "property-division-pillar",
+      "slug": "/property-division-ontario",
+      "silo": "property-division",
+      "title": "Property Division in Ontario",
+      "metaTitle": "Property Division in Ontario | Equalization & Net Family Property",
+      "metaDescription": "A comprehensive Ontario guide to property division for married spouses: equalization of net family property, excluded property, and matrimonial home rules.",
+      "lastUpdated": "2026-01-08",
+      "toc": true,
+      "internalLinks": [
+        { "label": "Separation Agreements in Ontario", "href": "/ontario-separation-agreements" },
+        { "label": "Spousal Support in Ontario", "href": "/spousal-support-ontario" },
+        { "label": "Child Support in Ontario", "href": "/child-support-ontario" }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Property Division in Ontario",
+          "subhead": "A detailed guide to equalization, Net Family Property, exclusions, and the unique matrimonial home rules.",
+          "primaryCta": { "label": "Start Your Agreement", "href": "/start" },
+          "secondaryCta": { "label": "Lawyer Review", "href": "/lawyer-review" }
+        },
+        {
+          "type": "richText",
+          "heading": "Overview",
+          "html": "<p>Property division is often the most financially significant part of an Ontario separation. For married spouses in Ontario, property division is generally done through <strong>equalization of Net Family Property (NFP)</strong>, which compares each spouse's increase in net worth during the marriage.</p>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Key takeaway",
+          "html": "<p>Ontario does not usually divide each asset item-by-item. Instead, it equalizes the <strong>growth in net worth</strong> during the marriage.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Who This Applies To",
+          "html": "<p><strong>Married spouses</strong> in Ontario typically use the equalization regime under the Family Law Act.</p><p><strong>Common-law partners</strong> are generally not entitled to equalization by default.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "balanced",
+          "label": "Build your Ontario agreement with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "richText",
+          "heading": "Core Definitions",
+          "html": "<h3>Valuation Date</h3><p>The valuation date is typically the date the spouses separated.</p><h3>Net Family Property</h3><p>Each spouse's NFP is their net worth on the valuation date minus their net worth on the date of marriage.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Equalization Works",
+          "html": "<p>The spouse with the higher NFP pays the other spouse one-half of the difference.</p><p><strong>Formula: (Higher NFP − Lower NFP) ÷ 2</strong></p>"
+        },
+        {
+          "type": "richText",
+          "heading": "The Matrimonial Home",
+          "html": "<p>The matrimonial home receives special treatment. If a property is the matrimonial home on the valuation date, Ontario does not allow the owning spouse to deduct the home's value on the date of marriage.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Frequently Asked Questions",
+          "html": "<h3>Do we have to sell our house?</h3><p>Not necessarily. One spouse can buy out the other's share.</p><h3>What about gifts and inheritances?</h3><p>Gifts and inheritances may be excluded if they can be traced properly.</p><h3>How are pensions valued?</h3><p>Pensions require professional valuation.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "bold",
+          "label": "Ready to create your separation agreement?",
+          "href": "/start"
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do we have to sell our house?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not necessarily. One spouse can buy out the other's share."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

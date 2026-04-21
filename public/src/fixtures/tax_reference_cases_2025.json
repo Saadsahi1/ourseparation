@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "library": "@equisoft/tax-ca",
+    "version": "2025.10.2",
+    "taxYear": 2025,
+    "province": "ON",
+    "generatedAt": "2025-12-23T01:53:10.089Z",
+    "scope": [
+      "Employment income only",
+      "Basic Personal Amount credits (federal and Ontario)",
+      "CPP/EI contributions at 2025 rates",
+      "Ontario surtax",
+      "Ontario Health Premium",
+      "No tuition/medical/charitable credits",
+      "No dividend gross-up"
+    ]
+  },
+  "referenceCases": [
+    {
+      "caseId": "TAX001",
+      "description": "Low income - first federal bracket only",
+      "inputs": {
+        "grossIncome": 35000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 35000,
+        "federalTax": 2736.3,
+        "ontarioTax": 1123.78,
+        "totalTax": 3860.08,
+        "cpp": 1874.25,
+        "cpp2": 0,
+        "ei": 574,
+        "ontarioHealthPremium": 300,
+        "netAnnualIncome": 28391.67
+      },
+      "notes": "Income $35,000 - first federal bracket (14%), first Ontario bracket (5.05%). Tests basic calculation with health premium graduated tier."
+    },
+    {
+      "caseId": "TAX002",
+      "description": "Middle income - second federal bracket",
+      "inputs": {
+        "grossIncome": 70000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 70000,
+        "federalTax": 8568.8,
+        "ontarioTax": 3592.95,
+        "totalTax": 12161.75,
+        "cpp": 3956.75,
+        "cpp2": 0,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 731.25,
+        "netAnnualIncome": 52072.77
+      },
+      "notes": "Income $70,000 - second federal bracket (20.5%), second Ontario bracket (9.15%). Tests bracket transitions and surtax threshold."
+    },
+    {
+      "caseId": "TAX003",
+      "description": "High income - third federal bracket, CPP/EI maximums",
+      "inputs": {
+        "grossIncome": 120000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 120000,
+        "federalTax": 19107.54,
+        "ontarioTax": 9415.52,
+        "totalTax": 28523.06,
+        "cpp": 4034.1,
+        "cpp2": 396,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 806.25,
+        "netAnnualIncome": 85163.11
+      },
+      "notes": "Income $120,000 - third federal bracket (26%), third Ontario bracket (11.16%). CPP and EI at maximum contributions, Ontario surtax applies."
+    },
+    {
+      "caseId": "TAX004",
+      "description": "Very high income - fourth federal bracket",
+      "inputs": {
+        "grossIncome": 200000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 200000,
+        "federalTax": 40641.86,
+        "ontarioTax": 24123.2,
+        "totalTax": 64765.06,
+        "cpp": 4034.1,
+        "cpp2": 396,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 900,
+        "netAnnualIncome": 128827.36
+      },
+      "notes": "Income $200,000 - fourth federal bracket (29.32%), fourth Ontario bracket (12.16%). Maximum health premium ($900)."
+    },
+    {
+      "caseId": "TAX005",
+      "description": "With RRSP contributions - reduces taxable income",
+      "inputs": {
+        "grossIncome": 100000,
+        "rrspDeductions": 10000,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 90000,
+        "federalTax": 12668.8,
+        "ontarioTax": 5422.95,
+        "totalTax": 18091.75,
+        "cpp": 4034.1,
+        "cpp2": 396,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 771.09,
+        "netAnnualIncome": 75629.58
+      },
+      "notes": "RRSP $10,000 reduces taxable income. Demonstrates deduction impact across brackets."
+    },
+    {
+      "caseId": "TAX006",
+      "description": "With union dues - reduces taxable income",
+      "inputs": {
+        "grossIncome": 75000,
+        "rrspDeductions": 0,
+        "unionDues": 1200,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 73800,
+        "federalTax": 9347.8,
+        "ontarioTax": 3940.65,
+        "totalTax": 13288.45,
+        "cpp": 4034.1,
+        "cpp2": 148,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 752.11,
+        "netAnnualIncome": 55699.86
+      },
+      "notes": "Union dues $1,200 deductible. Tests standard employment deductions."
+    },
+    {
+      "caseId": "TAX007",
+      "description": "Paying spousal support - tax deductible",
+      "inputs": {
+        "grossIncome": 100000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 12000,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 88000,
+        "federalTax": 12258.8,
+        "ontarioTax": 5239.95,
+        "totalTax": 17498.75,
+        "cpp": 4034.1,
+        "cpp2": 396,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 768.75,
+        "netAnnualIncome": 76224.92
+      },
+      "notes": "Spousal support paid $12,000 is deductible, reducing taxable income from $100,000 to $88,000."
+    },
+    {
+      "caseId": "TAX008",
+      "description": "Receiving spousal support - taxable income",
+      "inputs": {
+        "grossIncome": 45000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 12000
+      },
+      "expected": {
+        "taxableIncome": 57000,
+        "federalTax": 5926.3,
+        "ontarioTax": 2403.45,
+        "totalTax": 8329.75,
+        "cpp": 2469.25,
+        "cpp2": 0,
+        "ei": 738,
+        "ontarioHealthPremium": 609.38,
+        "netAnnualIncome": 32853.62
+      },
+      "notes": "Spousal support received $12,000 is taxable, increasing taxable income from $45,000 to $57,000."
+    },
+    {
+      "caseId": "TAX009",
+      "description": "Maximum RRSP and deductions",
+      "inputs": {
+        "grossIncome": 150000,
+        "rrspDeductions": 27000,
+        "unionDues": 1500,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 121500,
+        "federalTax": 19497.54,
+        "ontarioTax": 9676.67,
+        "totalTax": 29174.21,
+        "cpp": 4034.1,
+        "cpp2": 396,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 808.01,
+        "netAnnualIncome": 114510.2
+      },
+      "notes": "Large RRSP $27,000 and union dues $1,500. Tests combined deductions at higher income level."
+    },
+    {
+      "caseId": "TAX010",
+      "description": "Top tax bracket - highest rates",
+      "inputs": {
+        "grossIncome": 300000,
+        "rrspDeductions": 0,
+        "unionDues": 0,
+        "spousalSupportPaid": 0,
+        "spousalSupportReceived": 0
+      },
+      "expected": {
+        "taxableIncome": 300000,
+        "federalTax": 71676.23,
+        "ontarioTax": 44340.8,
+        "totalTax": 116017.03,
+        "cpp": 4034.1,
+        "cpp2": 396,
+        "ei": 1077.48,
+        "ontarioHealthPremium": 900,
+        "netAnnualIncome": 177575.39
+      },
+      "notes": "Income $300,000 - top federal bracket (33%), top Ontario bracket (13.16%). Maximum CPP/EI/health premium, highest surtax."
+    }
+  ]
+}

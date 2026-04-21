@@ -1,0 +1,52 @@
+{
+  "name": "Short marriage duration",
+  "description": "Short-term relationship, lower spousal support expectations",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 3,
+    "payor": {
+      "grossIncome": 85000,
+      "rrspContributions": 4000,
+      "unionDues": 500,
+      "otherDeductions": 0
+    },
+    "recipient": {
+      "grossIncome": 48000,
+      "rrspContributions": 1000,
+      "unionDues": 0,
+      "otherDeductions": 0
+    },
+    "children": [
+      { "age": 3, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 706,
+      "tolerance": 5
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 500,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 650,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 800,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 30,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-09"
+  },
+  "silo": "parenting",
+  "pages": [
+    {
+      "id": "custody-decision-making-pillar",
+      "slug": "/custody-decision-making-ontario",
+      "silo": "parenting",
+      "title": "Custody & Decision-Making Responsibility in Ontario",
+      "metaTitle": "Custody & Decision-Making Responsibility in Ontario | Our Separation",
+      "metaDescription": "Learn how custody, decision-making responsibility, and parenting time work in Ontario. Plain-language guidance for separating parents. Create a parenting plan online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Custody vs decision-making: what's the difference?",
+          "href": "/custody-vs-decision-making-ontario"
+        },
+        {
+          "label": "Parenting time in Ontario",
+          "href": "/parenting-time-ontario"
+        },
+        {
+          "label": "Sole vs joint decision-making",
+          "href": "/sole-vs-joint-decision-making-ontario"
+        },
+        {
+          "label": "Best interests of the child",
+          "href": "/best-interests-of-the-child-ontario"
+        },
+        {
+          "label": "Parenting schedules",
+          "href": "/parenting-schedules-ontario"
+        },
+        {
+          "label": "Shared parenting in Ontario",
+          "href": "/shared-parenting-ontario"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Custody and Decision-Making Responsibility in Ontario",
+          "subhead": "Ontario has moved away from \"custody\" language. Today, parenting is about decision-making responsibility and parenting time—built around your child's best interests. Our Separation helps you create a clear parenting plan online, in plain language.",
+          "primaryCta": {
+            "label": "Create Your Parenting Plan",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "See Parenting Schedules",
+            "href": "/parenting-schedules-ontario"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "Why \"Custody\" Still Shows Up—And What Ontario Law Uses Now",
+          "html": "<p>Many parents search for \"custody\" because that's the term they've heard for years. In Canadian family law—especially after reforms to the Divorce Act—the focus is now on:</p><ul><li><strong>Decision-making responsibility</strong> (who makes major decisions)</li><li><strong>Parenting time</strong> (when the child is with each parent)</li></ul><p>This shift is meant to keep parenting disputes child-centred and reduce \"winner/loser\" framing. The practical question is not who \"gets custody,\" but how you will make decisions and structure time in a way that supports your child's stability, safety, and development.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Core Concepts: Decision-Making Responsibility and Parenting Time",
+          "html": "<h3>Decision-making responsibility</h3><p>Decision-making responsibility is authority over major decisions in a child's life, commonly including:</p><ul><li>Education</li><li>Health care</li><li>Religion</li><li>Significant extracurricular commitments</li><li>Culture and language</li></ul><p>It does not control routine, day-to-day choices made during parenting time.</p><h3>Parenting time</h3><p>Parenting time is the time a child spends in each parent's care. During that time, the parent makes day-to-day decisions (meals, bedtime routines, transportation, homework support, etc.).</p><p>Parenting time and decision-making responsibility are related but separate—one parent may have more parenting time even if major decision-making is shared, and vice versa.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Common Arrangements in Ontario",
+          "html": "<p>There is no one-size-fits-all. The best structure depends on the child's needs and the parents' ability to communicate effectively.</p><h3>Sole decision-making responsibility</h3><p>One parent has final authority for major decisions. This may be appropriate when cooperation is not realistic, or when stability and clarity are priorities.</p><h3>Joint decision-making responsibility</h3><p>Parents must consult and agree on major decisions. This works best where communication is reliable and conflict is low.</p><h3>Split (divided) decision-making</h3><p>Each parent controls certain categories (e.g., one handles education, the other health). Less common, but sometimes practical where parents are competent but disagree in specific domains.</p><h3>Shared parenting time</h3><p>Often described as \"50/50,\" shared parenting can take different forms. Equal time is not automatic—courts focus on feasibility and the child's best interests.</p>"
+        },
+        {
+          "type": "steps",
+          "heading": "How Ontario Determines What's Best for a Child",
+          "items": [
+            {
+              "title": "Stability and routine",
+              "html": "<p>Children tend to do best when schedules, schooling, and caregiving patterns are predictable.</p>"
+            },
+            {
+              "title": "The child's needs and development",
+              "html": "<p>Age, temperament, learning needs, health concerns, and emotional well-being matter.</p>"
+            },
+            {
+              "title": "Parent–child relationships",
+              "html": "<p>The quality of each relationship, and each parent's history of involvement, are relevant.</p>"
+            },
+            {
+              "title": "Ability to communicate and cooperate",
+              "html": "<p>Some structures (especially joint decision-making) require real collaboration.</p>"
+            },
+            {
+              "title": "Safety and family violence",
+              "html": "<p>Where safety is an issue, protective measures can override other considerations.</p>"
+            },
+            {
+              "title": "Willingness to support the other parent's relationship",
+              "html": "<p>Ontario courts take a dim view of gatekeeping and unnecessary interference—subject to safety concerns.</p>"
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Parenting Schedules: Common Examples",
+          "items": [
+            {
+              "q": "2-2-3 schedule",
+              "aText": "Often used for younger children to avoid long separations. Example: Parent A (Mon–Tue), Parent B (Wed–Thu), alternating weekends (Fri–Sun), then flip.",
+              "aHtml": "<p>Often used for younger children to avoid long separations. Example: Parent A (Mon–Tue), Parent B (Wed–Thu), alternating weekends (Fri–Sun), then flip.</p>"
+            },
+            {
+              "q": "Week-on / week-off",
+              "aText": "Common for older children where transitions are manageable. Works best when parents live close and communication is functional.",
+              "aHtml": "<p>Common for older children where transitions are manageable. Works best when parents live close and communication is functional.</p>"
+            },
+            {
+              "q": "Primary residence + regular parenting time",
+              "aText": "One home is the primary base, with predictable time for the other parent (e.g., alternating weekends plus one mid-week overnight).",
+              "aHtml": "<p>One home is the primary base, with predictable time for the other parent (e.g., alternating weekends plus one mid-week overnight).</p>"
+            },
+            {
+              "q": "Holiday and vacation rotation",
+              "aText": "Most plans add detailed holiday rules to reduce conflict: winter break splits, alternating statutory holidays, and set vacation notice timelines.",
+              "aHtml": "<p>Most plans add detailed holiday rules to reduce conflict: winter break splits, alternating statutory holidays, and set vacation notice timelines.</p>"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Family Violence and High-Conflict Parenting",
+          "html": "<p>Where there are safety concerns, decision-making responsibility and parenting time must be structured to protect the child and the affected parent. Ontario law recognizes that family violence can include coercive control and patterns of intimidation—not only physical harm.</p><p><a href=\"/family-violence-parenting-ontario\">Learn more about family violence and parenting in Ontario →</a></p>"
+        },
+        {
+          "type": "steps",
+          "heading": "What a Strong Parenting Plan Covers",
+          "items": [
+            {
+              "title": "Decision-making rules",
+              "html": "<p>Define who decides what, when consultation is required, and how disagreements will be addressed.</p>"
+            },
+            {
+              "title": "Parenting time schedule",
+              "html": "<p>Set a predictable weekly routine, plus holidays, PD days, birthdays, and vacations.</p>"
+            },
+            {
+              "title": "Communication",
+              "html": "<p>Set expectations for child-related communication (method, response times, boundaries).</p>"
+            },
+            {
+              "title": "Transitions and logistics",
+              "html": "<p>Pickup/drop-off locations, responsibility for transportation, and rules for late changes.</p>"
+            },
+            {
+              "title": "Information sharing",
+              "html": "<p>School updates, medical records, extracurricular schedules, and how each parent stays informed.</p>"
+            },
+            {
+              "title": "Dispute resolution",
+              "html": "<p>A practical escalation path (discussion → written proposal → mediation) before court where appropriate.</p>"
+            }
+          ]
+        },
+        {
+          "type": "richText",
+          "heading": "Why Parents Use Our Separation",
+          "html": "<p>Common pain points versus how Our Separation helps:</p><table class=\"w-full border-collapse my-6\"><thead><tr class=\"bg-slate-100\"><th class=\"border border-slate-300 px-4 py-3 text-left\">Common pain points</th><th class=\"border border-slate-300 px-4 py-3 text-left\">How Our Separation helps</th></tr></thead><tbody><tr><td class=\"border border-slate-300 px-4 py-3\">Confusing terms like custody/access</td><td class=\"border border-slate-300 px-4 py-3\">Plain-language Ontario parenting concepts: decision-making and parenting time</td></tr><tr><td class=\"border border-slate-300 px-4 py-3\">Templates that miss key clauses</td><td class=\"border border-slate-300 px-4 py-3\">Guided parenting plan flow that prompts for the provisions most families need</td></tr><tr><td class=\"border border-slate-300 px-4 py-3\">High conflict over small issues</td><td class=\"border border-slate-300 px-4 py-3\">Built-in structure: schedules, communication rules, and dispute resolution options</td></tr><tr><td class=\"border border-slate-300 px-4 py-3\">Unclear holiday rules</td><td class=\"border border-slate-300 px-4 py-3\">Pre-built holiday and vacation modules you can customize</td></tr><tr><td class=\"border border-slate-300 px-4 py-3\">Fear of \"getting it wrong\"</td><td class=\"border border-slate-300 px-4 py-3\">Ontario-specific framing designed for separation agreements and practical implementation</td></tr></tbody></table>"
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions (Ontario)",
+          "items": [
+            {
+              "q": "Is \"custody\" still a legal term in Ontario?",
+              "aText": "People still use the word \"custody,\" but modern Canadian family law focuses on decision-making responsibility and parenting time. What matters is the substance of your parenting plan, not the label.",
+              "aHtml": "<p>People still use the word \"custody,\" but modern Canadian family law focuses on decision-making responsibility and parenting time. What matters is the substance of your parenting plan, not the label.</p>"
+            },
+            {
+              "q": "Does joint decision-making mean equal parenting time?",
+              "aText": "No. Decision-making responsibility and parenting time are separate concepts. A parent can share decision-making without having 50/50 time, and a parent can have significant time even if decision-making is not shared.",
+              "aHtml": "<p>No. Decision-making responsibility and parenting time are separate concepts. A parent can share decision-making without having 50/50 time, and a parent can have significant time even if decision-making is not shared.</p>"
+            },
+            {
+              "q": "Do Ontario courts automatically order 50/50 parenting?",
+              "aText": "No. There is no automatic presumption of equal time. Courts prioritize the child's best interests, including stability, feasibility, communication capacity, and safety.",
+              "aHtml": "<p>No. There is no automatic presumption of equal time. Courts prioritize the child's best interests, including stability, feasibility, communication capacity, and safety.</p>"
+            },
+            {
+              "q": "Can a parenting plan be changed later?",
+              "aText": "Yes. Parenting terms can be adjusted by agreement or, if necessary, through a court process when circumstances materially change. Many parents build review points into their plans as children grow.",
+              "aHtml": "<p>Yes. Parenting terms can be adjusted by agreement or, if necessary, through a court process when circumstances materially change. Many parents build review points into their plans as children grow.</p>"
+            },
+            {
+              "q": "Does child support depend on custody labels?",
+              "aText": "Child support is generally driven by income and parenting time arrangements, not by labels like custody.",
+              "aHtml": "<p>Child support is generally driven by income and parenting time arrangements, not by labels like \"custody.\"</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "primary",
+          "label": "Create Your Parenting Plan",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "If your situation involves safety concerns, consider getting legal advice before finalizing parenting terms. This information is for educational purposes and does not constitute legal advice."
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is \"custody\" still a legal term in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "People still use the word \"custody,\" but modern Canadian family law focuses on decision-making responsibility and parenting time. What matters is the substance of your parenting plan, not the label."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does joint decision-making mean equal parenting time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Decision-making responsibility and parenting time are separate concepts. A parent can share decision-making without having 50/50 time, and a parent can have significant time even if decision-making is not shared."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do Ontario courts automatically order 50/50 parenting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. There is no automatic presumption of equal time. Courts prioritize the child's best interests, including stability, feasibility, communication capacity, and safety."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a parenting plan be changed later?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Parenting terms can be adjusted by agreement or, if necessary, through a court process when circumstances materially change. Many parents build review points into their plans as children grow."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does child support depend on custody labels?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Child support is generally driven by income and parenting time arrangements, not by labels like custody."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

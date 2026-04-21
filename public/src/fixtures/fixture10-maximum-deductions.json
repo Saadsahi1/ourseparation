@@ -1,0 +1,53 @@
+{
+  "name": "Maximum RRSP and deductions",
+  "description": "Both parties maximizing RRSP and other deductions",
+  "inputs": {
+    "taxYear": 2024,
+    "benefitsPeriod": "2025-07-01",
+    "province": "ON",
+    "relationshipYears": 18,
+    "payor": {
+      "grossIncome": 150000,
+      "rrspContributions": 27000,
+      "unionDues": 1200,
+      "otherDeductions": 3000
+    },
+    "recipient": {
+      "grossIncome": 70000,
+      "rrspContributions": 12600,
+      "unionDues": 800,
+      "otherDeductions": 1500
+    },
+    "children": [
+      { "age": 15, "disabilitySupplementEligible": false },
+      { "age": 17, "disabilitySupplementEligible": false }
+    ],
+    "parentingArrangement": "sole_recipient"
+  },
+  "expectedOutputs": {
+    "childSupport": {
+      "monthly": 2231,
+      "tolerance": 10
+    },
+    "spousalSupport": {
+      "low": {
+        "monthly": 1200,
+        "recipientINDIPercent": 40.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      },
+      "mid": {
+        "monthly": 1500,
+        "recipientINDIPercent": 43.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      },
+      "high": {
+        "monthly": 1800,
+        "recipientINDIPercent": 46.0,
+        "toleranceAmount": 50,
+        "tolerancePercent": 1.0
+      }
+    }
+  }
+}

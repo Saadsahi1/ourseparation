@@ -1,0 +1,426 @@
+{
+  "site": {
+    "brand": "Our Separation",
+    "jurisdiction": "Ontario",
+    "defaultCtaStyle": "balanced",
+    "lastGenerated": "2026-01-05"
+  },
+  "silo": "separation-agreements",
+  "pages": [
+    {
+      "id": "sep-agreements-pillar",
+      "slug": "/ontario-separation-agreements",
+      "silo": "separation-agreements",
+      "title": "Separation Agreements in Ontario",
+      "metaTitle": "Separation Agreements in Ontario | Our Separation",
+      "metaDescription": "Learn how separation agreements work in Ontario, what makes them enforceable, and how Our Separation helps you build a legally structured agreement online.",
+      "lastUpdated": "2026-01-05",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Child Support in Ontario",
+          "href": "/child-support-ontario"
+        },
+        {
+          "label": "Property Division in Ontario",
+          "href": "/property-division-ontario"
+        },
+        {
+          "label": "Spousal Support in Ontario",
+          "href": "/spousal-support-ontario"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Separation Agreements in Ontario",
+          "subhead": "Learn how separation agreements work in Ontario, what makes them enforceable, and how Our Separation helps you build a legally structured agreement online.",
+          "primaryCta": {
+            "label": "Start Your Agreement",
+            "href": "/start"
+          },
+          "secondaryCta": {
+            "label": "Lawyer Review",
+            "href": "/lawyer-review"
+          }
+        },
+        {
+          "type": "richText",
+          "heading": "Separation Agreements in Ontario: A Complete Legal Guide",
+          "html": "<p>A separation agreement is the primary legal tool used by separating couples in Ontario to resolve issues arising from the breakdown of their relationship. When properly prepared, a separation agreement can permanently determine parenting arrangements, child support, spousal support, property division, and financial obligations—without the need for court.</p>\n<p><strong>Our Separation</strong> is built specifically for Ontario families who want a clear, legally structured path forward without unnecessary conflict, delay, or cost.</p>\n<p>This page explains what separation agreements are, how they work under Ontario law, what they must include to be enforceable, and how to avoid the mistakes that most often lead to litigation.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Separation Agreement?",
+          "html": "<p>A separation agreement is a <strong>legally binding contract</strong> between spouses or partners who have separated or intend to separate. In Ontario, separation agreements are governed primarily by the <em>Family Law Act</em>, and for married spouses, certain provisions of the <em>Divorce Act</em> also apply.</p>\n<p>A separation agreement allows parties to privately resolve issues such as parenting time and decision-making responsibility, child support, spousal support, division of property and debts, possession or sale of the matrimonial home, insurance obligations, and dispute-resolution processes.</p>\n<p>Once signed and properly executed, a separation agreement has the same legal force as a court order.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Do You Have to Be Divorced to Sign a Separation Agreement?",
+          "html": "<p>No. You can enter into a separation agreement as soon as you are <strong>separated</strong>, even if you are still legally married, have not started divorce proceedings, or are common-law partners.</p>\n<p>Many couples rely on a separation agreement as a <strong>final settlement</strong>, and later incorporate it into an uncontested divorce.</p>"
+        },
+        {
+          "type": "ctaInline",
+          "variant": "balanced",
+          "label": "Use Our Separation to build a legally structured Ontario agreement.",
+          "href": "/start"
+        },
+        {
+          "type": "richText",
+          "heading": "Why Use a Separation Agreement Instead of Court?",
+          "html": "<p>Separation agreements offer meaningful advantages over litigation, including greater control over outcomes, privacy, cost efficiency, speed, and flexibility to craft practical solutions.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Legal Requirements for a Valid Separation Agreement in Ontario",
+          "html": "<p>To be legally valid in Ontario, a separation agreement must be in writing, signed by both parties, witnessed, entered into voluntarily, and based on full and honest financial disclosure. Failure to meet these requirements can result in the agreement being set aside.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Financial Disclosure: The Leading Cause of Invalid Agreements",
+          "html": "<p>Incomplete or misleading financial disclosure is the most common reason Ontario courts invalidate separation agreements. Required disclosure typically includes tax returns, Notices of Assessment, income details, valuations of assets, pensions and investments, and a complete list of debts and liabilities.</p>\n<p><strong>Our Separation</strong> includes structured disclosure prompts to reduce this risk.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Independent Legal Advice (ILA): Why It Matters",
+          "html": "<p>Independent Legal Advice (ILA) means each party consults their own lawyer before signing. While not mandatory, ILA is one of the strongest indicators that an agreement will be upheld and can reduce later disputes.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What Can Be Included in a Separation Agreement?",
+          "html": "<p>Separation agreements can include parenting provisions, child support terms, spousal support terms, and property/debt division terms, among others—provided they comply with Ontario law and public policy.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "What Cannot Be Included?",
+          "html": "<p>A separation agreement cannot permanently waive child support, override the best interests of a child, or prevent future variation of child-related terms.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "Enforcing a Separation Agreement",
+          "html": "<p>A valid separation agreement may be enforced as a contract, through the Ontario Superior Court of Justice, and support terms may be enforced through the Family Responsibility Office.</p>"
+        },
+        {
+          "type": "richText",
+          "heading": "How Our Separation Helps",
+          "html": "<p><strong>Our Separation</strong> uses Ontario-compliant structure, prompts mandatory clauses, flags risk areas, and supports optional lawyer review. It is not a generic template—it is a guided legal process.</p>"
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "label": "Start with Our Separation",
+          "href": "/start"
+        },
+        {
+          "type": "disclaimer",
+          "text": "This information is general and not legal advice. For advice about your situation, speak with a lawyer."
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions",
+          "items": [
+            {
+              "q": "Are separation agreements legally binding in Ontario?",
+              "aText": "Yes. A properly drafted separation agreement that meets Ontario legal requirements is legally binding and enforceable.",
+              "aHtml": "<p>Yes. A properly drafted separation agreement that meets Ontario legal requirements is legally binding and enforceable.</p>"
+            },
+            {
+              "q": "Do I need a lawyer to make a separation agreement?",
+              "aText": "A lawyer is not legally required, but independent legal advice significantly improves enforceability and reduces risk.",
+              "aHtml": "<p>A lawyer is not legally required, but independent legal advice significantly improves enforceability and reduces risk.</p>"
+            },
+            {
+              "q": "Can a separation agreement be changed later?",
+              "aText": "Yes. Separation agreements may be amended by agreement or varied by a court in certain circumstances.",
+              "aHtml": "<p>Yes. Separation agreements may be amended by agreement or varied by a court in certain circumstances.</p>"
+            }
+          ]
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are separation agreements legally binding in Ontario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A properly drafted separation agreement that meets Ontario legal requirements is legally binding and enforceable."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a lawyer to make a separation agreement?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A lawyer is not legally required, but independent legal advice significantly improves enforceability and reduces risk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a separation agreement be changed later?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Separation agreements may be amended by agreement or varied by a court in certain circumstances."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "separation-agreement-product",
+      "slug": "/separation-agreement-ontario",
+      "silo": "separation-agreements",
+      "title": "Separation Agreements in Ontario",
+      "metaTitle": "Separation Agreements in Ontario | Our Separation",
+      "metaDescription": "A separation agreement lets couples in Ontario resolve property, support, and parenting issues without court. Learn how separation agreements work and create one online.",
+      "lastUpdated": "2026-01-09",
+      "toc": true,
+      "internalLinks": [
+        {
+          "label": "Parenting plans",
+          "href": "/parenting-plans-ontario"
+        },
+        {
+          "label": "Cohabitation agreements",
+          "href": "/cohabitation-agreement-ontario"
+        },
+        {
+          "label": "Prenuptial agreements",
+          "href": "/prenuptial-agreement-ontario"
+        },
+        {
+          "label": "Postnuptial agreements",
+          "href": "/postnuptial-agreement-ontario"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "hero",
+          "h1": "Separation Agreements in Ontario",
+          "eyebrow": "Ending a Relationship in Ontario",
+          "subhead": "A separation agreement allows couples to resolve parenting, support, and property issues privately—without going to court. Our Separation helps you create a clear, Ontario-specific separation agreement online, in plain language.",
+          "primaryCta": {
+            "label": "Create a Separation Agreement",
+            "href": "/create-separation-agreement"
+          },
+          "secondaryCta": {
+            "label": "Start with a Parenting Plan",
+            "href": "/parenting-plans-ontario"
+          },
+          "trustBadges": [
+            "Ontario-only guidance",
+            "Plain-language drafting",
+            "Designed to avoid court",
+            "Built for enforceable agreements"
+          ]
+        },
+        {
+          "type": "richText",
+          "heading": "What Is a Separation Agreement?",
+          "html": "<p>A separation agreement is a written contract between spouses or common-law partners who have separated or are about to separate.</p><p>In Ontario, separation agreements are authorized by both the Divorce Act and the Family Law Act. They allow couples to privately settle the legal and financial consequences of separation without asking a judge to decide.</p><p>A properly drafted separation agreement can be just as enforceable as a court order—while giving you more control, privacy, and flexibility.</p>"
+        },
+        {
+          "type": "featureList",
+          "heading": "Who Can Use a Separation Agreement?",
+          "subhead": "Separation agreements are not only for married couples.",
+          "items": [
+            {
+              "title": "Married couples",
+              "description": "Spouses can resolve parenting, child support, spousal support, and property equalization before or instead of court."
+            },
+            {
+              "title": "Common-law partners",
+              "description": "Unmarried partners can use separation agreements to resolve support, property, and parenting issues."
+            },
+            {
+              "title": "Couples with children",
+              "description": "Separation agreements commonly include parenting plans and child support arrangements."
+            },
+            {
+              "title": "Couples without children",
+              "description": "Agreements can focus on financial separation, property division, and support."
+            }
+          ]
+        },
+        {
+          "type": "twoColumn",
+          "heading": "What a Separation Agreement Can Cover",
+          "left": {
+            "title": "Parenting and child-related issues",
+            "html": "<p>Where children are involved, a separation agreement often includes:</p><ul><li>Decision-making responsibility</li><li>Parenting time schedules</li><li>Holiday and vacation arrangements</li><li>Child support (including section 7 expenses)</li><li>Communication and dispute-resolution rules</li></ul><p>Parenting terms must always reflect the child's best interests.</p>"
+          },
+          "right": {
+            "title": "Financial and property issues",
+            "html": "<p>Separation agreements also commonly deal with:</p><ul><li>Division of property and debts</li><li>Equalization of net family property (for married spouses)</li><li>Spousal support</li><li>Sale or transfer of the matrimonial home</li><li>Pensions, businesses, and investments</li></ul><p>Clear financial terms reduce the risk of future disputes.</p>"
+          }
+        },
+        {
+          "type": "featureList",
+          "heading": "Why Many Ontario Couples Choose Separation Agreements",
+          "subhead": "Most family law disputes never need to go to court.",
+          "items": [
+            {
+              "title": "Avoid court",
+              "description": "Agreements allow couples to resolve issues privately without litigation."
+            },
+            {
+              "title": "More control",
+              "description": "You decide the outcome instead of leaving decisions to a judge."
+            },
+            {
+              "title": "Lower cost",
+              "description": "Agreements are usually far less expensive than contested court proceedings."
+            },
+            {
+              "title": "Faster resolution",
+              "description": "Court cases can take years. Agreements can be completed in weeks."
+            },
+            {
+              "title": "Privacy",
+              "description": "Court proceedings are public; separation agreements are private."
+            }
+          ]
+        },
+        {
+          "type": "richText",
+          "heading": "Are Separation Agreements Enforceable in Ontario?",
+          "html": "<p>Yes. Separation agreements are legally binding and enforceable in Ontario if they meet statutory requirements.</p><p>To be enforceable, an agreement should:</p><ul><li>Be in writing</li><li>Be signed by both parties</li><li>Be witnessed</li><li>Be based on full and honest financial disclosure</li><li>Be entered into voluntarily</li></ul><p>Courts may set aside agreements in limited circumstances, such as serious nondisclosure, coercion, or unconscionability—especially in relation to child support or parenting terms.</p>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "heading": "Important Note About Children",
+          "html": "<p>Even if parents agree, Ontario law requires that parenting arrangements and child support reflect the child's best interests. Courts retain the authority to override unfair or inadequate child-related terms.</p>"
+        },
+        {
+          "type": "stepper",
+          "heading": "How Our Separation Helps You Create a Separation Agreement",
+          "subhead": "Designed for separating couples who want clarity—not conflict.",
+          "steps": [
+            {
+              "title": "Answer guided questions",
+              "content": "Work through parenting, support, and property issues in plain language."
+            },
+            {
+              "title": "Build integrated terms",
+              "content": "Your answers are structured into a comprehensive separation agreement."
+            },
+            {
+              "title": "Ontario-specific drafting",
+              "content": "Agreements are framed for Ontario law, including the Divorce Act and Family Law Act."
+            },
+            {
+              "title": "Optional legal review",
+              "content": "Have the agreement reviewed by a lawyer before signing, if you choose."
+            }
+          ],
+          "primaryCta": {
+            "label": "Create a Separation Agreement",
+            "href": "/create-separation-agreement"
+          }
+        },
+        {
+          "type": "comparison",
+          "heading": "Separation Agreement vs Court Order",
+          "leftTitle": "Separation agreement",
+          "rightTitle": "Court order",
+          "rows": [
+            {
+              "left": "Private and confidential",
+              "right": "Public court process"
+            },
+            {
+              "left": "Flexible and customized",
+              "right": "Judge-imposed outcomes"
+            },
+            {
+              "left": "Faster and lower cost",
+              "right": "Often lengthy and expensive"
+            },
+            {
+              "left": "Can be negotiated collaboratively",
+              "right": "Adversarial litigation process"
+            }
+          ]
+        },
+        {
+          "type": "faq",
+          "heading": "Frequently Asked Questions About Separation Agreements (Ontario)",
+          "items": [
+            {
+              "q": "Do we need to be divorced to have a separation agreement?",
+              "aText": "No. Separation agreements can be made before, during, or instead of divorce proceedings.",
+              "aHtml": "<p>No. Separation agreements can be made before, during, or instead of divorce proceedings.</p>"
+            },
+            {
+              "q": "Can a separation agreement include parenting terms?",
+              "aText": "Yes, as long as the terms reflect the child's best interests and comply with Ontario law.",
+              "aHtml": "<p>Yes, as long as the terms reflect the child's best interests and comply with Ontario law.</p>"
+            },
+            {
+              "q": "Do we both need lawyers?",
+              "aText": "Independent legal advice is strongly recommended, but many couples start with an online agreement and obtain review later.",
+              "aHtml": "<p>Independent legal advice is strongly recommended, but many couples start with an online agreement and obtain review later.</p>"
+            },
+            {
+              "q": "Can a separation agreement be changed?",
+              "aText": "Yes. Agreements can be amended by mutual consent or, in limited cases, varied by a court.",
+              "aHtml": "<p>Yes. Agreements can be amended by mutual consent or, in limited cases, varied by a court.</p>"
+            },
+            {
+              "q": "Is a separation agreement enforceable without court?",
+              "aText": "Yes. A valid separation agreement is enforceable like a court order.",
+              "aHtml": "<p>Yes. A valid separation agreement is enforceable like a court order.</p>"
+            }
+          ]
+        },
+        {
+          "type": "ctaEnd",
+          "variant": "balanced",
+          "heading": "Resolve Your Separation—Without Court",
+          "subhead": "A separation agreement gives you clarity, control, and a path forward. Build one online with Ontario-specific guidance.",
+          "primaryCta": {
+            "label": "Create a Separation Agreement",
+            "href": "/create-separation-agreement"
+          },
+          "secondaryCta": {
+            "label": "Learn about parenting plans",
+            "href": "/parenting-plans-ontario"
+          }
+        }
+      ],
+      "faqSchemaJsonLd": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do we need to be divorced to have a separation agreement?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Separation agreements can be made before, during, or instead of divorce proceedings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a separation agreement include parenting terms?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, as long as the terms reflect the child's best interests and comply with Ontario law."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is a separation agreement enforceable without court?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A valid separation agreement is enforceable like a court order."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
