@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { requireAdmin, AuthError } from '@/lib/auth'
 import pool from '@/lib/db/pool'
-import { loadDBTaxParams } from '@/lib/config/taxParams'
 
 // Required keys every uploaded year must contain
 const REQUIRED_KEYS = [
@@ -72,9 +71,6 @@ export async function POST(req) {
             created_at = NOW()
     `, [year, JSON.stringify(params), user.id])
 
-    // Refresh in-memory cache immediately — no restart needed
-    await loadDBTaxParams()
-
     return NextResponse.json({ ok: true, taxYear: year })
   } catch (err) {
     if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: err.status || 401 })
@@ -91,7 +87,6 @@ export async function DELETE(req) {
     const year = parseInt(searchParams.get('year'))
     if (!year) return NextResponse.json({ error: 'year required' }, { status: 400 })
     await pool.query('DELETE FROM tax_params WHERE tax_year = $1', [year])
-    await loadDBTaxParams()
     return NextResponse.json({ ok: true })
   } catch (err) {
     if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: err.status || 401 })
