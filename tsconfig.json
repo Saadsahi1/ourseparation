@@ -27,19 +27,28 @@
         "name": "next"
       }
     ],
+    "ignoreDeprecations": "6.0",
     "strictNullChecks": true,
     "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "pages/**/*.ts",
+    "pages/**/*.tsx",
     "**/*.js",
     "**/*.jsx",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "supabase/functions",
+    "vite.config.ts"
   ]
 }
