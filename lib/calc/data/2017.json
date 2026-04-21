@@ -1,0 +1,269 @@
+{
+  "province": "Ontario",
+  "year": 2017,
+  "source": "User-provided CSV (converted to JSON)",
+  "notes": "This is an example/precedent JSON structure created from the CSV you provided. Some text fields from the CSV were converted to numeric values where appropriate.",
+  "federal_taxable_income_brackets": [
+    {
+      "index": 1,
+      "min": 0,
+      "max": 45916
+    },
+    {
+      "index": 2,
+      "min": 45916.01,
+      "max": 91831
+    },
+    {
+      "index": 3,
+      "min": 91831.01,
+      "max": 142353
+    },
+    {
+      "index": 4,
+      "min": 142353.01,
+      "max": 202800
+    },
+    {
+      "index": 5,
+      "min": 202800.01,
+      "max": null
+    }
+  ],
+  "federal_tax_rates": {
+    "1": 0.15,
+    "2": 0.205,
+    "3": 0.26,
+    "4": 0.29,
+    "5": 0.33
+  },
+  
+  "provincial_taxable_income_brackets": [
+    {
+      "index": 1,
+      "min": 0,
+      "max": 49231
+    },
+    {
+      "index": 2,
+      "min": 49231.01,
+      "max": 98463
+    },
+    {
+      "index": 3,
+      "min": 98463.01,
+      "max": 150000
+    },
+    {
+      "index": 4,
+      "min": 150000.01,
+      "max": 220000
+    },
+    {
+      "index": 5,
+      "min": 220000.01,
+      "max": null
+    }
+  ],
+  "provincial_tax_rates": {
+    "1": 0.0505,
+    "2": 0.0915,
+    "3": 0.1116,
+    "4": 0.1216,
+    "5": 0.1316
+  },
+
+  "non_refundable_tax_credits": {
+    "basic_personal_amount": 11865,
+    "spouse_or_common_law_partner_amount_max": 10075,
+    "amount_for_eligible_dependent_max": 10075,
+    "caregiver_amount_max": 5593,
+    "amount_for_infirm_dependent_max": null,
+    "age_amount_max": 5793,
+    "pension_income_amount_max": 1641,
+    "adoption_expenses_max": 14476,
+    "disability_amount": 9586,
+    "disability_supplement_max": 5591,
+    "medical_expense_threshold": {
+      "fixed": 2685,
+      "percent_of_net_income": 0.03,
+      "note": "medical expenses claimed in excess of the lesser of $2,685 and 3% of net income"
+    },
+    "donation_credit": {
+      "first_200_rate": 0.0505,
+      "exceeding_200_rate": 0.1116
+    }
+  },
+  "low_income_individuals_and_families_tax_credit": {
+    "max_amount": 875,
+    "adjusted_individual_net_income_5pct_reduction_over": 32500,
+    "adjusted_family_net_income_5pct_reduction_over": 65000
+  },
+  "alternative_minimum_tax": {
+    "rate": 0.3367
+  },
+  "two_tier_surtax": {
+    "description": "Surtax applied to provincial basic tax (tiers provided as ranges and rates).",
+    "tiers": [
+      {
+        "tier": 1,
+        "basic_tax_range": {
+          "greater_than": 5315,
+          "up_to": 6802
+        },
+        "rate": 0.20
+      },
+      {
+        "tier": 2,
+        "basic_tax_range": {
+          "greater_than": 6802
+        },
+        "rate": 0.56
+      }
+    ]
+  },
+  "ontario_tax_reduction": {
+    "basic_reduction": 274,
+    "reduction_for_each_child_or_dependent_with_impairment": 506
+  },
+  "political_contribution_tax_credit": {
+    "levels": [
+      {
+        "level": 1,
+        "contribution_up_to": 465,
+        "credit_rate": 0.75
+      },
+      {
+        "level": 2,
+        "contribution_over": 465,
+        "contribution_up_to": 1552,
+        "credit_rate": 0.5
+      },
+      {
+        "level": 3,
+        "contribution_over": 1552,
+        "credit_rate": 0.3333
+      }
+    ],
+    "maximum_credit": 1552,
+    "note": "Political contribution tax credit indexed annually beginning in 2018."
+  },
+  "dividend_tax_credit": {
+    "eligible_dividends_rate": 0.10,
+    "other_than_eligible_dividends_rate": 0.029863
+  },
+  "ontario_senior_homeowners_property_tax_grant": {
+    "maximum_per_senior_or_couple": 500,
+    "benefit_reduction_threshold_single_3_33pct_over": 35000,
+    "benefit_reduction_threshold_couple_3_33pct_over": 45000
+  },
+  "ontario_seniors_public_transit_tax_credit": {
+    "maximum_eligible_expenses": 3000,
+    "maximum_credit": 450,
+    "credit_rate": 0.15
+  },
+  "ontario_seniors_care_at_home_tax_credit": {
+    "maximum_eligible_expenses": 6000,
+    "maximum_credit": 1500,
+    "credit_rate": 0.25,
+    "adjusted_family_net_income_5pct_reduction_over": 35000
+  },
+  "ontario_trillium_benefit": {
+    "benefit_period": "July to June",
+    "ontario_energy_and_property_tax_credit": {
+      "amount_of_tax_credit_non_senior_max_per_household": 1194,
+      "benefit_reduction_threshold_single_2pct_over": 26535,
+      "benefit_reduction_threshold_families_2pct_over": 33169,
+      "amount_of_tax_credit_senior_max_per_household": 1360,
+      "benefit_reduction_threshold_senior_single_2pct_over": 33169,
+      "benefit_reduction_threshold_senior_families_2pct_over": 39803
+    },
+    "ontario_sales_tax_credit": {
+      "maximum_amount_per_individual": 345,
+      "benefit_reduction_threshold_single_4pct_over": 26535,
+      "benefit_reduction_threshold_families_4pct_over": 33169
+    },
+    "northern_ontario_energy_credit": {
+      "maximum_amount_if_single_no_children": 172,
+      "benefit_reduction_threshold_single_1pct_over": 46436,
+      "maximum_amount_families": 265,
+      "benefit_reduction_threshold_families_1pct_over": 59704
+    }
+  },
+  "ontario_child_benefit": {
+    "maximum_per_child_under_18": 1607,
+    "reduction_rate": 0.08,
+    "benefit_reduction_threshold_8pct_over": 24542
+  },
+  "ontario_childcare_access_and_relief_from_expenses_tax_credit": {
+    "maximum_per_child_under_7": 6000,
+    "maximum_per_child_7_to_16": 3750,
+    "maximum_per_child_with_impairment": 8250
+  },
+
+  "CPP_contribution_rates": {
+    "employee_rate": 0.0495,
+    "employer_rate": 0.114,
+    "self_employed_rate": 0.114,
+    "yearly_basic_exemption": 3500,
+    "maximum_pensionable_earnings": 55300,
+    "maximum_employee_contribution": 2564.10
+  },
+  "EI_premium_rates": {
+    "employee_rate": 0.01630,
+    "employer_rate": 0.02282,
+    "maximum_insurable_earnings": 51300,
+    "maximum_employee_premium": 836.19
+  },
+
+  "Canada_Worker_Benefit": {
+    "maximum_benefit_single": 1518,
+    "maximum_benefit_family": 2616,
+    "phase_out_threshold_single": 24975,
+    "phase_out_threshold_family": 28494,
+    "phase_out_rate": 0.15,
+    "base_amount": 3000,
+    "income_limit_for_single": 35095,
+    "income_limit_for_family": 45934,
+    "base_amount_rate": 0.27
+  },
+
+  "Canada_Child_Benefit": {
+    "base_amount_per_child_under_6": 7437,
+    "base_amount_per_child_6_to_17": 6275,
+    "income_threshold_for_reduction": 34863,
+    "reduction_rate_first_tier_one_child": 0.07,
+    "reduction_rate_first_tier_two_children": 0.135,
+    "reduction_rate_first_tier_three_children": 0.19,   
+    "reduction_rate_first_tier_four_or_more_children": 0.23,
+    "reduction_rate_second_tier_one_child": 0.0320,
+    "reduction_rate_second_tier_two_children": 0.0570,
+    "reduction_rate_second_tier_three_children": 0.080,
+    "reduction_rate_second_tier_four_or_more_children": 0.090,
+    "second_tier_threshold": 75537
+  },
+
+  "Climate_Action_Incentive": {
+    "base_amount_single": 488,
+    "base_amount_couple": 732,
+    "base_amount_per_child": 122
+  },
+
+  "lift_credit": {
+    "applicable_rate": 0.0505,
+    "maximum_credit_single": 875,
+    "maximum_credit_couple": 875,
+    "income_threshold_single": 32500,
+    "income_threshold_couple": 65000,
+    "phase_out_rate": 0.05
+  },
+
+  "GST_HST_Credit": {
+    "base_amount_single": 325,
+    "base_amount_couple": 650,
+    "base_amount_per_child": 171,
+    "income_threshold_single": 10544,
+    "income_threshold_couple": 44342,
+    "phase_out_rate": 0.05
+  }
+}

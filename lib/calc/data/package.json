@@ -1,0 +1,26 @@
+{
+  "name": "spousal-support-tax-calculator",
+  "version": "1.0.0",
+  "description": "Multi-year tax calculator for spousal support analysis in Ontario, Canada",
+  "main": "taxCalculator.ts",
+  "scripts": {
+    "example": "ts-node exampleUsage.ts",
+    "build": "tsc",
+    "test": "ts-node exampleUsage.ts"
+  },
+  "keywords": [
+    "tax",
+    "calculator",
+    "spousal-support",
+    "ontario",
+    "canada",
+    "benefits"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}
