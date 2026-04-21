@@ -1,0 +1,665 @@
+.detail-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.report-masthead {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--vc);
+  border-radius: var(--r);
+  background: linear-gradient(135deg, rgba(91,79,232,.08), rgba(91,79,232,.02)), #fff;
+  box-shadow: var(--sh-xs);
+}
+
+.report-kicker {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--v);
+  margin-bottom: .5rem;
+}
+
+.report-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-family: var(--fb);
+  color: var(--s900);
+}
+
+.report-subtitle {
+  margin: .45rem 0 0;
+  font-size: .92rem;
+  color: var(--s600);
+}
+
+.report-stamp {
+  min-width: 170px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1.125rem;
+  border-radius: calc(var(--r) - 6px);
+  background: var(--s900);
+  color: white;
+}
+
+.report-stamp-label {
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .72;
+}
+
+.report-stamp-value {
+  margin-top: .35rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.report-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .875rem;
+}
+
+.report-summary-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: #fff;
+  box-shadow: var(--sh-xs);
+}
+
+.report-summary-label {
+  display: block;
+  margin-bottom: .35rem;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--s400);
+}
+
+.detail-hdr {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-bottom: .5rem;
+}
+
+.detail-date {
+  font-size: .73rem;
+  color: var(--s400);
+}
+
+.detail-hdr h1 {
+  font-size: 1.65rem;
+  font-weight: 400;
+  margin-bottom: .25rem;
+}
+
+.detail-sub {
+  color: var(--s600);
+  font-size: .875rem;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: .875rem;
+}
+
+.section-h2 {
+  font-size: 1rem;
+  font-family: var(--fb);
+  font-weight: 700;
+  padding-bottom: .45rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.detail-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--sh-xs);
+}
+
+.dt-note {
+  font-size: .79rem;
+  color: var(--s600);
+  padding: .65rem 1.125rem;
+  background: var(--vx);
+  border-bottom: 1px solid var(--vc);
+}
+
+.detail-note-sm {
+  font-size: .77rem;
+  color: var(--s400);
+  margin-top: -.25rem;
+}
+
+.dt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .84rem;
+}
+
+.dt th,
+.dt td {
+  padding: .65rem 1.125rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.dt tr:last-child th,
+.dt tr:last-child td {
+  border-bottom: none;
+}
+
+.dt th {
+  color: var(--s600);
+  font-weight: 400;
+  width: 60%;
+}
+
+.dt td {
+  color: var(--s900);
+  font-weight: 500;
+  text-align: right;
+}
+
+.dt thead th {
+  font-size: .67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--s400);
+  background: var(--s50);
+}
+
+.dt-section td {
+  font-size: .67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--s400);
+  background: var(--s50);
+  padding: .45rem 1.125rem;
+}
+
+.dt-total th,
+.dt-total td {
+  background: var(--vx);
+  font-weight: 700 !important;
+  color: var(--vd) !important;
+  border-top: 1.5px solid var(--vc);
+}
+
+.tax-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.125rem;
+}
+
+.tax-col {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--sh-xs);
+}
+
+.tax-name {
+  padding: .8rem 1.125rem;
+  background: var(--v);
+  color: white;
+  font-weight: 600;
+  font-size: .875rem;
+}
+
+.detail-actions {
+  display: flex;
+  gap: .875rem;
+}
+
+.pdf-professional-report {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
+  left: -99999px;
+  top: 0;
+  width: 170mm;
+}
+
+html.pdf-exporting,
+body.pdf-exporting {
+  background: #fff !important;
+}
+
+.pdf-exporting .page-wrap,
+.pdf-exporting .detail-main,
+.pdf-exporting .detail-main * {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  box-sizing: border-box;
+}
+
+.pdf-exporting .fade-up,
+.pdf-exporting .fade-up-2,
+.pdf-exporting .fade-up-3,
+.pdf-exporting .fade-up-4 {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.pdf-exporting .nav,
+.pdf-exporting .detail-actions,
+.pdf-exporting .detail-hdr,
+.pdf-exporting .report-masthead,
+.pdf-exporting .report-summary-grid,
+.pdf-exporting .detail-section,
+.pdf-exporting .disclaimer {
+  display: none !important;
+}
+
+.pdf-exporting .detail-main {
+  max-width: 100%;
+  padding: 0;
+  gap: 0;
+  background: #fff !important;
+}
+
+.pdf-exporting .pdf-professional-report {
+  display: block !important;
+  visibility: visible;
+  position: static;
+  left: auto;
+  top: auto;
+  width: auto;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #1b2233;
+}
+
+.pdf-sheet {
+  width: 100%;
+  background: #fff;
+}
+
+.pdf-page-break {
+  break-before: page;
+  page-break-before: always;
+}
+
+.pdf-memo-sheet {
+  padding-top: 2mm;
+}
+
+.pdf-memo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8mm;
+  padding: 0 0 7mm;
+  border-bottom: 2px solid #1f2947;
+}
+
+.pdf-memo-header-compact {
+  padding-bottom: 5mm;
+}
+
+.pdf-memo-brand {
+  font-family: "Arial", sans-serif;
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #5b4fe8;
+  font-weight: 700;
+}
+
+.pdf-memo-title {
+  margin: 4mm 0 0;
+  font-size: 22pt;
+  line-height: 1.08;
+  color: #151b2f;
+  font-weight: 700;
+}
+
+.pdf-memo-section-title {
+  margin: 3mm 0 0;
+  font-size: 16pt;
+  line-height: 1.12;
+  color: #151b2f;
+  font-weight: 700;
+}
+
+.pdf-memo-subtitle {
+  margin: 3mm 0 0;
+  font-size: 11pt;
+  color: #4c5877;
+  font-weight: 600;
+}
+
+.pdf-memo-meta {
+  min-width: 52mm;
+  display: grid;
+  gap: 3mm;
+  font-family: "Arial", sans-serif;
+  text-align: right;
+}
+
+.pdf-memo-meta div {
+  padding: 2.5mm 0;
+  border-bottom: 1px solid #e0e5f1;
+}
+
+.pdf-memo-meta span {
+  display: block;
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #79829b;
+}
+
+.pdf-memo-meta strong {
+  display: block;
+  margin-top: 1mm;
+  font-size: 8.5pt;
+  color: #1d2741;
+}
+
+.pdf-memo-note {
+  max-width: 60mm;
+  font-family: "Arial", sans-serif;
+  font-size: .72rem;
+  color: #6a7490;
+  text-align: right;
+}
+
+.pdf-memo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm;
+  margin-top: 6mm;
+}
+
+.pdf-memo-panel,
+.pdf-income-card {
+  border: 1px solid #d7def0;
+  background: #fff;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.pdf-memo-panel {
+  padding: 4.5mm 5mm;
+}
+
+.pdf-memo-panel-full {
+  margin-top: 5mm;
+}
+
+.pdf-memo-panel-title,
+.pdf-memo-subtitle-row {
+  margin: 0 0 4mm;
+  font-family: "Arial", sans-serif;
+  font-size: .66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #6a7490;
+}
+
+.pdf-memo-subtitle-row {
+  margin-top: 4mm;
+  padding-top: 3mm;
+  border-top: 1px solid #e5e9f5;
+}
+
+.pdf-summary-grid-pro {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4mm;
+}
+
+.pdf-summary-stat {
+  padding: 4mm;
+  background: #fbfbfe;
+  border: 1px solid #e1e6f4;
+}
+
+.pdf-summary-stat span {
+  display: block;
+  font-family: "Arial", sans-serif;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6c7690;
+  margin-bottom: 2mm;
+}
+
+.pdf-summary-stat strong {
+  display: block;
+  font-size: 9.5pt;
+  color: #151b2f;
+}
+
+.pdf-support-grid-pro {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5mm;
+}
+
+.pdf-support-card {
+  min-width: 0;
+  padding: 4mm 2.5mm;
+  border: 1px solid #dce1f0;
+  text-align: center;
+}
+
+.pdf-support-high { background: #f4f0ff; border-color: #6c61eb; }
+.pdf-support-mid { background: #f8f9ff; border-color: #a59df0; }
+.pdf-support-low { background: #fbfbfe; border-color: #d8ddec; }
+
+.pdf-support-card-label {
+  font-family: "Arial", sans-serif;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #5f6884;
+}
+
+.pdf-support-card-amount {
+  margin-top: 2mm;
+  font-size: 15pt;
+  font-weight: 700;
+  color: #111a31;
+}
+
+.pdf-support-card-period {
+  margin-top: 1.2mm;
+  font-size: 7.8pt;
+  color: #6e7690;
+}
+
+.pdf-support-card-annual {
+  margin-top: 2mm;
+  font-family: "Arial", sans-serif;
+  font-size: 7.8pt;
+  font-weight: 700;
+  color: #4d58a2;
+}
+
+.pdf-callout {
+  margin-top: 4mm;
+  padding: 3.5mm 4mm;
+  border-left: 2px solid #5b4fe8;
+  background: #f7f8fd;
+  font-size: 8.5pt;
+  color: #48526d;
+}
+
+.pdf-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Arial", sans-serif;
+  font-size: 8.1pt;
+}
+
+.pdf-data-table thead th {
+  padding: 2.6mm 3mm;
+  background: #f3f5fb;
+  color: #465173;
+  text-align: left;
+  font-size: .63rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-bottom: 1px solid #d8dff1;
+}
+
+.pdf-data-table td {
+  padding: 2.3mm 3mm;
+  border-bottom: 1px solid #e7ebf6;
+  color: #1d2741;
+  vertical-align: top;
+}
+
+.pdf-data-table tbody tr:nth-child(odd):not(.pdf-table-total) td {
+  background: #fafbfe;
+}
+
+.pdf-data-table tbody tr:nth-child(even):not(.pdf-table-total) td {
+  background: #ffffff;
+}
+
+.pdf-data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.pdf-data-table td:last-child,
+.pdf-data-table th:last-child {
+  text-align: right;
+}
+
+.pdf-table-total td {
+  background: #eef0ff !important;
+  border-top: 1px solid #cfd5ef;
+  font-weight: 700;
+  color: #29388e;
+}
+
+.pdf-income-grid,
+.pdf-income-grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+}
+
+.pdf-income-card {
+  padding: 0;
+}
+
+.pdf-income-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4mm;
+  padding: 4mm 5mm;
+  background: #202841;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+}
+
+.pdf-income-card-header span {
+  font-size: 10pt;
+  font-weight: 700;
+}
+
+.pdf-income-card-header em {
+  font-style: normal;
+  font-size: .66rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .82;
+}
+
+.pdf-disclaimer-inline {
+  margin-top: 5mm;
+  padding: 4mm 5mm;
+  border: 1px solid #d7def0;
+  background: #fbfbfe;
+  font-family: "Arial", sans-serif;
+  font-size: 8.6pt;
+  line-height: 1.7;
+  color: #37415f;
+}
+
+.pdf-footer-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 4mm;
+  margin-top: 6mm;
+  padding-top: 4mm;
+  border-top: 1px solid #d7def0;
+  font-family: "Arial", sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #6e7891;
+}
+
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+@media print {
+  .nav,
+  .btn,
+  .detail-actions {
+    display: none !important;
+  }
+
+  .detail-main {
+    padding: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .report-masthead,
+  .detail-hdr {
+    flex-direction: column;
+  }
+
+  .report-summary-grid,
+  .tax-grid,
+  .pdf-memo-grid,
+  .pdf-income-grid,
+  .pdf-income-grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+}
