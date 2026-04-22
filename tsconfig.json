@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -18,15 +14,9 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "ignoreDeprecations": "6.0",
     "strictNullChecks": true,
     "target": "ES2017"
@@ -42,14 +32,11 @@
     "components/**/*.tsx",
     "pages/**/*.ts",
     "pages/**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "supabase/functions",
+    "supabase",
     "vite.config.ts"
-    "supabase"
   ]
 }
