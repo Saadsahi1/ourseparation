@@ -155,8 +155,8 @@ function LandingContent() {
               </div>
             </div>
             <div className="preview-info" style={{padding: '1.5rem', textAlign: 'center', color: 'var(--text-secondary)'}}>
-              <p style={{marginBottom: '1rem', lineHeight: 1.6}}>Enter your unique situation and get personalized HIGH, MID, and LOW SSAG ranges for spousal support.</p>
-              <p style={{fontSize: '0.9rem', opacity: 0.8}}>Includes federal and provincial tax effects, child support calculations, and all government benefits.</p>
+              <p style={{marginBottom: '0.75rem', lineHeight: 1.5, fontSize: '1rem'}}>Get your SSAG range</p>
+              <p style={{fontSize: '0.9rem', opacity: 0.8}}>Complete with tax effects and government benefits</p>
             </div>
           </div>
         </div>
