@@ -12,12 +12,34 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const { access } = api.getTokens()
-    if (!access) { setLoading(false); return }
+    const cachedUser = api.getStoredUser()
+    if (!access) {
+      api.clearStoredUser()
+      setLoading(false)
+      return
+    }
+
+    if (cachedUser) {
+      setUser(cachedUser)
+      setLoading(false)
+    }
+
     api.get('/api/auth/me')
       .then(r => r?.ok ? r.json() : null)
-      .then(d => { if (d?.user) setUser(d.user) })
-      .catch(() => {})
-      .finally(() => setLoading(false))
+      .then(d => {
+        if (d?.user) {
+          setUser(d.user)
+          api.setStoredUser(d.user)
+          return
+        }
+        if (!cachedUser) setUser(null)
+      })
+      .catch(() => {
+        if (!cachedUser) setUser(null)
+      })
+      .finally(() => {
+        if (!cachedUser) setLoading(false)
+      })
   }, [])
 
   const login = useCallback(async (email, password) => {
@@ -25,6 +47,7 @@ export function AuthProvider({ children }) {
     const data = await res.json()
     if (!res.ok) throw new Error(data.error || 'Login failed')
     api.setTokens(data.accessToken, data.refreshToken)
+    api.setStoredUser(data.user)
     setUser(data.user)
     return data.user
   }, [])
@@ -34,6 +57,7 @@ export function AuthProvider({ children }) {
     const data = await res.json()
     if (!res.ok) throw new Error(data.error || 'Registration failed')
     api.setTokens(data.accessToken, data.refreshToken)
+    api.setStoredUser(data.user)
     setUser(data.user)
     return data.user
   }, [])
@@ -42,6 +66,7 @@ export function AuthProvider({ children }) {
     const { refresh } = api.getTokens()
     await api.post('/api/auth/logout', { refreshToken: refresh }).catch(() => {})
     api.clearTokens()
+    api.clearStoredUser()
     setUser(null)
     router.push('/')
   }, [router])

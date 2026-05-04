@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs'
 import pool from '@/lib/db/pool'
 import { signAccess, signRefresh } from '@/lib/auth'
 
+export const runtime = 'nodejs'
+
 export async function POST(req) {
   try {
     const { email, password, firstName, lastName } = await req.json()
@@ -43,6 +45,9 @@ export async function POST(req) {
     }, { status: 201 })
   } catch (err) {
     console.error('Register error:', err)
+    if (err?.code === 'AUTH_MISCONFIGURED') {
+      return NextResponse.json({ error: 'Authentication is not configured on the server' }, { status: 500 })
+    }
     return NextResponse.json({ error: 'Registration failed' }, { status: 500 })
   }
 }

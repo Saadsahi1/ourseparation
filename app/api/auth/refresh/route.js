@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import pool from '@/lib/db/pool'
 import { verifyToken, signAccess } from '@/lib/auth'
 
+export const runtime = 'nodejs'
+
 export async function POST(req) {
   try {
     const { refreshToken } = await req.json()
@@ -17,7 +19,10 @@ export async function POST(req) {
     if (stored.rows.length === 0) return NextResponse.json({ error: 'Token revoked or expired' }, { status: 401 })
 
     return NextResponse.json({ accessToken: signAccess(decoded.userId) })
-  } catch {
+  } catch (err) {
+    if (err?.code === 'AUTH_MISCONFIGURED') {
+      return NextResponse.json({ error: 'Authentication is not configured on the server' }, { status: 500 })
+    }
     return NextResponse.json({ error: 'Invalid refresh token' }, { status: 401 })
   }
 }
