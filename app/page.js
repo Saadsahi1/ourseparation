@@ -141,10 +141,10 @@ function LandingContent() {
             Instant results
           </div>
 
-          {/* Main card */}
+          {/* Calculator info card */}
           <div className="preview-card">
             <div className="preview-hdr">
-              <span className="preview-title">Spousal Support Range</span>
+              <span className="preview-title">Your Personal Calculator</span>
               <div className="preview-avatars">
                 <div className="pa pa1">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.2" fill="currentColor" opacity=".9"/><path d="M2.5 16c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" opacity=".7"/></svg>
@@ -154,23 +154,10 @@ function LandingContent() {
                 </div>
               </div>
             </div>
-            <div className="preview-cols">
-              {[['HIGH','$1,333','high'],['MID','$1,167','mid'],['LOW','$1,000','low']].map(([t,a,c]) => (
-                <div key={t} className={`preview-col ${c}`}>
-                  <div className="pc-tier">{t}</div>
-                  <div className="pc-amt">{a}</div>
-                  <div className="pc-per">per month</div>
-                </div>
-              ))}
+            <div className="preview-info" style={{padding: '1.5rem', textAlign: 'center', color: 'var(--text-secondary)'}}>
+              <p style={{marginBottom: '1rem', lineHeight: 1.6}}>Enter your unique situation and get personalized HIGH, MID, and LOW SSAG ranges for spousal support.</p>
+              <p style={{fontSize: '0.9rem', opacity: 0.8}}>Includes federal and provincial tax effects, child support calculations, and all government benefits.</p>
             </div>
-            <p className="preview-meta">10-year relationship · $80,000 income difference</p>
-          </div>
-
-          {/* Mini child support card */}
-          <div className="preview-mini">
-            <div className="pm-label">Child Support (net)</div>
-            <div className="pm-value">$1,716 <span>/mo</span></div>
-            <div className="pm-sub">Federal CSG table amount</div>
           </div>
         </div>
       </section>
