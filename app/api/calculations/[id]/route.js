@@ -13,10 +13,15 @@ export async function GET(req, { params }) {
     const { user } = await requireAuth(req)
     const { id } = await params
 
-    const result = await pool.query(
-      'SELECT * FROM calculations WHERE id = $1 AND user_id = $2',
-      [id, user.id]
-    )
+    let query = 'SELECT * FROM calculations WHERE id = $1'
+    const queryParams = [id]
+
+    if (!user.is_admin) {
+      query += ' AND user_id = $2'
+      queryParams.push(user.id)
+    }
+
+    const result = await pool.query(query, queryParams)
 
     if (result.rows.length === 0) {
       return NextResponse.json({ notFound: true }, { headers: noStoreHeaders })
@@ -35,10 +40,16 @@ export async function DELETE(req, { params }) {
   try {
     const { user } = await requireAuth(req)
     const { id } = await params
-    const result = await pool.query(
-      'DELETE FROM calculations WHERE id = $1 AND user_id = $2 RETURNING id',
-      [id, user.id]
-    )
+
+    let query = 'DELETE FROM calculations WHERE id = $1'
+    const queryParams = [id]
+
+    if (!user.is_admin) {
+      query += ' AND user_id = $2'
+      queryParams.push(user.id)
+    }
+
+    const result = await pool.query(query + ' RETURNING id', queryParams)
     if (result.rows.length === 0) {
       return NextResponse.json({ error: 'Not found' }, { status: 404, headers: noStoreHeaders })
     }
