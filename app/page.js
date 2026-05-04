@@ -117,7 +117,7 @@ function LandingContent() {
             the same framework your lawyer uses. Instant. Accurate. Private.
           </p>
           <div className="hero-actions fade-up-3">
-            <Link href="/calculator" className="btn btn-primary btn-lg hero-cta">
+            <Link href="/calculator" prefetch={false} className="btn btn-primary btn-lg hero-cta">
               Calculate your support
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
@@ -273,7 +273,7 @@ function LandingContent() {
           <div className="cta-glow" />
           <h2>Ready to understand your situation?</h2>
           <p>Create a free account and run your first calculation in minutes.</p>
-          <Link href="/calculator" className="btn btn-primary btn-lg">
+          <Link href="/calculator" prefetch={false} className="btn btn-primary btn-lg">
             Start your calculation
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
