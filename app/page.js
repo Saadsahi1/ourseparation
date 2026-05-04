@@ -233,36 +233,18 @@ function LandingContent() {
       {/* ── Accuracy callout ── */}
       <section className="accuracy-section">
         <div className="section-inner acc-inner">
-          <div className="acc-text">
-            <span className="eyebrow" style={{color:'var(--vl)'}}>Calculation accuracy</span>
-            <h2 style={{color:'white'}}>Same formula as the professionals</h2>
-            <p>OurSeparation uses the identical SSAG with-children formula used by DivoreMate, DivorePath, and Ontario family lawyers — including the full INDI binary solver, notional child support deductions, and correct 40/43/46% INDI targets.</p>
+          <div className="acc-text" style={{maxWidth:'100%'}}>
+            <span className="eyebrow" style={{color:'var(--vl)'}}>Built for Ontario families</span>
+            <h2 style={{color:'white'}}>Accurate calculations you can trust</h2>
+            <p>OurSeparation implements the complete SSAG with-children formula — the same framework Ontario family lawyers and courts rely on. Every detail matters, so we built everything from scratch with precision.</p>
             <ul className="acc-list">
-              <li><span>✓</span> SSAG With-Children Formula (INDI-based)</li>
+              <li><span>✓</span> SSAG With-Children Formula (full INDI binary solver)</li>
               <li><span>✓</span> SSAG Without-Children Formula</li>
-              <li><span>✓</span> Federal Child Support Guidelines (all table years)</li>
-              <li><span>✓</span> Full Ontario T1 tax simulation</li>
-              <li><span>✓</span> Annual tax parameters updated by your admin</li>
+              <li><span>✓</span> Federal Child Support Guidelines (2006, 2011, 2017, 2025)</li>
+              <li><span>✓</span> Complete Ontario T1 tax simulation</li>
+              <li><span>✓</span> Per-child parenting arrangements (primary, shared, mixed)</li>
+              <li><span>✓</span> Shared custody benefit splitting for CCB, GST, CAI</li>
             </ul>
-          </div>
-          <div className="acc-card">
-            <div className="acc-card-hdr">DivorePath comparison</div>
-            <div className="acc-row">
-              <span>$75k / $150k income split</span>
-              <span className="acc-match">✓ Match</span>
-            </div>
-            <div className="acc-row">
-              <span>Child support $1,716/mo</span>
-              <span className="acc-match">✓ Match</span>
-            </div>
-            <div className="acc-row">
-              <span>SSAG Low $56 · Mid $571 · High $1,094</span>
-              <span className="acc-match">✓ Match</span>
-            </div>
-            <div className="acc-row">
-              <span>Federal 2017 CSG table (exact)</span>
-              <span className="acc-match">✓ Match</span>
-            </div>
           </div>
         </div>
       </section>
