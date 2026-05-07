@@ -24,7 +24,7 @@ function CalculatorContent() {
 
   const [people, setPeople] = useState({ personAName:'', personAIncome:'', personBName:'', personBIncome:'' })
   const [dates,  setDates]  = useState({ cohabitationDate:'', separationDate:'' })
-  const [taxYear, setTaxYear] = useState(new Date().getFullYear())
+  const [taxYear, setTaxYear] = useState(2025)
   const [label, setLabel]   = useState('')
   const [children, setChildren] = useState([{ name:'', dateOfBirth:'', residesWith:'B' }])
 
@@ -187,9 +187,12 @@ function CalculatorContent() {
               {mode === 'with' && (
                 <div className="form-group" style={{marginTop:'1rem'}}>
                   <label className="form-label">Tax year</label>
-                  <input type="number" className="form-input" min="2020" max={new Date().getFullYear()}
-                    value={taxYear} onChange={e=>setTaxYear(parseInt(e.target.value)||new Date().getFullYear())} />
-                  <span className="form-hint">Tax year for benefit calculations (default: current year)</span>
+                  <select className="form-input" value={taxYear} onChange={e=>setTaxYear(parseInt(e.target.value))}>
+                    {[2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005].map(y => (
+                      <option key={y} value={y}>{y}{y === 2025 ? ' (latest)' : ''}</option>
+                    ))}
+                  </select>
+                  <span className="form-hint">Select tax year for benefit calculations</span>
                 </div>
               )}
             </div>
