@@ -24,6 +24,7 @@ function CalculatorContent() {
 
   const [people, setPeople] = useState({ personAName:'', personAIncome:'', personBName:'', personBIncome:'' })
   const [dates,  setDates]  = useState({ cohabitationDate:'', separationDate:'' })
+  const [taxYear, setTaxYear] = useState(new Date().getFullYear())
   const [label, setLabel]   = useState('')
   const [children, setChildren] = useState([{ name:'', dateOfBirth:'', residesWith:'B' }])
 
@@ -50,14 +51,12 @@ function CalculatorContent() {
     try {
       const isWith = mode === 'with'
       const endpoint = isWith ? '/api/calculations/with' : '/api/calculations/without'
-      // Use current tax year for calculations
-      const autoTaxYear = new Date().getFullYear()
       const payload = {
         personAIncome: +people.personAIncome, personBIncome: +people.personBIncome,
         cohabitationDate: dates.cohabitationDate, separationDate: dates.separationDate,
         personAName: people.personAName, personBName: people.personBName,
         label: label || `${people.personAName||'Person A'} & ${people.personBName||'Person B'}`,
-        ...(isWith && { children, taxYear: autoTaxYear }),
+        ...(isWith && { children, taxYear }),
       }
       const res  = await api.post(endpoint, payload)
       const data = await res.json()
@@ -185,6 +184,14 @@ function CalculatorContent() {
                 <input type="text" className="form-input" placeholder="e.g. Initial estimate, Scenario 1"
                   value={label} onChange={e=>setLabel(e.target.value)} />
               </div>
+              {mode === 'with' && (
+                <div className="form-group" style={{marginTop:'1rem'}}>
+                  <label className="form-label">Tax year</label>
+                  <input type="number" className="form-input" min="2020" max={new Date().getFullYear()}
+                    value={taxYear} onChange={e=>setTaxYear(parseInt(e.target.value)||new Date().getFullYear())} />
+                  <span className="form-hint">Tax year for benefit calculations (default: current year)</span>
+                </div>
+              )}
             </div>
             <div className="step-footer">
               <button className="btn btn-outline" onClick={prev}>← Back</button>
