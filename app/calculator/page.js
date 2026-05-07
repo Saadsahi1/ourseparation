@@ -50,8 +50,8 @@ function CalculatorContent() {
     try {
       const isWith = mode === 'with'
       const endpoint = isWith ? '/api/calculations/with' : '/api/calculations/without'
-      // Auto-extract tax year from separation date
-      const autoTaxYear = new Date(dates.separationDate).getFullYear()
+      // Use current tax year for calculations
+      const autoTaxYear = new Date().getFullYear()
       const payload = {
         personAIncome: +people.personAIncome, personBIncome: +people.personBIncome,
         cohabitationDate: dates.cohabitationDate, separationDate: dates.separationDate,
