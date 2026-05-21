@@ -232,15 +232,17 @@ function InterviewContent() {
         }
 
         const data = await res.json()
-        console.log('Agreement created with ID:', data.id)
+        console.log('Agreement created:', data)
 
-        if (!data.id) {
+        const newId = data.id || data.agreement?.id
+        if (!newId) {
+          console.error('No id in response:', data)
           alert('No agreement ID returned from server')
           setLoading(false)
           return
         }
 
-        router.push(`/agreements/${data.id}`)
+        router.push(`/agreements/${newId}`)
       } catch (err) {
         console.error('Error creating agreement:', err)
         alert(`Error creating agreement: ${err.message}`)

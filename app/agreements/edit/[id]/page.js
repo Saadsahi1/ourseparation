@@ -69,13 +69,13 @@ function AgreementEditContent() {
     api.get(`/api/agreements/${agreementId}`)
       .then(r => r?.ok ? r.json() : null)
       .then(d => {
-        if (!d?.agreement) {
+        if (!d || !d.id) {
           alert('Agreement not found')
           router.push('/agreements')
           return
         }
-        setAgreement(d.agreement)
-        setFormData(d.agreement.interview_data || {})
+        setAgreement(d)
+        setFormData(d.interview_data || {})
       })
       .catch(err => {
         console.error('Error fetching agreement:', err)
