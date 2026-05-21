@@ -5,22 +5,15 @@ import pool from '@/lib/db/pool'
 export async function GET(req) {
   try {
     const { user } = await requireAuth(req)
-    console.log('GET /api/agreements - user:', user.id)
-
     const result = await pool.query(
       'SELECT id, agreement_type, label, status, created_at FROM agreements WHERE user_id = $1 ORDER BY created_at DESC',
       [user.id]
     )
-
-    console.log('Found', result.rows.length, 'agreements for user', user.id)
     return NextResponse.json({ agreements: result.rows })
   } catch (err) {
-    if (err instanceof AuthError) {
-      console.error('Auth error in GET /api/agreements:', err.message)
-      return NextResponse.json({ error: err.message }, { status: 401 })
-    }
-    console.error('Failed to fetch agreements:', err.message, err.code)
-    return NextResponse.json({ error: 'Failed to fetch agreements: ' + err.message }, { status: 500 })
+    if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: 401 })
+    console.error('Failed to fetch agreements:', err.message)
+    return NextResponse.json({ error: 'Failed to fetch agreements' }, { status: 500 })
   }
 }
 

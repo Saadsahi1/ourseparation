@@ -198,12 +198,7 @@ function InterviewContent() {
       setAgreementType(null)
       setCurrentStep(0)
     } else {
-      // Go back to previous step in the current steps list
-      const steps = getStepsForType(agreementType)
-      const currentIndex = steps.findIndex(s => s.num === currentStep)
-      if (currentIndex > 0) {
-        setCurrentStep(steps[currentIndex - 1].num)
-      }
+      setCurrentStep(c => c - 1)
     }
     setErrors([])
   }
@@ -217,10 +212,7 @@ function InterviewContent() {
   const handleContinue = async () => {
     if (!validateCurrentStep()) return
 
-    const steps = getStepsForType(agreementType)
-    const isLastStep = currentStep === steps[steps.length - 1].num
-
-    if (isLastStep) {
+    if (currentStep === 8) {
       setLoading(true)
       try {
         console.log('Creating agreement with:', { agreementType, calculationId, formDataKeys: Object.keys(formData) })
@@ -255,12 +247,8 @@ function InterviewContent() {
         setLoading(false)
       }
     } else {
-      // Go to next step in the current steps list
-      const currentIndex = steps.findIndex(s => s.num === currentStep)
-      if (currentIndex < steps.length - 1) {
-        setCurrentStep(steps[currentIndex + 1].num)
-        setErrors([])
-      }
+      setCurrentStep(c => c + 1)
+      setErrors([])
     }
   }
 
@@ -303,58 +291,19 @@ function InterviewContent() {
     )
   }
 
-  // Determine which steps are needed based on agreement type
-  const getStepsForType = (type) => {
-    if (!type) {
-      // Default if no type selected yet
-      return [{ num: 0, title: 'Agreement Type', content: null }]
-    }
-
-    const baseSteps = [
-      { num: 0, title: 'Agreement Type', content: null },
-      { num: 1, title: 'Party Information', content: 'step1' }
-    ]
-
-    if (type === 'prenup') {
-      return [
-        ...baseSteps,
-        { num: 5, title: 'Spousal Support', content: 'step5' },
-        { num: 7, title: 'Additional Terms', content: 'step7' },
-        { num: 8, title: 'Review & Signatures', content: 'step8' }
-      ]
-    }
-
-    if (type === 'cohabitation') {
-      return [
-        ...baseSteps,
-        { num: 5, title: 'Spousal Support', content: 'step5' },
-        { num: 7, title: 'Additional Terms', content: 'step7' },
-        { num: 8, title: 'Review & Signatures', content: 'step8' }
-      ]
-    }
-
-    // Separation, Postnup, Amendment - all steps
-    return [
-      ...baseSteps,
-      { num: 2, title: 'Children', content: 'step2' },
-      { num: 3, title: 'Parenting Arrangements', content: 'step3' },
-      { num: 4, title: 'Child Support', content: 'step4' },
-      { num: 5, title: 'Spousal Support', content: 'step5' },
-      { num: 6, title: 'Property Division', content: 'step6' },
-      { num: 7, title: 'Additional Terms', content: 'step7' },
-      { num: 8, title: 'Review & Signatures', content: 'step8' }
-    ]
-  }
-
-  const STEPS = getStepsForType(agreementType) || [{ num: 0, title: 'Agreement Type', content: null }]
+  const STEPS = [
+    { title: 'Agreement Type', content: null },
+    { title: 'Party Information', content: 'step1' },
+    { title: 'Children', content: 'step2' },
+    { title: 'Parenting Arrangements', content: 'step3' },
+    { title: 'Child Support', content: 'step4' },
+    { title: 'Spousal Support', content: 'step5' },
+    { title: 'Property Division', content: 'step6' },
+    { title: 'Additional Terms', content: 'step7' },
+    { title: 'Review & Signatures', content: 'step8' }
+  ]
 
   const renderStep = () => {
-    // Safety check: if current step doesn't exist in STEPS, redirect to agreement type selection
-    const stepExists = STEPS.some(s => s.num === currentStep)
-    if (!stepExists) {
-      return <p style={{color:'var(--s600)'}}>Invalid step. Please restart the interview.</p>
-    }
-
     if (currentStep === 1) {
       return (
         <>
@@ -394,6 +343,10 @@ function InterviewContent() {
     }
 
     if (currentStep === 2) {
+      if (agreementType === 'prenup' || agreementType === 'cohabitation') {
+        return <p style={{color:'var(--s600)'}}>This agreement type does not include children provisions. Click Continue to proceed.</p>
+      }
+
       return (
         <>
           <div style={{marginBottom:'24px'}}>
@@ -491,6 +444,10 @@ function InterviewContent() {
     }
 
     if (currentStep === 4) {
+      if (agreementType === 'prenup' || agreementType === 'cohabitation') {
+        return <p style={{color:'var(--s600)'}}>This agreement type does not include child support. Click Continue to proceed.</p>
+      }
+
       return (
         <>
           <FormField label="Party 1 Annual Income" type="number" value={formData.childSupportIncomeA} onChange={e => updateFormData('childSupportIncomeA', e.target.value)} required />
@@ -548,6 +505,10 @@ function InterviewContent() {
     }
 
     if (currentStep === 6) {
+      if (agreementType === 'prenup' || agreementType === 'cohabitation') {
+        return <p style={{color:'var(--s600)'}}>This agreement type does not include property division. Click Continue to proceed.</p>
+      }
+
       return (
         <>
           <FormField label="Matrimonial Home Address" value={formData.propertyMatrimonialHome} onChange={e => updateFormData('propertyMatrimonialHome', e.target.value)} placeholder="Leave blank if no matrimonial home" />
@@ -636,8 +597,6 @@ function InterviewContent() {
     return null
   }
 
-  const currentStepObj = STEPS.find(s => s.num === currentStep)
-
   return (
     <div className="page-wrap">
       <Nav />
@@ -645,7 +604,7 @@ function InterviewContent() {
         <InterviewStep
           stepNum={currentStep}
           totalSteps={STEPS.length - 1}
-          title={currentStepObj?.title || 'Loading...'}
+          title={STEPS[currentStep].title}
           onBack={handleBack}
           onContinue={handleContinue}
           canContinue={true}

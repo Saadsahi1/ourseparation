@@ -207,6 +207,10 @@ function AgreementEditContent() {
     }
 
     if (currentStep === 2) {
+      if (agreement.agreement_type === 'prenup' || agreement.agreement_type === 'cohabitation') {
+        return <p style={{color:'var(--s600)'}}>This agreement type does not include children provisions.</p>
+      }
+
       return (
         <>
           <div style={{marginBottom:'24px'}}>
@@ -303,6 +307,10 @@ function AgreementEditContent() {
     }
 
     if (currentStep === 4) {
+      if (agreement.agreement_type === 'prenup' || agreement.agreement_type === 'cohabitation') {
+        return <p style={{color:'var(--s600)'}}>This agreement type does not include child support.</p>
+      }
+
       return (
         <>
           <FormField label="Party 1 Annual Income" type="number" value={formData.childSupportIncomeA} onChange={e => updateFormData('childSupportIncomeA', e.target.value)} required />
@@ -321,6 +329,10 @@ function AgreementEditContent() {
     }
 
     if (currentStep === 5) {
+      if (agreement.agreement_type === 'prenup') {
+        return <p style={{color:'var(--s600)'}}>Prenuptial agreements typically don't address spousal support.</p>
+      }
+
       return (
         <>
           <FormField label="Agreed Spousal Support Amount (Monthly)" type="number" value={formData.spousalSupportAmount} onChange={e => updateFormData('spousalSupportAmount', e.target.value)} placeholder="Leave blank if no support" />
@@ -350,6 +362,10 @@ function AgreementEditContent() {
     }
 
     if (currentStep === 6) {
+      if (agreement.agreement_type === 'prenup' || agreement.agreement_type === 'cohabitation') {
+        return <p style={{color:'var(--s600)'}}>This agreement type does not include property division.</p>
+      }
+
       return (
         <>
           <FormField label="Matrimonial Home Address" value={formData.propertyMatrimonialHome} onChange={e => updateFormData('propertyMatrimonialHome', e.target.value)} placeholder="Leave blank if no matrimonial home" />

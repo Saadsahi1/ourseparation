@@ -21,24 +21,9 @@ function AgreementsContent() {
     if (!authLoading && !user) { router.push('/login'); return }
     if (!user) return
 
-    console.log('Fetching agreements for user:', user.id)
     api.get('/api/agreements')
-      .then(r => {
-        console.log('GET /api/agreements response:', r.status)
-        return r?.ok ? r.json() : null
-      })
-      .then(d => {
-        console.log('Agreements data received:', d)
-        if (d?.agreements) {
-          console.log('Setting', d.agreements.length, 'agreements')
-          setAgreements(d.agreements)
-        } else {
-          console.log('No agreements in response')
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching agreements:', err)
-      })
+      .then(r => r?.ok ? r.json() : null)
+      .then(d => { if (d) setAgreements(d.agreements) })
       .finally(() => setLoading(false))
   }, [user, authLoading, router])
 
