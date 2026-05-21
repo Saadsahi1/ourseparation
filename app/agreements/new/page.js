@@ -215,21 +215,35 @@ function InterviewContent() {
     if (currentStep === 8) {
       setLoading(true)
       try {
+        console.log('Creating agreement with:', { agreementType, calculationId, formDataKeys: Object.keys(formData) })
         const res = await api.post('/api/agreements', {
           agreement_type: agreementType,
           label: formData.label || 'Untitled Agreement',
           calculation_id: calculationId,
           interview_data: formData
         })
-        if (res.ok) {
-          const data = await res.json()
-          router.push(`/agreements/${data.id}`)
-        } else {
-          alert('Failed to create agreement')
+
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({}))
+          console.error('API error:', res.status, errorData)
+          alert(`Failed to create agreement: ${errorData.error || res.statusText}`)
           setLoading(false)
+          return
         }
+
+        const data = await res.json()
+        console.log('Agreement created with ID:', data.id)
+
+        if (!data.id) {
+          alert('No agreement ID returned from server')
+          setLoading(false)
+          return
+        }
+
+        router.push(`/agreements/${data.id}`)
       } catch (err) {
-        alert('Error creating agreement')
+        console.error('Error creating agreement:', err)
+        alert(`Error creating agreement: ${err.message}`)
         setLoading(false)
       }
     } else {

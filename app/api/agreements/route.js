@@ -26,17 +26,33 @@ export async function POST(req) {
       return NextResponse.json({ error: 'agreement_type and interview_data required' }, { status: 400 })
     }
 
+    if (!user?.id) {
+      console.error('User auth failed - no user.id')
+      return NextResponse.json({ error: 'User authentication failed' }, { status: 401 })
+    }
+
+    console.log('Creating agreement for user:', user.id, 'type:', agreement_type)
+
     const result = await pool.query(
-      `INSERT INTO agreements (user_id, calculation_id, agreement_type, label, interview_data)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO agreements (user_id, calculation_id, agreement_type, label, interview_data, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, $5, NOW(), NOW())
        RETURNING id, agreement_type, label, status, created_at`,
       [user.id, calculation_id || null, agreement_type, label || 'Untitled Agreement', interview_data]
     )
 
+    if (!result.rows || result.rows.length === 0) {
+      console.error('Insert returned no rows')
+      return NextResponse.json({ error: 'Failed to create agreement' }, { status: 500 })
+    }
+
+    console.log('Agreement created:', result.rows[0].id)
     return NextResponse.json({ agreement: result.rows[0], id: result.rows[0].id }, { status: 201 })
   } catch (err) {
-    if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: 401 })
-    console.error('Failed to create agreement:', err.message)
-    return NextResponse.json({ error: 'Failed to create agreement' }, { status: 500 })
+    if (err instanceof AuthError) {
+      console.error('Auth error:', err.message)
+      return NextResponse.json({ error: err.message }, { status: 401 })
+    }
+    console.error('Failed to create agreement:', err.message, err.code)
+    return NextResponse.json({ error: 'Failed to create agreement: ' + err.message }, { status: 500 })
   }
 }

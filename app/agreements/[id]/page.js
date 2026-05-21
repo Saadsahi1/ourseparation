@@ -21,17 +21,27 @@ function AgreementDetailContent() {
     if (!user || !agreementId) return
 
     api.get(`/api/agreements/${agreementId}`)
-      .then(r => r?.ok ? r.json() : null)
+      .then(async r => {
+        if (!r.ok) {
+          const error = await r.json().catch(() => ({}))
+          console.error('API error response:', r.status, error)
+          throw new Error(error.error || `API returned ${r.status}`)
+        }
+        return r.json()
+      })
       .then(d => {
+        console.log('Fetched agreement:', d)
         if (!d?.agreement) {
-          alert('Agreement not found')
+          console.error('No agreement in response:', d)
+          alert('Agreement not found in response')
           router.push('/agreements')
           return
         }
         setAgreement(d.agreement)
       })
       .catch(err => {
-        console.error('Error fetching agreement:', err)
+        console.error('Error fetching agreement:', err.message)
+        alert('Error loading agreement: ' + err.message)
         router.push('/agreements')
       })
       .finally(() => setLoading(false))
