@@ -305,6 +305,11 @@ function InterviewContent() {
 
   // Determine which steps are needed based on agreement type
   const getStepsForType = (type) => {
+    if (!type) {
+      // Default if no type selected yet
+      return [{ num: 0, title: 'Agreement Type', content: null }]
+    }
+
     const baseSteps = [
       { num: 0, title: 'Agreement Type', content: null },
       { num: 1, title: 'Party Information', content: 'step1' }
@@ -341,9 +346,15 @@ function InterviewContent() {
     ]
   }
 
-  const STEPS = getStepsForType(agreementType)
+  const STEPS = getStepsForType(agreementType) || [{ num: 0, title: 'Agreement Type', content: null }]
 
   const renderStep = () => {
+    // Safety check: if current step doesn't exist in STEPS, redirect to agreement type selection
+    const stepExists = STEPS.some(s => s.num === currentStep)
+    if (!stepExists) {
+      return <p style={{color:'var(--s600)'}}>Invalid step. Please restart the interview.</p>
+    }
+
     if (currentStep === 1) {
       return (
         <>
