@@ -102,6 +102,13 @@ function DashboardContent() {
               </svg>
               New calculation
             </Link>
+            <Link href="/agreements" className="btn btn-outline btn-lg">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <path d="M2 2h11v11H2z" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M4 5h7M4 8h7M4 11h5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+              Agreements
+            </Link>
           </div>
         </div>
 
@@ -121,11 +128,6 @@ function DashboardContent() {
             <div className="stat-icon-wrap green"><IconShield /></div>
             <div className="stat-val">{withoutChild}</div>
             <div className="stat-lbl">Without children</div>
-          </div>
-          <div className="stat-card stat-cta">
-            <div className="stat-lbl">Coming soon</div>
-            <p>Secure document uploads &amp; shared case files in Phase 2.</p>
-            <span className="badge badge-dark">Phase 2</span>
           </div>
         </div>
 

@@ -194,7 +194,10 @@ function DetailContent({ id }) {
             <h1>{calc.label || `${nameA} & ${nameB}`}</h1>
             <p className="detail-sub">{payorName} → {recName} · {results.durationYears}-year relationship</p>
           </div>
-          <button className="btn btn-outline btn-sm" onClick={downloadPDF}>Download PDF</button>
+          <div style={{display:'flex', gap:'0.5rem'}}>
+            <button className="btn btn-outline btn-sm" onClick={downloadPDF}>Download PDF</button>
+            <Link href={`/agreements/new?from_calculation=${id}`} className="btn btn-outline btn-sm">Generate Agreement</Link>
+          </div>
         </div>
 
         {/* Support range */}
