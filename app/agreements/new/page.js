@@ -636,6 +636,8 @@ function InterviewContent() {
     return null
   }
 
+  const currentStepObj = STEPS.find(s => s.num === currentStep)
+
   return (
     <div className="page-wrap">
       <Nav />
@@ -643,7 +645,7 @@ function InterviewContent() {
         <InterviewStep
           stepNum={currentStep}
           totalSteps={STEPS.length - 1}
-          title={STEPS[currentStep].title}
+          title={currentStepObj?.title || 'Loading...'}
           onBack={handleBack}
           onContinue={handleContinue}
           canContinue={true}
