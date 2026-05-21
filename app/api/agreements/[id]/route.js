@@ -7,6 +7,8 @@ export async function GET(req, { params }) {
     const { user } = await requireAuth(req)
     const { id } = params
 
+    console.log('GET /api/agreements/[id] - user:', user.id, 'agreement:', id)
+
     const result = await pool.query(
       `SELECT id, agreement_type, label, status, interview_data, generated_html, calculation_id, created_at, updated_at
        FROM agreements
@@ -14,15 +16,28 @@ export async function GET(req, { params }) {
       [id, user.id]
     )
 
+    console.log('Query result:', result.rows.length, 'rows')
+
     if (result.rows.length === 0) {
+      console.log('Agreement not found - checking if exists for any user...')
+      const allResult = await pool.query('SELECT user_id FROM agreements WHERE id = $1', [id])
+      if (allResult.rows.length > 0) {
+        console.log('Agreement exists but belongs to different user:', allResult.rows[0].user_id)
+      } else {
+        console.log('Agreement does not exist in database')
+      }
       return NextResponse.json({ error: 'Agreement not found' }, { status: 404 })
     }
 
+    console.log('Found agreement:', result.rows[0].id)
     return NextResponse.json({ agreement: result.rows[0] })
   } catch (err) {
-    if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: 401 })
-    console.error('Failed to fetch agreement:', err.message)
-    return NextResponse.json({ error: 'Failed to fetch agreement' }, { status: 500 })
+    if (err instanceof AuthError) {
+      console.error('Auth error in GET /api/agreements/[id]:', err.message)
+      return NextResponse.json({ error: err.message }, { status: 401 })
+    }
+    console.error('Failed to fetch agreement:', err.message, err.code)
+    return NextResponse.json({ error: 'Failed to fetch agreement: ' + err.message }, { status: 500 })
   }
 }
 
