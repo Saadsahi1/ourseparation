@@ -8,6 +8,9 @@ import useAgreementBundle from '@/components/agreements/shared/useAgreementBundl
 import InfoTab from '@/components/agreements/tab1/InfoTab'
 import ParentingTab from '@/components/agreements/tab2/ParentingTab'
 import PropertyTab from '@/components/agreements/tab3/PropertyTab'
+import IncomeDocsTab from '@/components/agreements/tab4/IncomeDocsTab'
+import ChildSupportTab from '@/components/agreements/tab5/ChildSupportTab'
+import SpousalSupportTab from '@/components/agreements/tab6/SpousalSupportTab'
 import { computeSectionCompletion, getPartyDisplayName } from '@/lib/agreements/utils'
 
 function EditorContent() {
@@ -18,7 +21,7 @@ function EditorContent() {
   const agreementId = params?.id
   const tab = searchParams.get('tab') || 'info'
 
-  const { bundle, loading, error, saveStatus, save } = useAgreementBundle(agreementId)
+  const { bundle, loading, error, saveStatus, save, refresh } = useAgreementBundle(agreementId)
 
   useEffect(() => {
     if (!authLoading && !user) { router.push('/login') }
@@ -94,7 +97,16 @@ function EditorContent() {
         {tab === 'property' && (
           <PropertyTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} />
         )}
-        {['income', 'child_support', 'spousal_support', 'additional', 'preview', 'signatures'].includes(tab) && (
+        {tab === 'income' && (
+          <IncomeDocsTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} refresh={refresh} />
+        )}
+        {tab === 'child_support' && (
+          <ChildSupportTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} />
+        )}
+        {tab === 'spousal_support' && (
+          <SpousalSupportTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} user={bundle.owner || user} />
+        )}
+        {['additional', 'preview', 'signatures'].includes(tab) && (
           <ComingSoonTab tab={tab} />
         )}
       </main>
