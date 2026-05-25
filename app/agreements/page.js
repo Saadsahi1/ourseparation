@@ -7,8 +7,33 @@ import Nav from '@/components/Nav'
 import api from '@/lib/apiClient'
 
 function fmt(d) {
-  try { return new Date(d).toLocaleDateString('en-CA', { month:'short', day:'numeric', year:'numeric' }) }
+  try { return new Date(d).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' }) }
   catch { return d }
+}
+
+const AGREEMENT_TYPES = [
+  { value: 'separation', label: 'Separation Agreement', description: 'Settle parenting, support and property after relationship breakdown.' },
+  { value: 'cohabitation', label: 'Cohabitation Agreement', description: 'Common-law partners agreeing on property and support rules.' },
+  { value: 'prenup', label: 'Prenuptial Agreement', description: 'Married-spouses-to-be setting financial expectations before marriage.' },
+  { value: 'postnup', label: 'Postnuptial Agreement', description: 'Married couples agreeing on property/support during marriage.' },
+  { value: 'amendment', label: 'Amendment Agreement', description: 'Modify an existing agreement.' },
+]
+
+function computeTabStatus(completion) {
+  // Roll up section_completion to "in progress" or "complete" or "draft"
+  if (!completion || Object.keys(completion).length === 0) return 'draft'
+  const flatten = (obj) => {
+    const out = []
+    for (const v of Object.values(obj)) {
+      if (typeof v === 'object' && v != null) out.push(...flatten(v))
+      else out.push(v)
+    }
+    return out
+  }
+  const vals = flatten(completion)
+  if (vals.every(Boolean) && vals.length >= 7) return 'complete'
+  if (vals.some(Boolean)) return 'in_progress'
+  return 'draft'
 }
 
 function AgreementsContent() {
@@ -16,41 +41,43 @@ function AgreementsContent() {
   const router = useRouter()
   const [agreements, setAgreements] = useState([])
   const [loading, setLoading] = useState(true)
+  const [showPicker, setShowPicker] = useState(false)
+  const [creating, setCreating] = useState(false)
 
   useEffect(() => {
     if (!authLoading && !user) { router.push('/login'); return }
     if (!user) return
 
     api.get('/api/agreements')
-      .then(r => r?.ok ? r.json() : null)
-      .then(d => { if (d) setAgreements(d.agreements) })
+      .then((r) => (r?.ok ? r.json() : null))
+      .then((d) => { if (d) setAgreements(d.agreements) })
       .finally(() => setLoading(false))
   }, [user, authLoading, router])
 
-  const deleteAgreement = async (id, e) => {
-    e.stopPropagation()
-    if (!confirm('Delete this agreement? This cannot be undone.')) return
+  const createAgreement = async (agreement_type) => {
+    setCreating(true)
     try {
-      const res = await api.delete(`/api/agreements/${id}`)
+      const res = await api.post('/api/agreements', { agreement_type, label: 'Untitled Agreement' })
       if (!res.ok) {
-        alert('Failed to delete agreement')
+        const j = await res.json().catch(() => ({}))
+        alert('Failed to create: ' + (j.error || res.status))
         return
       }
-      setAgreements(a => a.filter(x => x.id !== id))
-    } catch (err) {
-      alert('Error deleting agreement')
+      const data = await res.json()
+      router.push(`/agreements/${data.id}/edit?tab=info`)
+    } finally {
+      setCreating(false)
+      setShowPicker(false)
     }
   }
 
-  const getTypeLabel = (type) => {
-    const types = {
-      'separation': 'Separation Agreement',
-      'cohabitation': 'Cohabitation Agreement',
-      'prenup': 'Prenuptial Agreement',
-      'postnup': 'Postnuptial Agreement',
-      'amendment': 'Amendment Agreement'
-    }
-    return types[type] || type
+  const deleteAgreement = async (id, e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!confirm('Delete this agreement? This cannot be undone.')) return
+    const res = await api.delete(`/api/agreements/${id}`)
+    if (res.ok) setAgreements((a) => a.filter((x) => x.id !== id))
+    else alert('Failed to delete agreement')
   }
 
   if (authLoading) return <div className="loading-screen"><div className="spinner" /></div>
@@ -58,112 +85,136 @@ function AgreementsContent() {
   return (
     <div className="page-wrap">
       <Nav />
-      <main style={{padding:'40px 60px', maxWidth:'1200px', margin:'0 auto'}}>
-        <div style={{marginBottom:'40px'}}>
-          <h1 style={{marginBottom:'8px'}}>Your Agreements</h1>
-          <p style={{color:'var(--s600)', marginBottom:'20px'}}>Create and manage legal agreements for your family situation</p>
-          <Link href="/agreements/new" className="btn btn-primary btn-lg">
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-              <path d="M7.5 2v11M2 7.5h11" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            Create new agreement
-          </Link>
+      <main style={{ padding: '40px 60px', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
+          <div>
+            <h1 style={{ marginBottom: '8px' }}>Your Agreements</h1>
+            <p style={{ color: 'var(--s600)', margin: 0 }}>Create and manage Ontario family-law agreements with guided drafting.</p>
+          </div>
+          <button onClick={() => setShowPicker(true)} className="btn btn-primary btn-lg" disabled={creating}>
+            {creating ? 'Creating…' : '+ New Agreement'}
+          </button>
         </div>
 
-        {loading ? (
-          <div style={{textAlign:'center', padding:'60px 20px'}}>
-            <div className="spinner" />
-          </div>
-        ) : agreements.length === 0 ? (
+        {showPicker && (
           <div style={{
-            border:'1px solid var(--border)',
-            borderRadius:'12px',
-            padding:'60px 40px',
-            textAlign:'center',
-            backgroundColor:'var(--vx)'
-          }}>
-            <div style={{fontSize:'48px', marginBottom:'16px'}}>📋</div>
-            <h3 style={{marginBottom:'8px'}}>No agreements yet</h3>
-            <p style={{color:'var(--s600)', marginBottom:'24px', maxWidth:'400px', margin:'0 auto 24px'}}>
-              Start by selecting an agreement type and completing the interview to generate your first legal agreement.
-            </p>
-            <Link href="/agreements/new" className="btn btn-primary">Create agreement →</Link>
-          </div>
-        ) : (
-          <div style={{border:'1px solid var(--border)', borderRadius:'12px', overflow:'hidden'}}>
-            <div style={{
-              display:'grid',
-              gridTemplateColumns:'2fr 1fr 1fr 100px',
-              gap:'0',
-              padding:'16px 20px',
-              backgroundColor:'var(--vx)',
-              fontWeight:'600',
-              fontSize:'0.875rem',
-              color:'var(--s600)',
-              borderBottom:'1px solid var(--border)'
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '20px', zIndex: 100,
+          }} onClick={() => setShowPicker(false)}>
+            <div onClick={(e) => e.stopPropagation()} style={{
+              background: '#fff', borderRadius: 'var(--r)', maxWidth: '720px', width: '100%',
+              padding: '32px', boxShadow: 'var(--sh-lg)',
             }}>
-              <span>Agreement</span>
-              <span>Type</span>
-              <span>Created</span>
-              <span></span>
-            </div>
-            {agreements.map(agr => (
-              <Link
-                key={agr.id}
-                href={`/agreements/${agr.id}`}
-                style={{
-                  display:'grid',
-                  gridTemplateColumns:'2fr 1fr 1fr 100px',
-                  gap:'0',
-                  padding:'16px 20px',
-                  borderBottom:'1px solid var(--border)',
-                  alignItems:'center',
-                  textDecoration:'none',
-                  color:'inherit',
-                  transition:'backgroundColor 0.2s',
-                  cursor:'pointer'
-                }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--vx)'}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
-              >
-                <div>
-                  <div style={{fontWeight:'500', marginBottom:'4px'}}>{agr.label}</div>
-                  <div style={{fontSize:'0.8rem', color:'var(--s400)'}}>ID: {agr.id.slice(0, 8)}</div>
-                </div>
-                <div>
-                  <span style={{
-                    display:'inline-block',
-                    padding:'4px 8px',
-                    backgroundColor:'var(--vc)',
-                    borderRadius:'6px',
-                    fontSize:'0.75rem',
-                    fontWeight:'500',
-                    color:'var(--v)'
-                  }}>
-                    {getTypeLabel(agr.agreement_type)}
-                  </span>
-                </div>
-                <div style={{fontSize:'0.875rem', color:'var(--s600)'}}>{fmt(agr.created_at)}</div>
-                <div style={{display:'flex', gap:'8px', justifyContent:'flex-end'}}>
+              <h2 style={{ marginTop: 0, marginBottom: '8px' }}>Choose Agreement Type</h2>
+              <p style={{ color: 'var(--s600)', marginBottom: '20px' }}>You can change the label later.</p>
+              <div style={{ display: 'grid', gap: '12px' }}>
+                {AGREEMENT_TYPES.map((t) => (
                   <button
-                    onClick={e => deleteAgreement(agr.id, e)}
-                    className="btn btn-ghost btn-sm"
-                    style={{color:'#ef4444', padding:'4px 8px', fontSize:'0.8rem'}}
+                    key={t.value}
+                    onClick={() => createAgreement(t.value)}
+                    disabled={creating}
+                    style={{
+                      textAlign: 'left',
+                      padding: '16px 20px',
+                      border: '1px solid var(--border)',
+                      borderRadius: 'var(--rs)',
+                      background: '#fff',
+                      cursor: creating ? 'wait' : 'pointer',
+                      transition: 'all 120ms',
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--v)'; e.currentTarget.style.background = 'var(--vx)' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = '#fff' }}
                   >
-                    Delete
+                    <div style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '2px' }}>{t.label}</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--s600)' }}>{t.description}</div>
                   </button>
-                </div>
-              </Link>
-            ))}
+                ))}
+              </div>
+              <button onClick={() => setShowPicker(false)} className="btn btn-ghost btn-sm" style={{ marginTop: '16px' }}>Cancel</button>
+            </div>
           </div>
         )}
 
-        <div style={{marginTop:'40px', padding:'24px', backgroundColor:'var(--vx)', borderRadius:'8px'}}>
-          <h3 style={{marginBottom:'12px'}}>💡 Quick tip</h3>
-          <p style={{color:'var(--s600)', marginBottom:'0'}}>
-            You can create an agreement from a calculation. Open any calculation result, click "Generate Agreement", and your income and children data will be pre-filled.
-          </p>
-        </div>
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '60px 20px' }}><div className="spinner" /></div>
+        ) : agreements.length === 0 ? (
+          <div style={{
+            border: '1px solid var(--border)', borderRadius: '12px', padding: '60px 40px',
+            textAlign: 'center', background: 'var(--vx)',
+          }}>
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>📋</div>
+            <h3 style={{ marginBottom: '8px' }}>No agreements yet</h3>
+            <p style={{ color: 'var(--s600)', maxWidth: '440px', margin: '0 auto 24px' }}>
+              Get started by creating an agreement and working through the guided 9-tab editor.
+            </p>
+            <button onClick={() => setShowPicker(true)} className="btn btn-primary">Create your first agreement →</button>
+          </div>
+        ) : (
+          <div style={{ border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden', background: '#fff' }}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: '2.5fr 1.5fr 1fr 1fr 100px',
+              padding: '14px 20px', background: 'var(--vx)',
+              fontWeight: 600, fontSize: '0.82rem', color: 'var(--s600)',
+              borderBottom: '1px solid var(--border)',
+            }}>
+              <span>Agreement</span>
+              <span>Type</span>
+              <span>Status</span>
+              <span>Updated</span>
+              <span></span>
+            </div>
+            {agreements.map((agr) => {
+              const tabStatus = computeTabStatus(agr.section_completion)
+              return (
+                <Link
+                  key={agr.id}
+                  href={`/agreements/${agr.id}/edit?tab=info`}
+                  style={{
+                    display: 'grid', gridTemplateColumns: '2.5fr 1.5fr 1fr 1fr 100px',
+                    padding: '14px 20px', borderBottom: '1px solid var(--border)',
+                    alignItems: 'center', textDecoration: 'none', color: 'inherit',
+                    transition: 'background 120ms', cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--s50)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                >
+                  <div>
+                    <div style={{ fontWeight: 600, marginBottom: '2px' }}>{agr.label || 'Untitled'}</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--s400)' }}>{agr.id.slice(0, 8)}</div>
+                  </div>
+                  <div>
+                    <span style={{
+                      display: 'inline-block', padding: '4px 10px',
+                      background: 'var(--vc)', borderRadius: '999px',
+                      fontSize: '0.75rem', fontWeight: 600, color: 'var(--v)',
+                    }}>
+                      {AGREEMENT_TYPES.find((t) => t.value === agr.agreement_type)?.label || agr.agreement_type}
+                    </span>
+                  </div>
+                  <div>
+                    <span style={{
+                      display: 'inline-block', padding: '4px 10px',
+                      background: tabStatus === 'complete' ? '#E7FAF1' : tabStatus === 'in_progress' ? 'var(--vx)' : 'var(--s100)',
+                      borderRadius: '999px', fontSize: '0.75rem', fontWeight: 600,
+                      color: tabStatus === 'complete' ? 'var(--success)' : tabStatus === 'in_progress' ? 'var(--v)' : 'var(--s600)',
+                    }}>
+                      {tabStatus === 'complete' ? 'Complete' : tabStatus === 'in_progress' ? 'In Progress' : 'Draft'}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--s600)' }}>{fmt(agr.updated_at || agr.created_at)}</div>
+                  <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                    <button
+                      onClick={(e) => deleteAgreement(agr.id, e)}
+                      className="btn btn-ghost btn-sm"
+                      style={{ color: 'var(--danger)' }}
+                    >Delete</button>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        )}
       </main>
     </div>
   )

@@ -1,0 +1,116 @@
+'use client'
+import { useState, useEffect } from 'react'
+
+const baseLabelStyle = {
+  display: 'block',
+  fontSize: '0.78rem',
+  fontWeight: 600,
+  color: 'var(--s600)',
+  marginBottom: '6px',
+  letterSpacing: '0.02em',
+  textTransform: 'uppercase',
+}
+
+const baseInputStyle = {
+  width: '100%',
+  padding: '10px 12px',
+  border: '1px solid var(--border)',
+  borderRadius: 'var(--rs)',
+  fontSize: '0.92rem',
+  color: 'var(--s900)',
+  background: '#fff',
+  fontFamily: 'inherit',
+  outline: 'none',
+  transition: 'border-color 120ms',
+}
+
+// Debounced-blur input. Tracks local state, calls onSave on blur with the value.
+export default function FormField({
+  label, value, onSave, type = 'text', placeholder, options, rows, hint,
+  disabled, prefix, required, min, max, step, width,
+}) {
+  const [localValue, setLocalValue] = useState(value ?? '')
+
+  useEffect(() => {
+    setLocalValue(value ?? '')
+  }, [value])
+
+  const commit = () => {
+    if (localValue !== (value ?? '')) {
+      onSave && onSave(localValue === '' ? null : localValue)
+    }
+  }
+
+  const inputStyle = {
+    ...baseInputStyle,
+    background: disabled ? 'var(--s50)' : '#fff',
+    color: disabled ? 'var(--s400)' : 'var(--s900)',
+    paddingLeft: prefix ? '28px' : '12px',
+  }
+
+  return (
+    <div style={{ marginBottom: '14px', width: width || '100%' }}>
+      {label ? (
+        <label style={baseLabelStyle}>
+          {label}{required && <span style={{ color: 'var(--danger)', marginLeft: '4px' }}>*</span>}
+        </label>
+      ) : null}
+      <div style={{ position: 'relative' }}>
+        {prefix && (
+          <span style={{
+            position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)',
+            color: 'var(--s400)', fontSize: '0.92rem', pointerEvents: 'none',
+          }}>{prefix}</span>
+        )}
+
+        {type === 'select' ? (
+          <select
+            value={localValue}
+            onChange={(e) => { setLocalValue(e.target.value); onSave && onSave(e.target.value === '' ? null : e.target.value) }}
+            disabled={disabled}
+            style={inputStyle}
+          >
+            <option value="">{placeholder || 'Select…'}</option>
+            {options?.map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        ) : type === 'textarea' ? (
+          <textarea
+            value={localValue}
+            onChange={(e) => setLocalValue(e.target.value)}
+            onBlur={commit}
+            placeholder={placeholder}
+            disabled={disabled}
+            rows={rows || 3}
+            style={{ ...inputStyle, resize: 'vertical', minHeight: '80px' }}
+          />
+        ) : type === 'checkbox' ? (
+          <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={Boolean(localValue)}
+              onChange={(e) => { setLocalValue(e.target.checked); onSave && onSave(e.target.checked) }}
+              disabled={disabled}
+            />
+            {hint && <span style={{ fontSize: '0.9rem', color: 'var(--s800)' }}>{hint}</span>}
+          </label>
+        ) : (
+          <input
+            type={type}
+            value={localValue}
+            min={min} max={max} step={step}
+            onChange={(e) => setLocalValue(e.target.value)}
+            onBlur={commit}
+            placeholder={placeholder}
+            disabled={disabled}
+            style={inputStyle}
+          />
+        )}
+      </div>
+      {hint && type !== 'checkbox' && (
+        <p style={{ fontSize: '0.78rem', color: 'var(--s400)', marginTop: '4px', marginBottom: 0 }}>{hint}</p>
+      )}
+    </div>
+  )
+}
