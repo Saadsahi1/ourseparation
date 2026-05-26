@@ -11,6 +11,9 @@ import PropertyTab from '@/components/agreements/tab3/PropertyTab'
 import IncomeDocsTab from '@/components/agreements/tab4/IncomeDocsTab'
 import ChildSupportTab from '@/components/agreements/tab5/ChildSupportTab'
 import SpousalSupportTab from '@/components/agreements/tab6/SpousalSupportTab'
+import AdditionalTermsTab from '@/components/agreements/tab7/AdditionalTermsTab'
+import AgreementPreview from '@/components/agreements/tab8/AgreementPreview'
+import SignaturesTab from '@/components/agreements/tab9/SignaturesTab'
 import { computeSectionCompletion, getPartyDisplayName } from '@/lib/agreements/utils'
 
 function EditorContent() {
@@ -106,8 +109,14 @@ function EditorContent() {
         {tab === 'spousal_support' && (
           <SpousalSupportTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} user={bundle.owner || user} />
         )}
-        {['additional', 'preview', 'signatures'].includes(tab) && (
-          <ComingSoonTab tab={tab} />
+        {tab === 'additional' && (
+          <AdditionalTermsTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} />
+        )}
+        {tab === 'preview' && (
+          <AgreementPreview bundle={bundle} />
+        )}
+        {tab === 'signatures' && (
+          <SignaturesTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} refresh={refresh} />
         )}
       </main>
     </div>
