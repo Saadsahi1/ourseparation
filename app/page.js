@@ -117,11 +117,11 @@ function LandingContent() {
             the same framework your lawyer uses. Instant. Accurate. Private.
           </p>
           <div className="hero-actions fade-up-3">
-            <Link href="/calculator" prefetch={false} className="btn btn-primary btn-lg hero-cta">
-              Calculate your support
+            <Link href="/agreements" prefetch={false} className="btn btn-primary btn-lg hero-cta">
+              Get started — Create your agreement
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
-            <Link href="#how" className="btn btn-outline btn-lg">See how it works</Link>
+            <Link href="/calculator" prefetch={false} className="btn btn-outline btn-lg">Calculate support</Link>
           </div>
           <p className="hero-legal fade-up-4">No credit card required · For informational purposes only</p>
         </div>
@@ -240,10 +240,10 @@ function LandingContent() {
       <section className="cta-section">
         <div className="cta-inner">
           <div className="cta-glow" />
-          <h2>Ready to understand your situation?</h2>
-          <p>Create a free account and run your first calculation in minutes.</p>
-          <Link href="/calculator" prefetch={false} className="btn btn-primary btn-lg">
-            Start your calculation
+          <h2>Ready to settle things?</h2>
+          <p>Create a guided separation agreement online in less than an hour.</p>
+          <Link href="/agreements" prefetch={false} className="btn btn-primary btn-lg">
+            Get started — Create your agreement
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
           <p className="cta-sub">No credit card required · Secure · Private</p>

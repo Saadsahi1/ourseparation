@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 
 const baseLabelStyle = {
   display: 'block',
@@ -25,11 +25,14 @@ const baseInputStyle = {
 }
 
 // Debounced-blur input. Tracks local state, calls onSave on blur with the value.
+// type 'autocomplete' renders a free-text input bound to a <datalist> of options,
+// letting users pick a suggestion OR type a custom value.
 export default function FormField({
   label, value, onSave, type = 'text', placeholder, options, rows, hint,
-  disabled, prefix, required, min, max, step, width,
+  disabled, prefix, required, min, max, step, width, datalistOptions,
 }) {
   const [localValue, setLocalValue] = useState(value ?? '')
+  const listId = useId()
 
   useEffect(() => {
     setLocalValue(value ?? '')
@@ -95,6 +98,26 @@ export default function FormField({
             />
             {hint && <span style={{ fontSize: '0.9rem', color: 'var(--s800)' }}>{hint}</span>}
           </label>
+        ) : type === 'autocomplete' ? (
+          <>
+            <input
+              type="text"
+              list={listId}
+              value={localValue}
+              onChange={(e) => setLocalValue(e.target.value)}
+              onBlur={commit}
+              placeholder={placeholder || 'Type or choose…'}
+              disabled={disabled}
+              style={inputStyle}
+            />
+            <datalist id={listId}>
+              {(datalistOptions || []).map((o) => (
+                <option key={typeof o === 'string' ? o : o.value} value={typeof o === 'string' ? o : (o.value || o.label)}>
+                  {typeof o === 'string' ? o : o.label}
+                </option>
+              ))}
+            </datalist>
+          </>
         ) : (
           <input
             type={type}

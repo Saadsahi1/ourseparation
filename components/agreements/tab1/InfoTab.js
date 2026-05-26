@@ -3,12 +3,11 @@ import FormField from '../shared/FormField'
 import ChildrenList from './ChildrenList'
 import PrevRelationshipChildren from './PrevRelationshipChildren'
 import { getChildAge } from '@/lib/agreements/utils'
-
-const PARENTAL_TITLE_OPTIONS = [
-  { value: 'mother', label: 'Mother' },
-  { value: 'father', label: 'Father' },
-  { value: 'parent', label: 'Parent (neutral)' },
-]
+import {
+  ONTARIO_CITIES,
+  OCCUPATION_OPTIONS,
+  PARENTAL_TITLE_OPTIONS,
+} from '@/lib/agreements/selectOptions'
 
 const cardStyle = {
   background: '#fff',
@@ -49,7 +48,9 @@ export default function InfoTab({ bundle, save, user }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
           <FormField label="Full Legal Name" value={party1FullName} disabled />
           <FormField label="Date of Birth" type="date" value={a.party1_dob || ''} onSave={(v) => saveAgreement({ party1_dob: v })} />
-          <FormField label="Occupation" value={a.party1_occupation || ''} onSave={(v) => saveAgreement({ party1_occupation: v })} placeholder="e.g. Software Engineer" />
+          <FormField label="Occupation" type="autocomplete" datalistOptions={OCCUPATION_OPTIONS}
+            value={a.party1_occupation || ''} onSave={(v) => saveAgreement({ party1_occupation: v })}
+            placeholder="Choose or type…" />
           <FormField label="Parental Title" type="select" options={PARENTAL_TITLE_OPTIONS}
             value={a.party1_parental_title || ''}
             onSave={(v) => saveAgreement({ party1_parental_title: v })} />
@@ -63,7 +64,9 @@ export default function InfoTab({ bundle, save, user }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
           <FormField label="Full Legal Name" required value={a.party2_name || ''} onSave={(v) => saveAgreement({ party2_name: v })} />
           <FormField label="Date of Birth" type="date" value={a.party2_dob || ''} onSave={(v) => saveAgreement({ party2_dob: v })} />
-          <FormField label="Occupation" value={a.party2_occupation || ''} onSave={(v) => saveAgreement({ party2_occupation: v })} placeholder="e.g. Teacher" />
+          <FormField label="Occupation" type="autocomplete" datalistOptions={OCCUPATION_OPTIONS}
+            value={a.party2_occupation || ''} onSave={(v) => saveAgreement({ party2_occupation: v })}
+            placeholder="Choose or type…" />
           <FormField label="Parental Title" type="select" options={PARENTAL_TITLE_OPTIONS}
             value={a.party2_parental_title || ''}
             onSave={(v) => saveAgreement({ party2_parental_title: v })} />
@@ -79,8 +82,16 @@ export default function InfoTab({ bundle, save, user }) {
           <FormField label="Date of Marriage" type="date" value={a.marriage_date || ''} onSave={(v) => saveAgreement({ marriage_date: v })} hint="Leave blank if common-law" />
           <FormField label="Date of Cohabitation (if different)" type="date" value={a.cohabitation_date || ''} onSave={(v) => saveAgreement({ cohabitation_date: v })} />
           <FormField label="Date of Separation" type="date" required value={a.separation_date || ''} onSave={(v) => saveAgreement({ separation_date: v })} hint="Required to mark this section complete" />
-          <FormField label="Place of Marriage / Relationship" value={a.marriage_location || ''} onSave={(v) => saveAgreement({ marriage_location: v })} placeholder="e.g. Toronto, ON" />
-          <FormField label="Signing City" value={a.signing_city || ''} onSave={(v) => saveAgreement({ signing_city: v })} placeholder="City where the agreement is signed" />
+          <FormField label="Place of Marriage / Relationship" type="autocomplete"
+            datalistOptions={ONTARIO_CITIES}
+            value={a.marriage_location || ''}
+            onSave={(v) => saveAgreement({ marriage_location: v })}
+            placeholder="Choose an Ontario city or type" />
+          <FormField label="Signing City" type="autocomplete"
+            datalistOptions={ONTARIO_CITIES}
+            value={a.signing_city || ''}
+            onSave={(v) => saveAgreement({ signing_city: v })}
+            placeholder="Where will the agreement be signed?" />
         </div>
       </div>
 

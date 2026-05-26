@@ -12,11 +12,11 @@ function fmt(d) {
 }
 
 const AGREEMENT_TYPES = [
-  { value: 'separation', label: 'Separation Agreement', description: 'Settle parenting, support and property after relationship breakdown.' },
-  { value: 'cohabitation', label: 'Cohabitation Agreement', description: 'Common-law partners agreeing on property and support rules.' },
-  { value: 'prenup', label: 'Prenuptial Agreement', description: 'Married-spouses-to-be setting financial expectations before marriage.' },
-  { value: 'postnup', label: 'Postnuptial Agreement', description: 'Married couples agreeing on property/support during marriage.' },
-  { value: 'amendment', label: 'Amendment Agreement', description: 'Modify an existing agreement.' },
+  { value: 'separation', label: 'Separation Agreement', description: 'Settle parenting, support and property after relationship breakdown.', available: true },
+  { value: 'cohabitation', label: 'Cohabitation Agreement', description: 'Common-law partners agreeing on property and support rules.', available: false },
+  { value: 'prenup', label: 'Prenuptial Agreement', description: 'Married-spouses-to-be setting financial expectations before marriage.', available: false },
+  { value: 'postnup', label: 'Postnuptial Agreement', description: 'Married couples agreeing on property/support during marriage.', available: false },
+  { value: 'amendment', label: 'Amendment Agreement', description: 'Modify an existing agreement.', available: false },
 ]
 
 function computeTabStatus(completion) {
@@ -112,21 +112,41 @@ function AgreementsContent() {
                 {AGREEMENT_TYPES.map((t) => (
                   <button
                     key={t.value}
-                    onClick={() => createAgreement(t.value)}
-                    disabled={creating}
+                    onClick={() => t.available && createAgreement(t.value)}
+                    disabled={creating || !t.available}
                     style={{
                       textAlign: 'left',
                       padding: '16px 20px',
                       border: '1px solid var(--border)',
                       borderRadius: 'var(--rs)',
-                      background: '#fff',
-                      cursor: creating ? 'wait' : 'pointer',
+                      background: t.available ? '#fff' : 'var(--s50)',
+                      cursor: !t.available ? 'not-allowed' : (creating ? 'wait' : 'pointer'),
+                      opacity: t.available ? 1 : 0.6,
                       transition: 'all 120ms',
+                      position: 'relative',
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--v)'; e.currentTarget.style.background = 'var(--vx)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = '#fff' }}
+                    onMouseEnter={(e) => {
+                      if (!t.available) return
+                      e.currentTarget.style.borderColor = 'var(--v)'
+                      e.currentTarget.style.background = 'var(--vx)'
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!t.available) return
+                      e.currentTarget.style.borderColor = 'var(--border)'
+                      e.currentTarget.style.background = '#fff'
+                    }}
                   >
-                    <div style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '2px' }}>{t.label}</div>
+                    <div style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      {t.label}
+                      {!t.available && (
+                        <span style={{
+                          fontSize: '0.7rem', fontWeight: 600,
+                          background: 'var(--s200)', color: 'var(--s600)',
+                          padding: '2px 8px', borderRadius: '999px',
+                          textTransform: 'uppercase', letterSpacing: '0.04em',
+                        }}>Coming Soon</span>
+                      )}
+                    </div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--s600)' }}>{t.description}</div>
                   </button>
                 ))}

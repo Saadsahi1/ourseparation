@@ -1,7 +1,8 @@
 'use client'
-import { useMemo, useEffect } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import FormField from '../shared/FormField'
 import { lookupChildSupport, selectCSTByDate } from '@/lib/calc/childSupportTables'
+import api from '@/lib/apiClient'
 
 const cardStyle = {
   background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r)',
@@ -15,8 +16,31 @@ export default function MonthlySupport({ bundle, save, party1Name, party2Name })
   const a = bundle.agreement
   const children = bundle.children || []
   const numChildren = children.length
+  const [prefillSuggestion, setPrefillSuggestion] = useState(null)
 
   const saveS = (patch) => save('support', patch)
+
+  // Suggest pre-fill from latest calculation if incomes are empty.
+  useEffect(() => {
+    if (sc.party1_income && sc.party2_income) { setPrefillSuggestion(null); return }
+    if (prefillSuggestion !== null) return  // already loaded
+    api.get('/api/agreements/prefill').then(async (r) => {
+      if (!r?.ok) return
+      const d = await r.json()
+      if (d?.calcIncomes?.party1_income || d?.calcIncomes?.party2_income) {
+        setPrefillSuggestion(d.calcIncomes)
+      }
+    }).catch(() => {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sc.party1_income, sc.party2_income])
+
+  const applyPrefill = () => {
+    const patch = {}
+    if (prefillSuggestion.party1_income && !sc.party1_income) patch.party1_income = prefillSuggestion.party1_income
+    if (prefillSuggestion.party2_income && !sc.party2_income) patch.party2_income = prefillSuggestion.party2_income
+    if (Object.keys(patch).length > 0) saveS(patch)
+    setPrefillSuggestion(null)
+  }
 
   // Auto-determine arrangement from parenting schedule if not yet set
   const psched = bundle.parentingSchedule
@@ -63,11 +87,17 @@ export default function MonthlySupport({ bundle, save, party1Name, party2Name })
     ? (computedPayor === 'party1' ? p1TableAmount : p2TableAmount)
     : Math.abs(p1TableAmount - p2TableAmount)
 
-  // Sync computed amount to support_calculations when it changes meaningfully
+  // Sync computed amount to support_calculations when it changes meaningfully.
+  // Guard against re-saving the same values (Postgres NUMERIC can come back as
+  // a string, and table amounts shouldn't trigger a save by themselves).
   useEffect(() => {
     if (!numChildren) return
-    if (sc.child_support_payor === computedPayor && Math.abs((sc.child_support_amount || 0) - computedAmount) < 1) return
     if (!computedPayor || !computedAmount) return
+    const samePayor = sc.child_support_payor === computedPayor
+    const sameAmount = Math.abs((Number(sc.child_support_amount) || 0) - computedAmount) < 1
+    const sameP1Tbl = Math.abs((Number(sc.party1_table_amount) || 0) - p1TableAmount) < 1
+    const sameP2Tbl = Math.abs((Number(sc.party2_table_amount) || 0) - p2TableAmount) < 1
+    if (samePayor && sameAmount && sameP1Tbl && sameP2Tbl) return
     saveS({
       child_support_payor: computedPayor,
       child_support_amount: computedAmount,
@@ -75,7 +105,9 @@ export default function MonthlySupport({ bundle, save, party1Name, party2Name })
       party2_table_amount: p2TableAmount,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [computedPayor, computedAmount, p1TableAmount, p2TableAmount])
+  }, [computedPayor, computedAmount, p1TableAmount, p2TableAmount,
+      sc.child_support_payor, sc.child_support_amount,
+      sc.party1_table_amount, sc.party2_table_amount, numChildren])
 
   const payorName = computedPayor === 'party1' ? party1Name : party2Name
   const recipientName = computedPayor === 'party1' ? party2Name : party1Name
@@ -96,6 +128,23 @@ export default function MonthlySupport({ bundle, save, party1Name, party2Name })
             <p style={{ marginTop: 0, marginBottom: '16px', color: 'var(--s600)', fontSize: '0.85rem' }}>
               Enter each party's Line 15000 (Total Income) from their most recent tax return.
             </p>
+
+            {prefillSuggestion && (
+              <div style={{
+                background: 'var(--vx)', border: '1px solid var(--vc)',
+                borderRadius: 'var(--rs)', padding: '10px 14px', marginBottom: '14px',
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px',
+              }}>
+                <span style={{ fontSize: '0.85rem', color: 'var(--s800)' }}>
+                  ✨ Use incomes from your last calculation? ({party1Name} {fmtCAD(prefillSuggestion.party1_income || 0)}, {party2Name} {fmtCAD(prefillSuggestion.party2_income || 0)})
+                </span>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button onClick={() => setPrefillSuggestion(null)} className="btn btn-ghost btn-sm">No</button>
+                  <button onClick={applyPrefill} className="btn btn-primary btn-sm">Use these</button>
+                </div>
+              </div>
+            )}
+
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
               <FormField
                 label={`${party1Name} — Annual Income`}

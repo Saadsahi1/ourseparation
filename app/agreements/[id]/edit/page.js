@@ -14,7 +14,24 @@ import SpousalSupportTab from '@/components/agreements/tab6/SpousalSupportTab'
 import AdditionalTermsTab from '@/components/agreements/tab7/AdditionalTermsTab'
 import AgreementPreview from '@/components/agreements/tab8/AgreementPreview'
 import SignaturesTab from '@/components/agreements/tab9/SignaturesTab'
+import PrefillBanner from '@/components/agreements/shared/PrefillBanner'
 import { computeSectionCompletion, getPartyDisplayName } from '@/lib/agreements/utils'
+
+function deepEqual(a, b) {
+  if (a === b) return true
+  if (typeof a !== 'object' || typeof b !== 'object' || a == null || b == null) return false
+  if (Array.isArray(a) !== Array.isArray(b)) return false
+  if (Array.isArray(a)) {
+    if (a.length !== b.length) return false
+    for (let i = 0; i < a.length; i++) if (!deepEqual(a[i], b[i])) return false
+    return true
+  }
+  const keysA = Object.keys(a)
+  const keysB = Object.keys(b)
+  if (keysA.length !== keysB.length) return false
+  for (const k of keysA) if (!deepEqual(a[k], b[k])) return false
+  return true
+}
 
 function EditorContent() {
   const { user, loading: authLoading } = useAuth()
@@ -30,12 +47,14 @@ function EditorContent() {
     if (!authLoading && !user) { router.push('/login') }
   }, [authLoading, user, router])
 
-  // Recompute and persist section_completion whenever the bundle changes
+  // Recompute and persist section_completion whenever the bundle changes.
+  // Use a deep-equal comparison so we don't fire a save when Postgres returns
+  // the same JSONB with different key ordering.
   useEffect(() => {
     if (!bundle?.agreement) return
     const newCompletion = computeSectionCompletion(bundle)
     const existing = bundle.agreement.section_completion || {}
-    if (JSON.stringify(newCompletion) !== JSON.stringify(existing)) {
+    if (!deepEqual(newCompletion, existing)) {
       save('agreement', { section_completion: newCompletion })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,7 +110,17 @@ function EditorContent() {
 
       <main style={{ maxWidth: '1300px', margin: '0 auto', padding: '24px' }}>
         {tab === 'info' && (
-          <InfoTab bundle={bundle} save={save} user={bundle.owner || user} />
+          <>
+            <PrefillBanner
+              agreement={bundle.agreement}
+              currentSupportCalc={bundle.supportCalculations}
+              onApply={async ({ agreementPatch, supportPatch }) => {
+                if (Object.keys(agreementPatch).length > 0) await save('agreement', agreementPatch)
+                if (Object.keys(supportPatch).length > 0) await save('support', supportPatch)
+              }}
+            />
+            <InfoTab bundle={bundle} save={save} user={bundle.owner || user} />
+          </>
         )}
         {tab === 'parenting' && (
           <ParentingTab bundle={bundle} save={save} user={bundle.owner || user}
