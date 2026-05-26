@@ -1,6 +1,7 @@
 'use client'
 import TemplateSelector from '../shared/TemplateSelector'
 import ParentingTimeMeter from './ParentingTimeMeter'
+import ScheduleCustomWeekly from './ScheduleCustomWeekly'
 import {
   PARENTING_SCHEDULE_TEMPLATES,
   SUMMER_SCHEDULE_TEMPLATES,
@@ -50,10 +51,10 @@ export default function Schedule({ bundle, save, party1Name, party2Name }) {
         </p>
         <TemplateSelector
           templates={PARENTING_SCHEDULE_TEMPLATES}
-          value={{ template: s.regular_schedule_template, variables: s.regular_schedule_variables || {} }}
+          value={{ template: s.regular_schedule_template, variables: tplKey === 'custom_weekly' ? {} : (s.regular_schedule_variables || {}) }}
           onChange={({ template, variables }) => sched({
             regular_schedule_template: template,
-            regular_schedule_variables: variables,
+            regular_schedule_variables: template === 'custom_weekly' ? (s.regular_schedule_template === 'custom_weekly' ? s.regular_schedule_variables : {}) : variables,
           })}
           substitutionContext={subContext}
           variableLabels={{
@@ -78,14 +79,21 @@ export default function Schedule({ bundle, save, party1Name, party2Name }) {
             ],
           }}
         />
-        {tplKey && (
+        {tplKey === 'custom_weekly' ? (
+          <ScheduleCustomWeekly
+            schedule={s}
+            onChange={sched}
+            party1Name={party1Name}
+            party2Name={party2Name}
+          />
+        ) : tplKey ? (
           <ParentingTimeMeter
             party1Percent={p1Percent}
             party2Percent={p2Percent}
             party1Name={party1Name}
             party2Name={party2Name}
           />
-        )}
+        ) : null}
       </div>
 
       <div style={cardStyle}>
