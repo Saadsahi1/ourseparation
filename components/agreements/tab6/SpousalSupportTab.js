@@ -16,6 +16,10 @@ const cardStyle = {
   padding: '24px', marginBottom: '20px', boxShadow: 'var(--sh-xs)',
 }
 
+const sectionHeading = {
+  marginTop: 0, marginBottom: '14px', fontSize: '1rem', fontWeight: 600, color: 'var(--s900)',
+}
+
 const fmtCAD = (n) => `$${Math.round(Number(n) || 0).toLocaleString('en-CA')}`
 
 export default function SpousalSupportTab({ bundle, save, party1Name, party2Name, user }) {
@@ -29,8 +33,6 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
 
   const p1Income = Number(sc.party1_income) || 0
   const p2Income = Number(sc.party2_income) || 0
-
-  // Use cohabitation_date OR marriage_date as start of relationship
   const startDate = a.cohabitation_date || a.marriage_date
   const sepDate = a.separation_date
 
@@ -67,51 +69,106 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
   const ssagPayorName = payorIsA ? party1Name : party2Name
   const ssagRecipientName = payorIsA ? party2Name : party1Name
 
-  // Rule of 65 check
   const payorDob = payorIsA ? a.party1_dob : a.party2_dob
   const ruleOf65 = checkRuleOf65(payorDob, sepDate, startDate)
 
   const isWaived = sc.spousal_support_payor === 'none' || sc.spousal_support_template === 'complete_release'
-  const enforcesZero = sc.spousal_support_template === 'complete_release'
+  const yearsRelationship = startDate && sepDate
+    ? Math.round(((new Date(sepDate) - new Date(startDate)) / (365.25 * 24 * 60 * 60 * 1000)) * 10) / 10
+    : null
+
+  // Quick "Use SSAG amount" buttons
+  const setAmount = (amount) => saveS({ spousal_support_amount: amount, spousal_support_payor: payorIsA ? 'party1' : 'party2' })
 
   return (
     <div>
-      {/* SSAG Range Display */}
+      {/* INPUTS — all on one page */}
+      <div style={cardStyle}>
+        <h3 style={{ marginTop: 0, marginBottom: '4px' }}>Spousal Support Calculator</h3>
+        <p style={{ marginTop: 0, marginBottom: '20px', color: 'var(--s600)', fontSize: '0.85rem' }}>
+          Calculated automatically using the Spousal Support Advisory Guidelines ({hasChildren ? 'with-child formula' : 'without-child formula'}). Edit incomes below or on the Child Support tab.
+        </p>
+
+        <h4 style={sectionHeading}>Inputs</h4>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
+          <FormField
+            label={`${party1Name} — Annual Gross Income`}
+            type="number" prefix="$"
+            value={sc.party1_income ?? ''}
+            onSave={(v) => saveS({ party1_income: Number(v) || 0 })}
+          />
+          <FormField
+            label={`${party2Name} — Annual Gross Income`}
+            type="number" prefix="$"
+            value={sc.party2_income ?? ''}
+            onSave={(v) => saveS({ party2_income: Number(v) || 0 })}
+          />
+        </div>
+        <div style={{
+          background: 'var(--s50)', border: '1px solid var(--border)',
+          borderRadius: 'var(--rs)', padding: '12px 16px',
+          marginTop: '10px',
+          fontSize: '0.85rem', color: 'var(--s700)',
+          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px',
+        }}>
+          <div><strong style={{ color: 'var(--s900)' }}>Relationship start:</strong><br/>{startDate ? new Date(startDate).toLocaleDateString('en-CA') : 'Not set — edit on Info tab'}</div>
+          <div><strong style={{ color: 'var(--s900)' }}>Separation:</strong><br/>{sepDate ? new Date(sepDate).toLocaleDateString('en-CA') : 'Not set'}</div>
+          <div><strong style={{ color: 'var(--s900)' }}>Children:</strong><br/>{children.length} {children.length === 1 ? 'child' : 'children'}{hasChildren ? ' (with-child SSAG)' : ' (without-child SSAG)'}</div>
+        </div>
+      </div>
+
+      {/* SSAG RANGE RESULT */}
       <div style={{ ...cardStyle, background: 'var(--vx)', border: '1px solid var(--vc)' }}>
         <h3 style={{ marginTop: 0, marginBottom: '4px' }}>SSAG Range</h3>
         <p style={{ marginTop: 0, marginBottom: '16px', color: 'var(--s600)', fontSize: '0.85rem' }}>
-          Spousal Support Advisory Guidelines — calculated from incomes and relationship length.
-          {hasChildren ? ' (with-child formula)' : ' (without-child formula)'}
+          Spousal Support Advisory Guidelines range. Choose the low/mid/high amount that fits your circumstances.
         </p>
 
         {!ssag && (
           <p style={{ color: 'var(--s400)', fontStyle: 'italic' }}>
-            Enter both incomes (Tab 5) and dates (Tab 1) to see the SSAG range.
+            Enter both incomes above and ensure dates are set on the Info tab to see the SSAG range.
           </p>
         )}
 
         {ssag && (
           <>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '14px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '14px' }}>
               {['low', 'mid', 'high'].map((k) => (
-                <div key={k} style={{
-                  background: '#fff', padding: '14px', borderRadius: 'var(--rs)', border: '1px solid var(--border)',
-                  textAlign: 'center',
-                }}>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--s600)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>{k}</div>
+                <button
+                  key={k}
+                  onClick={() => setAmount(ssag[k]?.monthly || 0)}
+                  style={{
+                    background: '#fff',
+                    padding: '14px',
+                    borderRadius: 'var(--rs)',
+                    border: '1px solid var(--border)',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 120ms',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--v)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'translateY(0)' }}
+                >
+                  <div style={{ fontSize: '0.78rem', color: 'var(--s600)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700 }}>{k}</div>
                   <div style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--v)', marginTop: '4px' }}>
                     {fmtCAD(ssag[k]?.monthly || 0)} <span style={{ fontSize: '0.78rem', color: 'var(--s600)' }}>/mo</span>
                   </div>
-                </div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--s400)', marginTop: '4px' }}>Click to use</div>
+                </button>
               ))}
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '0.85rem' }}>
+
+            <div style={{
+              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '8px',
+              fontSize: '0.85rem', background: '#fff', padding: '12px 14px', borderRadius: 'var(--rs)',
+            }}>
               <div><strong>Payor:</strong> {ssagPayorName}</div>
               <div><strong>Recipient:</strong> {ssagRecipientName}</div>
-              <div><strong>Income difference:</strong> {fmtCAD(ssag.incomeDifference)}</div>
+              <div><strong>Income gap:</strong> {fmtCAD(ssag.incomeDifference)}</div>
               <div><strong>Duration:</strong> {ssag.supportDurationRange?.low}–{ssag.supportDurationRange?.high} years
-                {ruleOf65 && <span style={{ color: 'var(--success)', marginLeft: '6px' }}>(Rule of 65 — indefinite)</span>}
+                {ruleOf65 && <span style={{ color: 'var(--success)', marginLeft: '6px', fontWeight: 600 }}>(Rule of 65 — indefinite)</span>}
               </div>
+              {yearsRelationship != null && <div><strong>Years of relationship:</strong> {yearsRelationship}</div>}
             </div>
 
             <button
@@ -132,45 +189,46 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
         )}
       </div>
 
-      {/* Decision: Who Pays */}
+      {/* DECISION */}
       <div style={cardStyle}>
-        <h3 style={{ marginTop: 0, marginBottom: '4px' }}>Spousal Support Decision</h3>
-        <p style={{ marginTop: 0, marginBottom: '16px', color: 'var(--s600)', fontSize: '0.85rem' }}>
+        <h4 style={sectionHeading}>Decision</h4>
+        <p style={{ marginTop: 0, marginBottom: '14px', color: 'var(--s600)', fontSize: '0.85rem' }}>
           Who is paying, who is receiving, and how much?
         </p>
 
-        <FormField
-          label="Spousal Support Payor"
-          type="select"
-          options={[
-            { value: 'none', label: 'No spousal support (mutual waiver)' },
-            { value: 'party1', label: party1Name },
-            { value: 'party2', label: party2Name },
-          ]}
-          value={sc.spousal_support_payor || ''}
-          onSave={(v) => saveS({
-            spousal_support_payor: v,
-            ...(v === 'none' ? { spousal_support_amount: 0, spousal_support_template: 'complete_release' } : {}),
-          })}
-        />
-
-        {!isWaived && sc.spousal_support_payor && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
           <FormField
-            label="Monthly Spousal Support Amount"
-            type="number" prefix="$"
-            value={sc.spousal_support_amount ?? (ssag?.mid?.monthly ?? '')}
-            onSave={(v) => saveS({ spousal_support_amount: Number(v) || 0 })}
-            hint={ssag ? `SSAG mid is ${fmtCAD(ssag.mid?.monthly || 0)}/mo` : ''}
+            label="Spousal Support Payor"
+            type="select"
+            options={[
+              { value: 'none', label: 'No spousal support (mutual waiver)' },
+              { value: 'party1', label: party1Name },
+              { value: 'party2', label: party2Name },
+            ]}
+            value={sc.spousal_support_payor || ''}
+            onSave={(v) => saveS({
+              spousal_support_payor: v,
+              ...(v === 'none' ? { spousal_support_amount: 0, spousal_support_template: 'complete_release' } : {}),
+            })}
           />
-        )}
+          {!isWaived && sc.spousal_support_payor && (
+            <FormField
+              label="Monthly Amount"
+              type="number" prefix="$"
+              value={sc.spousal_support_amount ?? ''}
+              onSave={(v) => saveS({ spousal_support_amount: Number(v) || 0 })}
+              hint={ssag ? `SSAG mid is ${fmtCAD(ssag.mid?.monthly || 0)}/mo` : ''}
+            />
+          )}
+        </div>
       </div>
 
-      {/* Term Template */}
+      {/* TERM TEMPLATE */}
       {sc.spousal_support_payor && (
         <div style={cardStyle}>
-          <h3 style={{ marginTop: 0, marginBottom: '4px' }}>Term &amp; Duration</h3>
-          <p style={{ marginTop: 0, marginBottom: '16px', color: 'var(--s600)', fontSize: '0.85rem' }}>
-            Choose the structure of support — fixed term, time-limited, indefinite reviewable, or with life-insurance security.
+          <h4 style={sectionHeading}>Term &amp; Duration</h4>
+          <p style={{ marginTop: 0, marginBottom: '14px', color: 'var(--s600)', fontSize: '0.85rem' }}>
+            Choose the structure of support: complete release, fixed term, time-limited, indefinite reviewable, or with life-insurance security.
           </p>
 
           <TemplateSelector
@@ -213,26 +271,28 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
 
           {sc.spousal_support_template === 'indefinite_reviewable' && (
             <div style={{ marginTop: '16px' }}>
-              <h4 style={{ marginTop: 0, marginBottom: '10px' }}>Termination Triggers</h4>
-              {Object.entries(SPOUSAL_TERMINATION_TRIGGERS).map(([k, label]) => {
-                const triggers = sc.spousal_support_termination_triggers || []
-                const checked = triggers.includes(k)
-                return (
-                  <label key={k} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.88rem' }}>
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={(e) => {
-                        const newTriggers = e.target.checked
-                          ? [...triggers, k]
-                          : triggers.filter((t) => t !== k)
-                        saveS({ spousal_support_termination_triggers: newTriggers })
-                      }}
-                    />
-                    {label}
-                  </label>
-                )
-              })}
+              <h5 style={{ marginTop: 0, marginBottom: '8px', fontSize: '0.88rem' }}>Termination Triggers</h5>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '6px' }}>
+                {Object.entries(SPOUSAL_TERMINATION_TRIGGERS).map(([k, label]) => {
+                  const triggers = sc.spousal_support_termination_triggers || []
+                  const checked = triggers.includes(k)
+                  return (
+                    <label key={k} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', cursor: 'pointer' }}>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) => {
+                          const newTriggers = e.target.checked
+                            ? [...triggers, k]
+                            : triggers.filter((t) => t !== k)
+                          saveS({ spousal_support_termination_triggers: newTriggers })
+                        }}
+                      />
+                      {label}
+                    </label>
+                  )
+                })}
+              </div>
             </div>
           )}
         </div>

@@ -4,6 +4,7 @@ import SubTabs from '../shared/SubTabs'
 import PropertyItems from './PropertyItems'
 import NFPSummary from './NFPSummary'
 import PropertyDivision from './PropertyDivision'
+import InviteOtherPartyBanner from '../shared/InviteOtherPartyBanner'
 
 const SUB_TABS = [
   { key: 'assets', label: 'Assets, Debts & NFP' },
@@ -15,6 +16,7 @@ export default function PropertyTab({ bundle, save, party1Name, party2Name }) {
 
   return (
     <div>
+      <InviteOtherPartyBanner agreement={bundle.agreement} />
       <SubTabs tabs={SUB_TABS} active={sub} onChange={setSub} />
       {sub === 'assets' && (
         <>
