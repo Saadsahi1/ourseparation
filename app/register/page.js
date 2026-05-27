@@ -41,7 +41,10 @@ function RegisterForm() {
     <div className="auth-page">
       <div className="auth-left">
         <div className="auth-left-inner">
-          <Link href="/" className="nav-logo" style={{color:'white',fontSize:'1.3rem'}}>Our<span style={{color:'#7B72F0'}}>Separation</span></Link>
+          <Link href="/" className="nav-logo" style={{color:'white',fontSize:'1.3rem',display:'inline-flex',alignItems:'center',gap:'8px'}}>
+            <img src="/logo-icon.svg" alt="" width="30" height="30" style={{borderRadius:'6px'}}/>
+            Our<span style={{color:'#7B72F0'}}>Separation</span>
+          </Link>
           <blockquote className="auth-quote">
             "Knowledge of your rights is the foundation of any fair negotiation."
             <cite>Family Law Professionals of Ontario</cite>

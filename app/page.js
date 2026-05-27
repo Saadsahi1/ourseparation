@@ -251,7 +251,10 @@ function LandingContent() {
       </section>
 
       <footer className="landing-footer">
-        <div className="nav-logo" style={{color:'white',fontSize:'1.1rem'}}>Our<span>Separation</span></div>
+        <div className="nav-logo" style={{color:'white',fontSize:'1.1rem',display:'inline-flex',alignItems:'center',gap:'8px',justifyContent:'center'}}>
+          <img src="/logo-icon.svg" alt="" width="26" height="26" style={{borderRadius:'5px'}}/>
+          Our<span>Separation</span>
+        </div>
         <p>OurSeparation provides informational calculations only. Results are not legal advice. Always consult a qualified Ontario family lawyer before making decisions about support.</p>
         <p style={{opacity:0.3,fontSize:'0.7rem'}}>© 2025 OurSeparation · Ontario, Canada</p>
       </footer>

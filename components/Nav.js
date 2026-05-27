@@ -6,7 +6,8 @@ export default function Nav() {
   const { user, logout } = useAuth()
   return (
     <nav className="nav">
-      <Link href="/" className="nav-logo">
+      <Link href="/" className="nav-logo" style={{display:'inline-flex',alignItems:'center',gap:'8px'}}>
+        <img src="/logo-icon.svg" alt="" width="28" height="28" style={{borderRadius:'6px'}}/>
         Our<span>Separation</span>
       </Link>
       <div className="nav-links">
