@@ -17,7 +17,7 @@
       "@/*": ["./*"]
     },
     "plugins": [{ "name": "next" }],
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "strictNullChecks": true,
     "target": "ES2017"
   },
