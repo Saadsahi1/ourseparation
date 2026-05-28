@@ -1,7 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
 import {
-  generateFullAgreementHTML,
   generateFullAgreementWithSchedulesHTML,
 } from '@/lib/agreements/templates'
 import { exportToPDF } from '@/lib/agreements/pdfExport'
@@ -15,8 +14,10 @@ const cardStyle = {
 export default function AgreementPreview({ bundle }) {
   const [exporting, setExporting] = useState(null)
 
+  // Preview shows the FULL document (agreement + all schedules) so the user
+  // can see everything they're about to download.
   const fullHtml = useMemo(() => {
-    try { return generateFullAgreementHTML(bundle) }
+    try { return generateFullAgreementWithSchedulesHTML(bundle) }
     catch (e) { return `<p>Preview unavailable: ${e.message}</p>` }
   }, [bundle])
 
@@ -25,8 +26,7 @@ export default function AgreementPreview({ bundle }) {
   const handleExport = async () => {
     setExporting('full')
     try {
-      const html = generateFullAgreementWithSchedulesHTML(bundle)
-      await exportToPDF(html, baseFilename)
+      await exportToPDF(fullHtml, baseFilename)
     } catch (err) {
       alert('PDF export failed: ' + err.message)
     } finally {
