@@ -2,7 +2,6 @@
 import { useState, useMemo } from 'react'
 import {
   generateFullAgreementHTML,
-  generateScheduleHTML,
   generateFullAgreementWithSchedulesHTML,
 } from '@/lib/agreements/templates'
 import { exportToPDF } from '@/lib/agreements/pdfExport'
@@ -23,18 +22,11 @@ export default function AgreementPreview({ bundle }) {
 
   const baseFilename = `${(bundle.agreement?.label || 'agreement').replace(/\s+/g, '_')}_${bundle.agreement?.agreement_type || 'separation'}`
 
-  const handleExport = async (kind) => {
-    setExporting(kind)
+  const handleExport = async () => {
+    setExporting('full')
     try {
-      if (kind === 'full') {
-        const html = generateFullAgreementWithSchedulesHTML(bundle)
-        await exportToPDF(html, baseFilename)
-      } else if (['A', 'B', 'C', 'D'].includes(kind)) {
-        const html = generateScheduleHTML(bundle, kind)
-        await exportToPDF(html, `${baseFilename}_Schedule_${kind}`)
-      } else if (kind === 'agreement_only') {
-        await exportToPDF(fullHtml, `${baseFilename}_agreement`)
-      }
+      const html = generateFullAgreementWithSchedulesHTML(bundle)
+      await exportToPDF(html, baseFilename)
     } catch (err) {
       alert('PDF export failed: ' + err.message)
     } finally {
@@ -56,16 +48,9 @@ export default function AgreementPreview({ bundle }) {
           <div style={{ fontSize: '0.78rem', color: 'var(--s600)' }}>Renders from current data. Edit other tabs to update.</div>
         </div>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          <button onClick={() => handleExport('full')} className="btn btn-primary btn-sm" disabled={exporting !== null}>
-            {exporting === 'full' ? 'Exporting…' : '⬇ Export Full (with Schedules)'}
+          <button onClick={handleExport} className="btn btn-primary btn-sm" disabled={exporting !== null}>
+            {exporting ? 'Exporting…' : '⬇ Export Full Agreement'}
           </button>
-          <button onClick={() => handleExport('agreement_only')} className="btn btn-outline btn-sm" disabled={exporting !== null}>
-            {exporting === 'agreement_only' ? '…' : 'Agreement Only'}
-          </button>
-          <button onClick={() => handleExport('A')} className="btn btn-outline btn-sm" disabled={exporting !== null}>Sched A</button>
-          <button onClick={() => handleExport('B')} className="btn btn-outline btn-sm" disabled={exporting !== null}>Sched B</button>
-          <button onClick={() => handleExport('C')} className="btn btn-outline btn-sm" disabled={exporting !== null}>Sched C</button>
-          <button onClick={() => handleExport('D')} className="btn btn-outline btn-sm" disabled={exporting !== null}>Sched D</button>
         </div>
       </div>
 
