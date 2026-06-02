@@ -37,6 +37,8 @@ export default function PropertyItemEditor({
 
   const update = (patch) => setFormData((f) => ({ ...f, ...patch }))
 
+  const MAX_BYTES = 4 * 1024 * 1024  // matches server-side MAX_UPLOAD_BYTES in lib/storage.js
+
   const uploadDocument = async (file) => {
     if (!file || !initialData.id) {
       // Need to save the item first before uploading
@@ -44,6 +46,11 @@ export default function PropertyItemEditor({
         alert('Please save the item first, then upload a document.')
         return
       }
+      return
+    }
+    // Fast-fail oversize files locally so we don't waste a network round-trip.
+    if (file.size > MAX_BYTES) {
+      alert(`File is too large (${(file.size / 1024 / 1024).toFixed(2)} MB). Maximum is 4 MB. Try compressing the PDF or scanning at a lower resolution.`)
       return
     }
     setUploading(true)

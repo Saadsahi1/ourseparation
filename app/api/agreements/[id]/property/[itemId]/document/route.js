@@ -2,22 +2,15 @@ import { NextResponse } from 'next/server'
 import { requireAuth, AuthError } from '@/lib/auth'
 import pool from '@/lib/db/pool'
 import { noStoreHeaders, checkAgreementOwner } from '@/lib/agreements/apiHelpers'
-import fs from 'fs/promises'
-import path from 'path'
+import { uploadFile, deleteFile, MAX_UPLOAD_BYTES } from '@/lib/storage'
 
-// Property valuation documents live OUTSIDE the public/ directory so
-// Next.js does not serve them as static assets. Downloads go through
-// the authenticated /api/files/property/* endpoint.
-const UPLOAD_BASE = path.join(process.cwd(), 'private_uploads', 'property')
-
-async function ensureDir(dir) {
-  try { await fs.mkdir(dir, { recursive: true }) } catch (e) { /* exists */ }
-}
 function safeName(s) {
   return String(s || 'file').replace(/[^a-z0-9._-]+/gi, '_').slice(0, 100)
 }
 
 // POST: multipart upload — attaches a supporting document URL to a property item.
+// File payload goes through the storage helper (Supabase Storage in prod,
+// local FS in dev). The saved URL points at /api/files/property/...
 export async function POST(req, { params }) {
   try {
     const { user } = await requireAuth(req)
@@ -31,13 +24,18 @@ export async function POST(req, { params }) {
     if (!file || typeof file === 'string') {
       return NextResponse.json({ error: 'No file provided' }, { status: 400, headers: noStoreHeaders })
     }
-    const dir = path.join(UPLOAD_BASE, id, itemId)
-    await ensureDir(dir)
+    if (file.size > MAX_UPLOAD_BYTES) {
+      const limitMB = (MAX_UPLOAD_BYTES / 1024 / 1024).toFixed(1)
+      return NextResponse.json({
+        error: `File is too large (${(file.size / 1024 / 1024).toFixed(2)} MB). Maximum is ${limitMB} MB. Try compressing the PDF or scanning at a lower resolution.`,
+      }, { status: 413, headers: noStoreHeaders })
+    }
+
     const safe = `${Date.now()}-${safeName(file.name)}`
-    const filePath = path.join(dir, safe)
-    const buf = Buffer.from(await file.arrayBuffer())
-    await fs.writeFile(filePath, buf)
-    const publicUrl = `/api/files/property/${id}/${itemId}/${safe}`
+    const relPath = `property/${id}/${itemId}/${safe}`
+
+    await uploadFile(relPath, file, file.type || 'application/octet-stream')
+    const publicUrl = `/api/files/${relPath}`
 
     const r = await pool.query(
       'UPDATE property_items SET document_url = $1 WHERE id = $2 AND agreement_id = $3 RETURNING *',
@@ -46,6 +44,7 @@ export async function POST(req, { params }) {
     return NextResponse.json({ ...r.rows[0], file_name: file.name }, { headers: noStoreHeaders })
   } catch (err) {
     if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: 401, headers: noStoreHeaders })
+    console.error('property-doc upload error', err)
     return NextResponse.json({ error: err.message }, { status: 500, headers: noStoreHeaders })
   }
 }
@@ -60,15 +59,13 @@ export async function DELETE(req, { params }) {
 
     const r = await pool.query('SELECT document_url FROM property_items WHERE id = $1 AND agreement_id = $2', [itemId, id])
     if (r.rows.length === 0) return NextResponse.json({ error: 'Not found' }, { status: 404, headers: noStoreHeaders })
-    if (r.rows[0].document_url) {
-      try {
-        // document_url looks like '/api/files/property/<aId>/<itemId>/<filename>'
-        // Strip the API prefix and resolve to the private_uploads directory.
-        const relPath = r.rows[0].document_url.replace(/^\/api\/files\//, '')
-        const filePath = path.join(process.cwd(), 'private_uploads', relPath)
-        await fs.unlink(filePath)
-      } catch (e) { /* ignore */ }
+
+    const url = r.rows[0].document_url || ''
+    const relPath = url.replace(/^\/api\/files\//, '')
+    if (relPath && relPath !== url) {
+      await deleteFile(relPath)
     }
+
     await pool.query('UPDATE property_items SET document_url = NULL WHERE id = $1 AND agreement_id = $2', [itemId, id])
     return NextResponse.json({ deleted: true }, { headers: noStoreHeaders })
   } catch (err) {

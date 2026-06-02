@@ -32,8 +32,16 @@ export default function IncomeDocsTab({ bundle, save, party1Name, party2Name, re
   const findDoc = (party, year, type) =>
     docs.find((d) => d.party === party && d.tax_year === year && d.document_type === type)
 
+  const MAX_BYTES = 4 * 1024 * 1024  // matches server-side MAX_UPLOAD_BYTES in lib/storage.js
+
   const uploadDoc = async (party, year, type, file) => {
     if (!file) return
+    // Fast-fail oversize files locally so the user doesn't wait for a
+    // network round-trip to discover the limit.
+    if (file.size > MAX_BYTES) {
+      alert(`File is too large (${(file.size / 1024 / 1024).toFixed(2)} MB). Maximum is 4 MB. Try compressing the PDF or scanning at a lower resolution.`)
+      return
+    }
     const key = `${party}-${year}-${type}`
     setUploading((u) => ({ ...u, [key]: true }))
     try {

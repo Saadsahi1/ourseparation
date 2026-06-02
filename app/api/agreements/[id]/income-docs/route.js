@@ -2,18 +2,7 @@ import { NextResponse } from 'next/server'
 import { requireAuth, AuthError } from '@/lib/auth'
 import pool from '@/lib/db/pool'
 import { noStoreHeaders, checkAgreementOwner } from '@/lib/agreements/apiHelpers'
-import fs from 'fs/promises'
-import path from 'path'
-
-// Income tax documents live OUTSIDE the public/ directory so Next.js does
-// not serve them as static assets. Downloads go through the authenticated
-// /api/files/income/* endpoint which verifies the requester owns the
-// underlying agreement.
-const UPLOAD_BASE = path.join(process.cwd(), 'private_uploads', 'income')
-
-async function ensureDir(dir) {
-  try { await fs.mkdir(dir, { recursive: true }) } catch (e) { /* exists */ }
-}
+import { uploadFile, MAX_UPLOAD_BYTES } from '@/lib/storage'
 
 function safeName(s) {
   return String(s || 'file').replace(/[^a-z0-9._-]+/gi, '_').slice(0, 100)
@@ -39,6 +28,8 @@ export async function GET(req, { params }) {
 }
 
 // Multipart upload — accepts FormData with `file`, `party`, `document_type`, `tax_year`.
+// File payload is sent to the storage layer (Supabase Storage in prod, local
+// FS in dev); the saved URL points at the authenticated /api/files endpoint.
 export async function POST(req, { params }) {
   try {
     const { user } = await requireAuth(req)
@@ -56,15 +47,18 @@ export async function POST(req, { params }) {
     if (!file || typeof file === 'string') {
       return NextResponse.json({ error: 'No file provided' }, { status: 400, headers: noStoreHeaders })
     }
+    if (file.size > MAX_UPLOAD_BYTES) {
+      const limitMB = (MAX_UPLOAD_BYTES / 1024 / 1024).toFixed(1)
+      return NextResponse.json({
+        error: `File is too large (${(file.size / 1024 / 1024).toFixed(2)} MB). Maximum is ${limitMB} MB. Try compressing the PDF or scanning at a lower resolution.`,
+      }, { status: 413, headers: noStoreHeaders })
+    }
 
-    const dir = path.join(UPLOAD_BASE, id, party, String(taxYear), documentType)
-    await ensureDir(dir)
     const safe = `${Date.now()}-${safeName(file.name)}`
-    const filePath = path.join(dir, safe)
-    const buf = Buffer.from(await file.arrayBuffer())
-    await fs.writeFile(filePath, buf)
+    const relPath = `income/${id}/${party}/${taxYear}/${documentType}/${safe}`
 
-    const publicUrl = `/api/files/income/${id}/${party}/${taxYear}/${documentType}/${safe}`
+    await uploadFile(relPath, file, file.type || 'application/octet-stream')
+    const publicUrl = `/api/files/${relPath}`
 
     const r = await pool.query(
       `INSERT INTO income_documents (agreement_id, party, document_type, tax_year, file_url, file_name)
@@ -74,7 +68,7 @@ export async function POST(req, { params }) {
     return NextResponse.json(r.rows[0], { status: 201, headers: noStoreHeaders })
   } catch (err) {
     if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: 401, headers: noStoreHeaders })
-    console.error('upload error', err)
+    console.error('income-doc upload error', err)
     return NextResponse.json({ error: err.message }, { status: 500, headers: noStoreHeaders })
   }
 }

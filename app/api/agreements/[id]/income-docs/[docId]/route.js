@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server'
 import { requireAuth, AuthError } from '@/lib/auth'
 import pool from '@/lib/db/pool'
 import { noStoreHeaders, checkAgreementOwner } from '@/lib/agreements/apiHelpers'
-import fs from 'fs/promises'
-import path from 'path'
+import { deleteFile } from '@/lib/storage'
 
 export async function DELETE(req, { params }) {
   try {
@@ -16,11 +15,13 @@ export async function DELETE(req, { params }) {
     const r = await pool.query('SELECT file_url FROM income_documents WHERE id = $1 AND agreement_id = $2', [docId, id])
     if (r.rows.length === 0) return NextResponse.json({ error: 'Not found' }, { status: 404, headers: noStoreHeaders })
 
-    // Try to remove the file from disk
-    try {
-      const filePath = path.join(process.cwd(), 'public', r.rows[0].file_url)
-      await fs.unlink(filePath)
-    } catch (e) { /* file may already be gone */ }
+    // file_url is shaped like '/api/files/income/<aid>/...'. Strip the
+    // '/api/files/' prefix to get the storage-relative path.
+    const url = r.rows[0].file_url || ''
+    const relPath = url.replace(/^\/api\/files\//, '')
+    if (relPath && relPath !== url) {
+      await deleteFile(relPath)
+    }
 
     await pool.query('DELETE FROM income_documents WHERE id = $1 AND agreement_id = $2', [docId, id])
     return NextResponse.json({ deleted: true }, { headers: noStoreHeaders })
