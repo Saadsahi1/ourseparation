@@ -1,5 +1,5 @@
 'use client'
-import { useMemo, useState, useCallback } from 'react'
+import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
 import FormField from '../shared/FormField'
 import ParentingTimeMeter from './ParentingTimeMeter'
 import { ONTARIO_CITIES } from '@/lib/agreements/selectOptions'
@@ -8,9 +8,15 @@ import { ONTARIO_CITIES } from '@/lib/agreements/selectOptions'
 // Each cell cycles through: party1 → party2 → transition → party1.
 // Parenting time meter updates live; validation flags missing transitions
 // and isolated single days.
+//
+// Performance design: the grid is held in LOCAL state so clicking a cell
+// updates the UI on the next paint with zero network latency. Changes are
+// batched into a single debounced network save (~400 ms after the last
+// click), so rapid editing of many cells collapses to one round-trip.
 
 const DAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const CYCLE = ['party1', 'party2', 'transition', null]
+const SAVE_DEBOUNCE_MS = 400
 
 function nextValue(v) {
   const idx = CYCLE.indexOf(v ?? null)
@@ -24,7 +30,15 @@ function emptyGrid() {
   ]
 }
 
-function getCellStyle(value, isHovered) {
+function gridFromVars(vars) {
+  if (Array.isArray(vars?.weeks) && vars.weeks.length === 4) {
+    // Defensive copy so callers can't mutate our internal state through this reference.
+    return vars.weeks.map((row) => row.slice())
+  }
+  return emptyGrid()
+}
+
+function getCellStyle(value) {
   const base = {
     padding: '10px 8px',
     borderRadius: 'var(--rs)',
@@ -34,7 +48,7 @@ function getCellStyle(value, isHovered) {
     fontWeight: 600,
     cursor: 'pointer',
     userSelect: 'none',
-    transition: 'all 120ms',
+    transition: 'background-color 80ms, border-color 80ms',
     minHeight: '40px',
     display: 'flex',
     alignItems: 'center',
@@ -49,8 +63,6 @@ function getCellStyle(value, isHovered) {
   if (value === 'transition') {
     return {
       ...base,
-      background: 'linear-gradient(135deg, var(--v) 50%, #fff 50%)',
-      backgroundSize: '8px 8px',
       backgroundImage: 'repeating-linear-gradient(45deg, var(--v) 0, var(--v) 6px, #fff 6px, #fff 12px)',
       color: 'var(--s900)',
       textShadow: '0 0 2px rgba(255,255,255,0.7)',
@@ -122,47 +134,91 @@ function validate(grid) {
 }
 
 export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, party2Name }) {
-  const vars = schedule.regular_schedule_variables || {}
-  const grid = (Array.isArray(vars.weeks) && vars.weeks.length === 4)
-    ? vars.weeks
-    : emptyGrid()
-  const transitionDetails = vars.transitions || {}
+  const propVars = schedule?.regular_schedule_variables || {}
 
-  const { party1Percent, party2Percent, transitions } = useMemo(() => computePercent(grid), [grid])
+  // ── Local state, kept in sync with props when the user isn't actively editing ──
+  const [grid, setGrid] = useState(() => gridFromVars(propVars))
+  const [transitionDetails, setTransitionDetails] = useState(() => propVars.transitions || {})
+
+  // Pending-edit flag: while true, prop updates from the parent bundle
+  // refresh are IGNORED so the user's in-flight edits aren't clobbered.
+  const dirty = useRef(false)
+  const saveTimer = useRef(null)
+
+  // When the parent's schedule prop changes (e.g. bundle refreshed from server)
+  // AND the user isn't mid-edit, accept the new server state.
+  useEffect(() => {
+    if (dirty.current) return
+    setGrid(gridFromVars(propVars))
+    setTransitionDetails(propVars.transitions || {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [propVars.weeks, propVars.transitions])
+
+  // Cleanup the pending save timer on unmount.
+  useEffect(() => () => {
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+  }, [])
+
+  // Schedule a debounced save. Multiple rapid clicks collapse into one
+  // network round-trip with the final grid state.
+  const scheduleSave = useCallback((nextGrid, nextTransitions) => {
+    dirty.current = true
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+    saveTimer.current = setTimeout(() => {
+      saveTimer.current = null
+      onChange({
+        regular_schedule_template: 'custom_weekly',
+        regular_schedule_variables: { ...propVars, weeks: nextGrid, transitions: nextTransitions },
+      })
+      // Allow the next prop tick to sync server state back into local state.
+      // We wait a beat so the optimistic merge has landed.
+      setTimeout(() => { dirty.current = false }, 50)
+    }, SAVE_DEBOUNCE_MS)
+  }, [onChange, propVars])
+
+  // Click a cell to cycle its value. Updates local state on the next paint;
+  // the server save fires SAVE_DEBOUNCE_MS after the LAST click.
+  const updateCell = useCallback((w, d) => {
+    setGrid((prev) => {
+      const newGrid = prev.map((row) => row.slice())
+      newGrid[w][d] = nextValue(newGrid[w][d])
+      // If the cell is no longer a transition, drop its transition details.
+      let newTrans = transitionDetails
+      const key = `${w}-${d}`
+      if (newGrid[w][d] !== 'transition' && newTrans[key]) {
+        newTrans = { ...transitionDetails }
+        delete newTrans[key]
+        setTransitionDetails(newTrans)
+      }
+      scheduleSave(newGrid, newTrans)
+      return newGrid
+    })
+  }, [transitionDetails, scheduleSave])
+
+  const updateTransitionDetail = useCallback((key, patch) => {
+    setTransitionDetails((prev) => {
+      const next = { ...prev, [key]: { ...(prev[key] || {}), ...patch } }
+      scheduleSave(grid, next)
+      return next
+    })
+  }, [grid, scheduleSave])
+
+  // ── Derived (memoized so we don't recompute on unrelated re-renders) ──
+  const { party1Percent, party2Percent } = useMemo(() => computePercent(grid), [grid])
   const { missingTransitions, isolated } = useMemo(() => validate(grid), [grid])
 
-  const updateCell = useCallback((w, d) => {
-    const newGrid = grid.map((row) => row.slice())
-    newGrid[w][d] = nextValue(newGrid[w][d])
-    // If cell is no longer a transition, clean up its transition details
-    let newTrans = { ...transitionDetails }
-    const key = `${w}-${d}`
-    if (newGrid[w][d] !== 'transition' && newTrans[key]) {
-      delete newTrans[key]
-    }
-    onChange({
-      regular_schedule_template: 'custom_weekly',
-      regular_schedule_variables: { ...vars, weeks: newGrid, transitions: newTrans },
-    })
-  }, [grid, transitionDetails, vars, onChange])
-
-  const updateTransitionDetail = (key, patch) => {
-    const newTrans = { ...transitionDetails, [key]: { ...(transitionDetails[key] || {}), ...patch } }
-    onChange({
-      regular_schedule_template: 'custom_weekly',
-      regular_schedule_variables: { ...vars, weeks: grid, transitions: newTrans },
-    })
-  }
-
   // Collect transition days for the bottom section
-  const transitionDays = []
-  for (let w = 0; w < 4; w++) {
-    for (let d = 0; d < 7; d++) {
-      if (grid[w][d] === 'transition') {
-        transitionDays.push({ week: w + 1, day: DAY_LABELS[d], key: `${w}-${d}` })
+  const transitionDays = useMemo(() => {
+    const out = []
+    for (let w = 0; w < 4; w++) {
+      for (let d = 0; d < 7; d++) {
+        if (grid[w][d] === 'transition') {
+          out.push({ week: w + 1, day: DAY_LABELS[d], key: `${w}-${d}` })
+        }
       }
     }
-  }
+    return out
+  }, [grid])
 
   return (
     <div>
