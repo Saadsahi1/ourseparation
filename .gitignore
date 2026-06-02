@@ -31,3 +31,11 @@ Thumbs.db
 # Build tools
 .gram/
 .turbo/
+
+# Private file uploads (income docs, property valuations) — served through
+# the authenticated /api/files endpoint. Never serve via /public/ static.
+private_uploads/
+
+# Legacy public uploads dir — kept ignored so accidental writes don't get
+# committed and re-exposed.
+public/uploads/

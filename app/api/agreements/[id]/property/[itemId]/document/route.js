@@ -5,7 +5,10 @@ import { noStoreHeaders, checkAgreementOwner } from '@/lib/agreements/apiHelpers
 import fs from 'fs/promises'
 import path from 'path'
 
-const UPLOAD_BASE = path.join(process.cwd(), 'public', 'uploads', 'property')
+// Property valuation documents live OUTSIDE the public/ directory so
+// Next.js does not serve them as static assets. Downloads go through
+// the authenticated /api/files/property/* endpoint.
+const UPLOAD_BASE = path.join(process.cwd(), 'private_uploads', 'property')
 
 async function ensureDir(dir) {
   try { await fs.mkdir(dir, { recursive: true }) } catch (e) { /* exists */ }
@@ -34,7 +37,7 @@ export async function POST(req, { params }) {
     const filePath = path.join(dir, safe)
     const buf = Buffer.from(await file.arrayBuffer())
     await fs.writeFile(filePath, buf)
-    const publicUrl = `/uploads/property/${id}/${itemId}/${safe}`
+    const publicUrl = `/api/files/property/${id}/${itemId}/${safe}`
 
     const r = await pool.query(
       'UPDATE property_items SET document_url = $1 WHERE id = $2 AND agreement_id = $3 RETURNING *',
@@ -59,7 +62,10 @@ export async function DELETE(req, { params }) {
     if (r.rows.length === 0) return NextResponse.json({ error: 'Not found' }, { status: 404, headers: noStoreHeaders })
     if (r.rows[0].document_url) {
       try {
-        const filePath = path.join(process.cwd(), 'public', r.rows[0].document_url)
+        // document_url looks like '/api/files/property/<aId>/<itemId>/<filename>'
+        // Strip the API prefix and resolve to the private_uploads directory.
+        const relPath = r.rows[0].document_url.replace(/^\/api\/files\//, '')
+        const filePath = path.join(process.cwd(), 'private_uploads', relPath)
         await fs.unlink(filePath)
       } catch (e) { /* ignore */ }
     }

@@ -5,7 +5,11 @@ import { noStoreHeaders, checkAgreementOwner } from '@/lib/agreements/apiHelpers
 import fs from 'fs/promises'
 import path from 'path'
 
-const UPLOAD_BASE = path.join(process.cwd(), 'public', 'uploads', 'income')
+// Income tax documents live OUTSIDE the public/ directory so Next.js does
+// not serve them as static assets. Downloads go through the authenticated
+// /api/files/income/* endpoint which verifies the requester owns the
+// underlying agreement.
+const UPLOAD_BASE = path.join(process.cwd(), 'private_uploads', 'income')
 
 async function ensureDir(dir) {
   try { await fs.mkdir(dir, { recursive: true }) } catch (e) { /* exists */ }
@@ -60,7 +64,7 @@ export async function POST(req, { params }) {
     const buf = Buffer.from(await file.arrayBuffer())
     await fs.writeFile(filePath, buf)
 
-    const publicUrl = `/uploads/income/${id}/${party}/${taxYear}/${documentType}/${safe}`
+    const publicUrl = `/api/files/income/${id}/${party}/${taxYear}/${documentType}/${safe}`
 
     const r = await pool.query(
       `INSERT INTO income_documents (agreement_id, party, document_type, tax_year, file_url, file_name)
