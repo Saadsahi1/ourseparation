@@ -1,5 +1,6 @@
 'use client'
 import { useMemo, useState } from 'react'
+import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import FormField from '../shared/FormField'
 import TemplateSelector from '../shared/TemplateSelector'
 import SSAGBreakdown from './SSAGBreakdown'
@@ -22,37 +23,34 @@ const sectionHeading = {
 
 const fmtCAD = (n) => `$${Math.round(Number(n) || 0).toLocaleString('en-CA')}`
 
+// Tab 6: Spousal Support — results-only.
+// All calculator inputs (incomes, dates, children, residence) live in their
+// dedicated tabs (Tab 1: Info, Tab 5: Child Support). This tab pulls those
+// values, runs the SSAG formula, and SHOWS the result. The only things the
+// user picks here are the agreement-level decisions: who pays, how much,
+// what term structure, and termination triggers.
 export default function SpousalSupportTab({ bundle, save, party1Name, party2Name, user }) {
   const sc = bundle.supportCalculations || {}
   const a = bundle.agreement
   const children = bundle.children || []
   const hasChildren = children.length > 0
   const [showBreakdown, setShowBreakdown] = useState(false)
+  const router = useRouter()
+  const params = useParams()
+  const searchParams = useSearchParams()
 
   const saveS = (patch) => save('support', patch)
+
+  const goToTab = (tab) => {
+    const sp = new URLSearchParams(searchParams.toString())
+    sp.set('tab', tab)
+    router.push(`?${sp.toString()}`, { scroll: false })
+  }
 
   const p1Income = Number(sc.party1_income) || 0
   const p2Income = Number(sc.party2_income) || 0
   const startDate = a.cohabitation_date || a.marriage_date
   const sepDate = a.separation_date
-
-  // Tax year: pulled from spousal_support_variables.tax_year if set,
-  // otherwise defaults to the calendar year of the separation date.
-  const defaultTaxYear = sepDate ? new Date(sepDate).getFullYear() : new Date().getFullYear()
-  const storedTaxYear = sc.spousal_support_variables?.tax_year
-  const taxYear = storedTaxYear ? Number(storedTaxYear) : defaultTaxYear
-
-  // Build a year-picker option list spanning the supported range.
-  const taxYearOptions = useMemo(() => {
-    const years = []
-    for (let y = new Date().getFullYear(); y >= 2017; y--) years.push({ value: y, label: String(y) })
-    return years
-  }, [])
-
-  const setTaxYear = (y) => {
-    const existing = sc.spousal_support_variables || {}
-    saveS({ spousal_support_variables: { ...existing, tax_year: Number(y) || defaultTaxYear } })
-  }
 
   const ssagWithout = useMemo(() => {
     if (!p1Income || !p2Income || !startDate || !sepDate) return null
@@ -74,13 +72,13 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
           dateOfBirth: c.birth_date,
           residesWith: c.primary_residence === 'party1' ? 'A' : c.primary_residence === 'party2' ? 'B' : 'shared',
         })),
-        taxYear,
+        taxYear: sepDate ? new Date(sepDate).getFullYear() : new Date().getFullYear(),
       })
     } catch (e) {
       console.warn('SSAG with-child calc failed:', e.message)
       return null
     }
-  }, [hasChildren, p1Income, p2Income, startDate, sepDate, children, taxYear])
+  }, [hasChildren, p1Income, p2Income, startDate, sepDate, children])
 
   const ssag = hasChildren ? ssagWith : ssagWithout
   const payorIsA = ssag?.payorIsA
@@ -98,95 +96,71 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
   // Quick "Use SSAG amount" buttons
   const setAmount = (amount) => saveS({ spousal_support_amount: amount, spousal_support_payor: payorIsA ? 'party1' : 'party2' })
 
+  // Detect missing inputs so we can guide the user back to the right tab.
+  const missingInputs = []
+  if (!p1Income || !p2Income) missingInputs.push({ what: 'Annual gross incomes', goTo: 'child_support', tabLabel: 'Child Support' })
+  if (!startDate) missingInputs.push({ what: 'Cohabitation / marriage date', goTo: 'info', tabLabel: 'Info' })
+  if (!sepDate) missingInputs.push({ what: 'Separation date', goTo: 'info', tabLabel: 'Info' })
+
   return (
     <div>
-      {/* INPUTS — all on one page */}
+      {/* PULLED-FROM-AGREEMENT INPUT SUMMARY (read-only) */}
       <div style={cardStyle}>
         <h3 style={{ marginTop: 0, marginBottom: '4px' }}>Spousal Support Calculator</h3>
         <p style={{ marginTop: 0, marginBottom: '20px', color: 'var(--s600)', fontSize: '0.85rem' }}>
-          Calculated automatically using the Spousal Support Advisory Guidelines ({hasChildren ? 'with-child formula' : 'without-child formula'}). Edit incomes below or on the Child Support tab.
+          Calculated automatically from the data you've entered on the other tabs using the
+          {' '}{hasChildren ? <strong>with-child SSAG formula</strong> : <strong>without-child SSAG formula</strong>}.
         </p>
-
-        <h4 style={sectionHeading}>Inputs</h4>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
-          <FormField
-            label={`${party1Name} — Annual Gross Income`}
-            type="number" prefix="$"
-            value={sc.party1_income ?? ''}
-            onSave={(v) => saveS({ party1_income: Number(v) || 0 })}
-            hint="Line 15000 from the most recent Notice of Assessment"
-          />
-          <FormField
-            label={`${party2Name} — Annual Gross Income`}
-            type="number" prefix="$"
-            value={sc.party2_income ?? ''}
-            onSave={(v) => saveS({ party2_income: Number(v) || 0 })}
-            hint="Line 15000 from the most recent Notice of Assessment"
-          />
-        </div>
-
-        {hasChildren && (
-          <div style={{ marginTop: '14px' }}>
-            <FormField
-              label="Tax Year (for INDI / benefits)"
-              type="select"
-              value={taxYear}
-              onSave={setTaxYear}
-              options={taxYearOptions}
-              hint={`Defaults to the year of separation (${defaultTaxYear}). Affects tax rates and CCB used in the with-child calculation.`}
-            />
-          </div>
-        )}
 
         <div style={{
           background: 'var(--s50)', border: '1px solid var(--border)',
-          borderRadius: 'var(--rs)', padding: '12px 16px',
-          marginTop: '10px',
+          borderRadius: 'var(--rs)', padding: '14px 16px',
           fontSize: '0.85rem', color: 'var(--s700)',
-          display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px',
+          display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px',
         }}>
-          <div><strong style={{ color: 'var(--s900)' }}>Relationship start:</strong><br/>{startDate ? new Date(startDate).toLocaleDateString('en-CA') : 'Not set — edit on Info tab'}</div>
-          <div><strong style={{ color: 'var(--s900)' }}>Separation:</strong><br/>{sepDate ? new Date(sepDate).toLocaleDateString('en-CA') : 'Not set'}</div>
-          <div><strong style={{ color: 'var(--s900)' }}>Children:</strong><br/>{children.length} {children.length === 1 ? 'child' : 'children'}{hasChildren ? ' (with-child SSAG)' : ' (without-child SSAG)'}</div>
+          <div>
+            <strong style={{ color: 'var(--s900)' }}>{party1Name}'s income:</strong><br/>
+            {p1Income ? fmtCAD(p1Income) + '/yr' : <span style={{ color: 'var(--danger)' }}>Not set</span>}
+          </div>
+          <div>
+            <strong style={{ color: 'var(--s900)' }}>{party2Name}'s income:</strong><br/>
+            {p2Income ? fmtCAD(p2Income) + '/yr' : <span style={{ color: 'var(--danger)' }}>Not set</span>}
+          </div>
+          <div>
+            <strong style={{ color: 'var(--s900)' }}>Relationship start:</strong><br/>
+            {startDate ? new Date(startDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' }) : <span style={{ color: 'var(--danger)' }}>Not set</span>}
+          </div>
+          <div>
+            <strong style={{ color: 'var(--s900)' }}>Separation:</strong><br/>
+            {sepDate ? new Date(sepDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' }) : <span style={{ color: 'var(--danger)' }}>Not set</span>}
+          </div>
+          <div style={{ gridColumn: '1 / -1' }}>
+            <strong style={{ color: 'var(--s900)' }}>Children:</strong>{' '}
+            {children.length} {children.length === 1 ? 'child' : 'children'}
+            {hasChildren && <span style={{ color: 'var(--s600)' }}> — using with-child SSAG (incorporates child support, taxes, and benefits)</span>}
+          </div>
         </div>
 
-        {/* Per-child residence — only meaningful when there are children */}
-        {hasChildren && (
-          <div style={{ marginTop: '18px' }}>
-            <h5 style={{ marginTop: 0, marginBottom: '8px', fontSize: '0.88rem', fontWeight: 600, color: 'var(--s900)' }}>
-              Per-child residence (used by SSAG with-child formula)
-            </h5>
-            <p style={{ marginTop: 0, marginBottom: '10px', fontSize: '0.82rem', color: 'var(--s600)' }}>
-              Saved here; also reflected on the Info tab. Affects the tax-credit allocation used in the calculation.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {children.map((c) => (
-                <div key={c.id} style={{
-                  display: 'grid', gridTemplateColumns: '1fr 200px', gap: '12px', alignItems: 'center',
-                  padding: '8px 12px', background: '#fff',
-                  border: '1px solid var(--border)', borderRadius: 'var(--rs)',
-                }}>
-                  <div style={{ fontWeight: 500, fontSize: '0.9rem' }}>
-                    {c.full_name || '(unnamed child)'}
-                    {c.birth_date && (
-                      <span style={{ color: 'var(--s600)', fontSize: '0.8rem', marginLeft: '8px' }}>
-                        born {new Date(c.birth_date).toLocaleDateString('en-CA')}
-                      </span>
-                    )}
-                  </div>
-                  <FormField
-                    type="select"
-                    value={c.primary_residence || 'shared'}
-                    options={[
-                      { value: 'party1', label: `Lives with ${party1Name}` },
-                      { value: 'party2', label: `Lives with ${party2Name}` },
-                      { value: 'shared', label: 'Shared / 50-50' },
-                    ]}
-                    onSave={(v) => save('children', { primary_residence: v }, { method: 'PUT', pathSuffix: `/${c.id}` })}
-                  />
-                </div>
+        {missingInputs.length > 0 && (
+          <div style={{
+            marginTop: '14px',
+            background: '#FFF8E1', border: '1px solid #F0A500',
+            borderRadius: 'var(--rs)', padding: '12px 16px',
+            fontSize: '0.85rem', color: '#8A6A00',
+          }}>
+            <strong>Missing inputs for the SSAG calculation:</strong>
+            <ul style={{ margin: '6px 0 0 18px', padding: 0 }}>
+              {missingInputs.map((m, i) => (
+                <li key={i}>
+                  {m.what} —{' '}
+                  <a
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); goToTab(m.goTo) }}
+                    style={{ color: 'var(--v)', fontWeight: 600 }}
+                  >enter on the {m.tabLabel} tab →</a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
       </div>
@@ -195,12 +169,12 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
       <div style={{ ...cardStyle, background: 'var(--vx)', border: '1px solid var(--vc)' }}>
         <h3 style={{ marginTop: 0, marginBottom: '4px' }}>SSAG Range</h3>
         <p style={{ marginTop: 0, marginBottom: '16px', color: 'var(--s600)', fontSize: '0.85rem' }}>
-          Spousal Support Advisory Guidelines range. Choose the low/mid/high amount that fits your circumstances.
+          Spousal Support Advisory Guidelines range. Choose the low / mid / high amount that fits your circumstances.
         </p>
 
         {!ssag && (
           <p style={{ color: 'var(--s400)', fontStyle: 'italic' }}>
-            Enter both incomes above and ensure dates are set on the Info tab to see the SSAG range.
+            Complete the inputs above (incomes + dates) to see the SSAG range.
           </p>
         )}
 
