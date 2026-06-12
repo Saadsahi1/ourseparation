@@ -31,7 +31,7 @@ function computeStatus(tab, completion) {
   return 'not_started'
 }
 
-export default function AgreementTabs({ activeTab, completion, saveStatus, agreementLabel, onLabelChange }) {
+export default function AgreementTabs({ activeTab, completion, saveStatus, agreementLabel, onLabelChange, guardNavigation }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [editingLabel, setEditingLabel] = useState(false)
@@ -39,10 +39,20 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
 
   useEffect(() => { setTempLabel(agreementLabel || 'Untitled Agreement') }, [agreementLabel])
 
+  // guardNavigation: when the current tab has buffered edits, ask the user
+  // to confirm before discarding them. Editor page supplies this; if it
+  // returns false, navigation is aborted.
   const navigate = (tabKey) => {
+    if (tabKey === activeTab) return
+    if (guardNavigation && !guardNavigation()) return
     const params = new URLSearchParams(searchParams.toString())
     params.set('tab', tabKey)
     router.push(`?${params.toString()}`, { scroll: false })
+  }
+
+  const navigateBackToList = () => {
+    if (guardNavigation && !guardNavigation()) return
+    router.push('/agreements')
   }
 
   return (
@@ -58,7 +68,7 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button
-            onClick={() => router.push('/agreements')}
+            onClick={navigateBackToList}
             className="btn btn-ghost btn-sm"
             style={{ fontSize: '0.85rem' }}
           >← Back</button>

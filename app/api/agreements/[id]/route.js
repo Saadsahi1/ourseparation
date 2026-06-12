@@ -17,13 +17,25 @@ async function ensureOwner(user, id) {
 
 const AGREEMENT_FIELDS = [
   'agreement_type', 'label', 'status',
+  'party1_first_name', 'party1_last_name',
   'party1_dob', 'party1_occupation', 'party1_parental_title',
-  'party2_name', 'party2_dob', 'party2_occupation', 'party2_parental_title', 'party2_email',
+  'party2_first_name', 'party2_last_name',
+  'party2_name',  // legacy display column — written from first+last on save
+  'party2_dob', 'party2_occupation', 'party2_parental_title', 'party2_email',
   'marriage_date', 'cohabitation_date', 'separation_date',
   'marriage_location', 'signing_city',
   'retroactive_support_waived',
   'section_completion',
 ]
+
+// Join first + last with a single space (handles either missing). Returns
+// null when both are empty so we don't write empty strings to the DB.
+function joinName(first, last) {
+  const f = (first || '').trim()
+  const l = (last || '').trim()
+  if (!f && !l) return null
+  return [f, l].filter(Boolean).join(' ')
+}
 
 export async function GET(req, { params }) {
   try {
@@ -57,6 +69,26 @@ export async function PUT(req, { params }) {
     const check = await ensureOwner(user, id)
     if (check.notFound) return NextResponse.json({ error: 'Agreement not found' }, { status: 404, headers: noStoreHeaders })
     if (check.forbidden) return NextResponse.json({ error: 'Forbidden' }, { status: 403, headers: noStoreHeaders })
+
+    // Whenever first or last name changes for Party 2, recompute the legacy
+    // party2_name display column. Renderers and template code haven't all
+    // been moved to read first/last directly, so this keeps the document
+    // and admin views consistent.
+    if (Object.prototype.hasOwnProperty.call(body, 'party2_first_name')
+        || Object.prototype.hasOwnProperty.call(body, 'party2_last_name')) {
+      // Read existing values so we can recompute even if only one of the
+      // pair was sent in this patch.
+      const cur = await pool.query(
+        'SELECT party2_first_name, party2_last_name FROM agreements WHERE id = $1',
+        [id]
+      )
+      const row = cur.rows[0] || {}
+      const f = Object.prototype.hasOwnProperty.call(body, 'party2_first_name')
+        ? body.party2_first_name : row.party2_first_name
+      const l = Object.prototype.hasOwnProperty.call(body, 'party2_last_name')
+        ? body.party2_last_name : row.party2_last_name
+      body.party2_name = joinName(f, l)
+    }
 
     const sets = []
     const vals = []

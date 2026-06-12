@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useEffect, useMemo } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import { AuthProvider, useAuth } from '@/components/AuthProvider'
 import Nav from '@/components/Nav'
@@ -41,11 +41,40 @@ function EditorContent() {
   const agreementId = params?.id
   const tab = searchParams.get('tab') || 'info'
 
-  const { bundle, loading, error, saveStatus, save, refresh } = useAgreementBundle(agreementId)
+  const { bundle, loading, error, saveStatus, save, saveNow, refresh } = useAgreementBundle(agreementId)
+
+  // Per-tab dirty state. Each tab calls `registerDirty(boolean)` when its
+  // buffered edits change so we can intercept navigation away.
+  const dirtyRef = useRef(false)
+  const [, forceDirtyTick] = useState(0)  // re-render the strip when ref changes
+  const registerDirty = useCallback((isDirty) => {
+    if (dirtyRef.current === isDirty) return
+    dirtyRef.current = isDirty
+    forceDirtyTick((n) => n + 1)
+  }, [])
+
+  // Native browser warning on refresh / close / back when a tab has buffered
+  // edits the user hasn't saved.
+  useEffect(() => {
+    const onBeforeUnload = (e) => {
+      if (!dirtyRef.current) return
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
+  }, [])
 
   useEffect(() => {
     if (!authLoading && !user) { router.push('/login') }
   }, [authLoading, user, router])
+
+  // When the user changes tabs, reset the dirty flag — the unmounting tab's
+  // buffer is gone, and the mounting tab will register its own state on the
+  // next render.
+  useEffect(() => {
+    dirtyRef.current = false
+  }, [tab])
 
   // Recompute and persist section_completion whenever the bundle changes.
   // Use a deep-equal comparison so we don't fire a save when Postgres returns
@@ -106,6 +135,10 @@ function EditorContent() {
         saveStatus={saveStatus}
         agreementLabel={bundle.agreement.label}
         onLabelChange={(newLabel) => save('agreement', { label: newLabel })}
+        guardNavigation={() => {
+          if (!dirtyRef.current) return true
+          return confirm('You have unsaved changes on this tab. Leave anyway? Unsaved edits will be lost.')
+        }}
       />
 
       <main style={{ maxWidth: '1300px', margin: '0 auto', padding: '24px' }}>
@@ -119,27 +152,41 @@ function EditorContent() {
                 if (Object.keys(supportPatch).length > 0) await save('support', supportPatch)
               }}
             />
-            <InfoTab bundle={bundle} save={save} user={bundle.owner || user} />
+            <InfoTab
+              bundle={bundle} save={save} saveNow={saveNow}
+              user={bundle.owner || user}
+              registerDirty={registerDirty}
+            />
           </>
         )}
         {tab === 'parenting' && (
           <ParentingTab bundle={bundle} save={save} user={bundle.owner || user}
-            party1Name={party1Name} party2Name={party2Name} />
+            party1Name={party1Name} party2Name={party2Name}
+            registerDirty={registerDirty} />
         )}
         {tab === 'property' && (
-          <PropertyTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} />
+          <PropertyTab bundle={bundle} save={save}
+            party1Name={party1Name} party2Name={party2Name}
+            registerDirty={registerDirty} />
         )}
         {tab === 'income' && (
           <IncomeDocsTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} refresh={refresh} />
         )}
         {tab === 'child_support' && (
-          <ChildSupportTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} />
+          <ChildSupportTab bundle={bundle} save={save}
+            party1Name={party1Name} party2Name={party2Name}
+            registerDirty={registerDirty} />
         )}
         {tab === 'spousal_support' && (
-          <SpousalSupportTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} user={bundle.owner || user} />
+          <SpousalSupportTab bundle={bundle} save={save}
+            party1Name={party1Name} party2Name={party2Name}
+            user={bundle.owner || user}
+            registerDirty={registerDirty} />
         )}
         {tab === 'additional' && (
-          <AdditionalTermsTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} />
+          <AdditionalTermsTab bundle={bundle} save={save}
+            party1Name={party1Name} party2Name={party2Name}
+            registerDirty={registerDirty} />
         )}
         {tab === 'preview' && (
           <AgreementPreview bundle={bundle} />

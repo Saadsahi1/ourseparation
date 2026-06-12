@@ -171,5 +171,21 @@ export default function useAgreementBundle(agreementId) {
     }
   }, [agreementId, scheduleRefresh])
 
-  return { bundle, loading, error, saveStatus, save, refresh }
+  // Explicit commit used by the "Save Page" button. Like `save` but with
+  // an *immediate* (non-debounced) full bundle refresh once the patch
+  // round-trips, so all derived state (section completion, document
+  // preview, NFP totals) reflects the saved values without waiting for
+  // the debounce window.
+  const saveNow = useCallback(async (section, body, opts = {}) => {
+    const data = await save(section, body, opts)
+    // Cancel any pending debounced refresh; do one now.
+    if (refreshTimer.current) {
+      clearTimeout(refreshTimer.current)
+      refreshTimer.current = null
+    }
+    await refresh()
+    return data
+  }, [save, refresh])
+
+  return { bundle, loading, error, saveStatus, save, saveNow, refresh }
 }

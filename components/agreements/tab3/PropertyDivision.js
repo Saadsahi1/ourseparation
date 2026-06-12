@@ -7,6 +7,7 @@ import {
   EQUALIZATION_PAYMENT_TEMPLATES,
 } from '@/lib/agreements/templateLibrary'
 import { equalizationFromItems } from '@/lib/agreements/utils'
+import useDirtyBuffer, { useRegisterBuffer } from '../shared/useDirtyBuffer'
 
 const cardStyle = {
   background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r)',
@@ -17,8 +18,18 @@ const sectionHeading = {
   marginTop: 0, marginBottom: '14px', fontSize: '1rem', fontWeight: 600, color: 'var(--s900)',
 }
 
-export default function PropertyDivision({ bundle, save, party1Name, party2Name }) {
-  const division = bundle.propertyDivisionTerms || {}
+export default function PropertyDivision({ bundle, save, party1Name, party2Name, registry }) {
+  // Buffer all property-division-terms field writes. Reading via `buf.values`
+  // gives a merged view (server state + any in-flight edits) so the UI
+  // reacts instantly while the actual save waits for the Save Page click.
+  const buf = useDirtyBuffer({
+    serverValues: bundle.propertyDivisionTerms || {},
+    onFlush: (patch) => save('property-division', patch),
+    label: 'property-division',
+  })
+  useRegisterBuffer(registry, buf)
+
+  const division = buf.values
   const items = bundle.propertyItems || []
   const { amount: calcEq, payor } = equalizationFromItems(items)
   const effectiveAmount = division.custom_equalization_amount != null
@@ -26,7 +37,11 @@ export default function PropertyDivision({ bundle, save, party1Name, party2Name 
   const payorName = payor === 'party1' ? party1Name : (payor === 'party2' ? party2Name : null)
   const recipientName = payor === 'party1' ? party2Name : (payor === 'party2' ? party1Name : null)
 
-  const saveD = (patch) => save('property-division', patch)
+  // saveD now writes to the buffer instead of going to the server immediately.
+  // The buffer flushes the accumulated patch on Save Page.
+  const saveD = (patch) => {
+    for (const [k, v] of Object.entries(patch)) buf.setValue(k, v)
+  }
 
   // Build dispositionOptions with the actual party names — "Aaron buyout" etc.
   const dispositionOptions = useMemo(() => [

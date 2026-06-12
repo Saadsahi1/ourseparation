@@ -1,8 +1,9 @@
 'use client'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import FormField from '../shared/FormField'
 import TemplateSelector from '../shared/TemplateSelector'
+import SaveBar from '../shared/SaveBar'
 import SSAGBreakdown from './SSAGBreakdown'
 import { calculateWithoutChildSupport } from '@/lib/calc/ssagWithout'
 import { calculateWithChildSupport } from '@/lib/calc/ssagWith'
@@ -11,6 +12,7 @@ import {
   SPOUSAL_TERMINATION_TRIGGERS,
 } from '@/lib/agreements/templateLibrary'
 import { checkRuleOf65 } from '@/lib/agreements/utils'
+import useDirtyBuffer, { useDirtyRegistry, useRegisterBuffer } from '../shared/useDirtyBuffer'
 
 const cardStyle = {
   background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r)',
@@ -29,8 +31,7 @@ const fmtCAD = (n) => `$${Math.round(Number(n) || 0).toLocaleString('en-CA')}`
 // values, runs the SSAG formula, and SHOWS the result. The only things the
 // user picks here are the agreement-level decisions: who pays, how much,
 // what term structure, and termination triggers.
-export default function SpousalSupportTab({ bundle, save, party1Name, party2Name, user }) {
-  const sc = bundle.supportCalculations || {}
+export default function SpousalSupportTab({ bundle, save, party1Name, party2Name, user, registerDirty }) {
   const a = bundle.agreement
   const children = bundle.children || []
   const hasChildren = children.length > 0
@@ -39,7 +40,26 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
   const params = useParams()
   const searchParams = useSearchParams()
 
-  const saveS = (patch) => save('support', patch)
+  // Buffer the user-decision fields on this tab (payor, amount, term
+  // template + variables, termination triggers). Income / dates / children
+  // are NOT buffered here — they're read-only on this tab and come from
+  // their dedicated tabs already.
+  const registry = useDirtyRegistry()
+  useEffect(() => {
+    if (registerDirty) registerDirty(registry.isDirty)
+  }, [registry.isDirty, registerDirty])
+
+  const buf = useDirtyBuffer({
+    serverValues: bundle.supportCalculations || {},
+    onFlush: (patch) => save('support', patch),
+    label: 'spousal-support',
+  })
+  useRegisterBuffer(registry, buf)
+  const sc = buf.values
+
+  const saveS = (patch) => {
+    for (const [k, val] of Object.entries(patch)) buf.setValue(k, val)
+  }
 
   const goToTab = (tab) => {
     const sp = new URLSearchParams(searchParams.toString())
@@ -104,6 +124,8 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
 
   return (
     <div>
+      <SaveBar registry={registry} />
+
       {/* PULLED-FROM-AGREEMENT INPUT SUMMARY (read-only) */}
       <div style={cardStyle}>
         <h3 style={{ marginTop: 0, marginBottom: '4px' }}>Spousal Support Calculator</h3>

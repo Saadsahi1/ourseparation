@@ -8,38 +8,60 @@ import {
   TRANSPORTATION_TEMPLATES,
 } from '@/lib/agreements/templateLibrary'
 import FormField from '../shared/FormField'
+import useDirtyBuffer, { useRegisterBuffer } from '../shared/useDirtyBuffer'
 
 const cardStyle = {
   background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r)',
   padding: '24px', marginBottom: '20px', boxShadow: 'var(--sh-xs)',
 }
 
-export default function Schedule({ bundle, save, party1Name, party2Name }) {
+// Schedule — buffered for the non-grid templates (regular, summer,
+// transportation) which all PUT to the same /parenting-schedules endpoint.
+// The custom-weekly 4-week grid keeps its own local-state + debounced save
+// path (managed inside ScheduleCustomWeekly itself); when the user is in
+// custom_weekly mode, that component takes over and bypasses the buffer
+// because grid clicks shouldn't accumulate as "unsaved changes" — they
+// commit automatically.
+export default function Schedule({ bundle, save, party1Name, party2Name, registry }) {
   const s = bundle.parentingSchedule || {}
 
-  const sched = (patch) => save('parenting-schedules', { child_id: null, ...patch })
+  // Buffer the singleton parenting-schedule fields. The custom-weekly grid
+  // calls `sched(patch)` directly (bypassing the buffer) since it manages
+  // its own commit cycle.
+  const buf = useDirtyBuffer({
+    serverValues: s,
+    onFlush: (patch) => save('parenting-schedules', { child_id: null, ...patch }),
+    label: 'parenting-schedules',
+  })
+  useRegisterBuffer(registry, buf)
 
-  // Determine parenting time percentage from current template
-  const tplKey = s.regular_schedule_template
+  // Immediate-save path for the custom-weekly grid only.
+  const schedImmediate = (patch) => save('parenting-schedules', { child_id: null, ...patch })
+
+  const v = (k, fallback) => {
+    const val = buf.getValue(k)
+    return val ?? fallback
+  }
+
+  const tplKey = v('regular_schedule_template')
   const tpl = PARENTING_SCHEDULE_TEMPLATES[tplKey]
   let p1Percent = 50, p2Percent = 50
   if (tpl?.party1TimePercent) {
-    p1Percent = tpl.party1TimePercent(s.regular_schedule_variables || {})
+    p1Percent = tpl.party1TimePercent(v('regular_schedule_variables', {}))
     p2Percent = 100 - p1Percent
   }
 
-  // For schedule selectors, we need a "primaryParent" select that resolves to party1Name/party2Name
   const primaryParentOptions = [
     { value: 'party1', label: party1Name },
     { value: 'party2', label: party2Name },
   ]
 
-  // Resolve party names for live preview substitution
+  const regularVars = v('regular_schedule_variables', {})
   const subContext = {
     party1: party1Name,
     party2: party2Name,
-    primaryParentName: s.regular_schedule_variables?.primaryParent === 'party2' ? party2Name : party1Name,
-    otherParentName: s.regular_schedule_variables?.primaryParent === 'party2' ? party1Name : party2Name,
+    primaryParentName: regularVars?.primaryParent === 'party2' ? party2Name : party1Name,
+    otherParentName: regularVars?.primaryParent === 'party2' ? party1Name : party2Name,
   }
 
   return (
@@ -51,11 +73,16 @@ export default function Schedule({ bundle, save, party1Name, party2Name }) {
         </p>
         <TemplateSelector
           templates={PARENTING_SCHEDULE_TEMPLATES}
-          value={{ template: s.regular_schedule_template, variables: tplKey === 'custom_weekly' ? {} : (s.regular_schedule_variables || {}) }}
-          onChange={({ template, variables }) => sched({
-            regular_schedule_template: template,
-            regular_schedule_variables: template === 'custom_weekly' ? (s.regular_schedule_template === 'custom_weekly' ? s.regular_schedule_variables : {}) : variables,
-          })}
+          value={{ template: tplKey, variables: tplKey === 'custom_weekly' ? {} : regularVars }}
+          onChange={({ template, variables }) => {
+            buf.setValue('regular_schedule_template', template)
+            buf.setValue(
+              'regular_schedule_variables',
+              template === 'custom_weekly'
+                ? (s.regular_schedule_template === 'custom_weekly' ? s.regular_schedule_variables : {})
+                : variables
+            )
+          }}
           substitutionContext={subContext}
           variableLabels={{
             primaryParent: 'Primary Parent',
@@ -82,7 +109,7 @@ export default function Schedule({ bundle, save, party1Name, party2Name }) {
         {tplKey === 'custom_weekly' ? (
           <ScheduleCustomWeekly
             schedule={s}
-            onChange={sched}
+            onChange={schedImmediate}
             party1Name={party1Name}
             party2Name={party2Name}
           />
@@ -103,11 +130,11 @@ export default function Schedule({ bundle, save, party1Name, party2Name }) {
         </p>
         <TemplateSelector
           templates={SUMMER_SCHEDULE_TEMPLATES}
-          value={{ template: s.summer_schedule_template, variables: s.summer_schedule_variables || {} }}
-          onChange={({ template, variables }) => sched({
-            summer_schedule_template: template,
-            summer_schedule_variables: variables,
-          })}
+          value={{ template: v('summer_schedule_template'), variables: v('summer_schedule_variables', {}) }}
+          onChange={({ template, variables }) => {
+            buf.setValue('summer_schedule_template', template)
+            buf.setValue('summer_schedule_variables', variables)
+          }}
           substitutionContext={subContext}
           variableLabels={{ durationWeeks: 'Duration (weeks)' }}
         />
@@ -120,18 +147,18 @@ export default function Schedule({ bundle, save, party1Name, party2Name }) {
         </p>
         <TemplateSelector
           templates={TRANSPORTATION_TEMPLATES}
-          value={{ template: s.transportation_template, variables: s.transportation_variables || {} }}
-          onChange={({ template, variables }) => sched({
-            transportation_template: template,
-            transportation_variables: variables,
-          })}
+          value={{ template: v('transportation_template'), variables: v('transportation_variables', {}) }}
+          onChange={({ template, variables }) => {
+            buf.setValue('transportation_template', template)
+            buf.setValue('transportation_variables', variables)
+          }}
           substitutionContext={subContext}
           variableLabels={{ halfwayLocation: 'Halfway Meeting Location' }}
         />
         <FormField
           label="Default Pickup/Dropoff Location"
-          value={s.pickup_dropoff_location || ''}
-          onSave={(v) => sched({ pickup_dropoff_location: v })}
+          value={v('pickup_dropoff_location', '')}
+          onSave={(val) => buf.setValue('pickup_dropoff_location', val)}
           placeholder="e.g. children's school, party 1's home"
         />
       </div>

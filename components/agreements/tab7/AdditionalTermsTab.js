@@ -1,7 +1,9 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SubTabs from '../shared/SubTabs'
 import TemplateSelector from '../shared/TemplateSelector'
+import SaveBar from '../shared/SaveBar'
+import useDirtyBuffer, { useDirtyRegistry, useRegisterBuffer } from '../shared/useDirtyBuffer'
 import {
   LIFE_INSURANCE_TEMPLATES,
   DISCLOSURE_TEMPLATES,
@@ -21,10 +23,27 @@ const cardStyle = {
   padding: '24px', marginBottom: '20px', boxShadow: 'var(--sh-xs)',
 }
 
-export default function AdditionalTermsTab({ bundle, save, party1Name, party2Name }) {
+export default function AdditionalTermsTab({ bundle, save, party1Name, party2Name, registerDirty }) {
   const [sub, setSub] = useState('insurance')
-  const t = bundle.additionalTerms || {}
-  const saveT = (patch) => save('additional-terms', patch)
+
+  // All four sub-tabs PUT to the same /additional-terms endpoint, so one
+  // buffer covers the whole tab. Save Page commits everything in one
+  // round-trip.
+  const registry = useDirtyRegistry()
+  useEffect(() => {
+    if (registerDirty) registerDirty(registry.isDirty)
+  }, [registry.isDirty, registerDirty])
+
+  const buf = useDirtyBuffer({
+    serverValues: bundle.additionalTerms || {},
+    onFlush: (patch) => save('additional-terms', patch),
+    label: 'additional-terms',
+  })
+  useRegisterBuffer(registry, buf)
+  const t = buf.values
+  const saveT = (patch) => {
+    for (const [k, v] of Object.entries(patch)) buf.setValue(k, v)
+  }
 
   const subContext = {
     party1: party1Name,
@@ -43,6 +62,7 @@ export default function AdditionalTermsTab({ bundle, save, party1Name, party2Nam
 
   return (
     <div>
+      <SaveBar registry={registry} />
       <SubTabs tabs={SUB_TABS} active={sub} onChange={setSub} />
 
       {sub === 'insurance' && (
