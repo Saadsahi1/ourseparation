@@ -4,6 +4,7 @@ import FormField from '../shared/FormField'
 import ChildrenList from './ChildrenList'
 import PrevRelationshipChildren from './PrevRelationshipChildren'
 import SaveBar from '../shared/SaveBar'
+import InviteOtherPartyBanner from '../shared/InviteOtherPartyBanner'
 import { getChildAge } from '@/lib/agreements/utils'
 import {
   ONTARIO_CITIES,
@@ -74,6 +75,7 @@ export default function InfoTab({ bundle, save, saveNow, user, registerDirty }) 
 
   return (
     <div>
+      <InviteOtherPartyBanner agreement={a} />
       <SaveBar registry={registry} />
 
       {/* Party 1 */}

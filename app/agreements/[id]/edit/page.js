@@ -15,6 +15,7 @@ import AdditionalTermsTab from '@/components/agreements/tab7/AdditionalTermsTab'
 import AgreementPreview from '@/components/agreements/tab8/AgreementPreview'
 import SignaturesTab from '@/components/agreements/tab9/SignaturesTab'
 import PrefillBanner from '@/components/agreements/shared/PrefillBanner'
+import TabFooter from '@/components/agreements/shared/TabFooter'
 import { computeSectionCompletion, getPartyDisplayName } from '@/lib/agreements/utils'
 
 function deepEqual(a, b) {
@@ -194,6 +195,11 @@ function EditorContent() {
         {tab === 'signatures' && (
           <SignaturesTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} refresh={refresh} />
         )}
+
+        <TabFooter activeTab={tab} guardNavigation={() => {
+          if (!dirtyRef.current) return true
+          return confirm('You have unsaved changes on this tab. Leave anyway? Unsaved edits will be lost.')
+        }} />
       </main>
     </div>
   )

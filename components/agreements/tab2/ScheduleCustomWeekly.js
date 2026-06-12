@@ -2,7 +2,6 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
 import FormField from '../shared/FormField'
 import ParentingTimeMeter from './ParentingTimeMeter'
-import { ONTARIO_CITIES } from '@/lib/agreements/selectOptions'
 
 // 4-week × 7-day custom schedule editor.
 // Each cell cycles through: party1 → party2 → transition → party1.
@@ -339,9 +338,8 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
                   />
                   <FormField
                     label="Pickup Location"
-                    type="autocomplete"
-                    datalistOptions={['Children\'s school', 'Party 1\'s home', 'Party 2\'s home', 'Agreed neutral location', ...ONTARIO_CITIES.map((c) => c.value)]}
                     value={detail.pickup_location || ''}
+                    placeholder="e.g. children's school, party 1's home"
                     onSave={(v) => updateTransitionDetail(key, { pickup_location: v })}
                   />
                   <FormField
@@ -352,9 +350,8 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
                   />
                   <FormField
                     label="Dropoff Location"
-                    type="autocomplete"
-                    datalistOptions={['Children\'s school', 'Party 1\'s home', 'Party 2\'s home', 'Agreed neutral location', ...ONTARIO_CITIES.map((c) => c.value)]}
                     value={detail.dropoff_location || ''}
+                    placeholder="e.g. children's school, party 2's home"
                     onSave={(v) => updateTransitionDetail(key, { dropoff_location: v })}
                   />
                 </div>
