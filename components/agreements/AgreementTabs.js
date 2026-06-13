@@ -40,15 +40,21 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
 
   useEffect(() => { setTempLabel(agreementLabel || 'Untitled Agreement') }, [agreementLabel])
 
+  const tabHref = (tabKey) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('tab', tabKey)
+    return `${pathname}?${params.toString()}`
+  }
+
   // guardNavigation: when the current tab has buffered edits, ask the user
   // to confirm before discarding them. Editor page supplies this; if it
   // returns false, navigation is aborted.
-  const navigate = (tabKey) => {
-    if (tabKey === activeTab) return
-    if (guardNavigation && !guardNavigation()) return
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('tab', tabKey)
-    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+  const handleTabClick = (e, tabKey) => {
+    if (tabKey === activeTab) {
+      e.preventDefault()
+      return
+    }
+    if (guardNavigation && !guardNavigation()) e.preventDefault()
   }
 
   const navigateBackToList = () => {
@@ -117,10 +123,10 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
             const isActive = activeTab === t.key
             const status = computeStatus(t, completion)
             return (
-              <button
+              <a
                 key={t.key}
-                type="button"
-                onClick={() => navigate(t.key)}
+                href={tabHref(t.key)}
+                onClick={(e) => handleTabClick(e, t.key)}
                 style={{
                   padding: '12px 16px',
                   background: isActive ? 'var(--vx)' : 'transparent',
@@ -134,13 +140,14 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
                   alignItems: 'center',
                   gap: '8px',
                   whiteSpace: 'nowrap',
+                  textDecoration: 'none',
                   transition: 'all 120ms',
                 }}
               >
                 <CompletionBadge status={status} />
                 <span style={{ marginRight: '2px' }}>{t.icon}</span>
                 {t.label}
-              </button>
+              </a>
             )
           })}
         </div>

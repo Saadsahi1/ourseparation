@@ -1,12 +1,11 @@
 'use client'
-import { useRouter, useSearchParams, usePathname } from 'next/navigation'
+import { useSearchParams, usePathname } from 'next/navigation'
 import { TABS } from '../AgreementTabs'
 
 // Footer with Previous / Next buttons. Mirrors the same router.push +
 // useSearchParams flow as AgreementTabs so a click here advances the tab
 // in the same way as the top strip.
 export default function TabFooter({ activeTab, guardNavigation }) {
-  const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -16,19 +15,16 @@ export default function TabFooter({ activeTab, guardNavigation }) {
   const prev = idx > 0 ? TABS[idx - 1] : null
   const next = idx < TABS.length - 1 ? TABS[idx + 1] : null
 
-  const go = (tabKey) => {
-    if (!tabKey) return
-    if (guardNavigation && !guardNavigation()) return
+  const tabHref = (tabKey) => {
     const params = new URLSearchParams(searchParams?.toString() || '')
     params.set('tab', tabKey)
-    // Push with the full pathname so Next.js treats this as the same route
-    // segment and the editor's useSearchParams hook fires. Scroll to top
-    // after the navigation commits so the user lands at the new tab's
-    // header rather than the previous tab's footer position.
-    router.push(`${pathname}?${params.toString()}`, { scroll: false })
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: 'auto' })
-    })
+    return `${pathname}?${params.toString()}`
+  }
+
+  const handleClick = (e, tabKey) => {
+    if (!tabKey || (guardNavigation && !guardNavigation())) {
+      e.preventDefault()
+    }
   }
 
   return (
@@ -43,9 +39,9 @@ export default function TabFooter({ activeTab, guardNavigation }) {
     }}>
       <div>
         {prev ? (
-          <button type="button" onClick={() => go(prev.key)} className="btn btn-outline">
+          <a href={tabHref(prev.key)} onClick={(e) => handleClick(e, prev.key)} className="btn btn-outline">
             ← {prev.label}
-          </button>
+          </a>
         ) : <span />}
       </div>
       <div style={{ fontSize: '0.82rem', color: 'var(--s600)' }}>
@@ -53,9 +49,9 @@ export default function TabFooter({ activeTab, guardNavigation }) {
       </div>
       <div>
         {next ? (
-          <button type="button" onClick={() => go(next.key)} className="btn btn-primary">
+          <a href={tabHref(next.key)} onClick={(e) => handleClick(e, next.key)} className="btn btn-primary">
             {next.label} →
-          </button>
+          </a>
         ) : <span />}
       </div>
     </div>
