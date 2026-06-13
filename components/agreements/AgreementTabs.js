@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import CompletionBadge from './shared/CompletionBadge'
 
@@ -36,8 +36,27 @@ export default function AgreementTabs({ activeTab, completion, agreementLabel, o
   const pathname = usePathname()
   const [editingLabel, setEditingLabel] = useState(false)
   const [tempLabel, setTempLabel] = useState(agreementLabel || 'Untitled Agreement')
+  const promptedRenameRef = useRef(false)
 
   useEffect(() => { setTempLabel(agreementLabel || 'Untitled Agreement') }, [agreementLabel])
+
+  const isDefaultLabel = !agreementLabel || agreementLabel.trim().toLowerCase() === 'untitled agreement'
+  useEffect(() => {
+    if (!isDefaultLabel || promptedRenameRef.current) return
+    promptedRenameRef.current = true
+    setTempLabel('')
+    setEditingLabel(true)
+  }, [isDefaultLabel])
+
+  const commitLabel = useCallback(() => {
+    const nextLabel = tempLabel.trim()
+    setEditingLabel(false)
+    if (!nextLabel) {
+      setTempLabel(agreementLabel || 'Untitled Agreement')
+      return
+    }
+    if (nextLabel !== agreementLabel) onLabelChange && onLabelChange(nextLabel)
+  }, [agreementLabel, onLabelChange, tempLabel])
 
   const tabHref = (tabKey) => {
     const params = new URLSearchParams(searchParams.toString())
@@ -80,31 +99,52 @@ export default function AgreementTabs({ activeTab, completion, agreementLabel, o
             style={{ fontSize: '0.85rem' }}
           >← Back</button>
           {editingLabel ? (
-            <input
-              type="text"
-              value={tempLabel}
-              onChange={(e) => setTempLabel(e.target.value)}
-              onBlur={() => {
-                setEditingLabel(false)
-                if (tempLabel !== agreementLabel) onLabelChange && onLabelChange(tempLabel)
-              }}
-              onKeyDown={(e) => { if (e.key === 'Enter') e.target.blur() }}
-              autoFocus
-              style={{
-                fontSize: '1.1rem', fontWeight: 600, padding: '6px 10px',
-                border: '1px solid var(--v)', borderRadius: 'var(--rs)', outline: 'none',
-                minWidth: '280px',
-              }}
-            />
+            <div>
+              <input
+                type="text"
+                value={tempLabel}
+                onChange={(e) => setTempLabel(e.target.value)}
+                onBlur={commitLabel}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') e.target.blur()
+                  if (e.key === 'Escape') {
+                    setTempLabel(agreementLabel || 'Untitled Agreement')
+                    setEditingLabel(false)
+                  }
+                }}
+                autoFocus
+                placeholder="Name this agreement"
+                style={{
+                  fontSize: '1.1rem', fontWeight: 600, padding: '6px 10px',
+                  border: '1px solid var(--v)', borderRadius: 'var(--rs)', outline: 'none',
+                  minWidth: '280px',
+                }}
+              />
+              {isDefaultLabel && (
+                <div style={{ fontSize: '0.72rem', color: 'var(--s500)', marginTop: '3px', paddingLeft: '2px' }}>
+                  Give this agreement a clear name before you continue.
+                </div>
+              )}
+            </div>
           ) : (
-            <h2
-              onClick={() => setEditingLabel(true)}
-              style={{
-                margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--s900)',
-                cursor: 'text', padding: '6px 10px', borderRadius: 'var(--rs)',
-              }}
-              title="Click to rename"
-            >{agreementLabel || 'Untitled Agreement'}</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <h2
+                onClick={() => setEditingLabel(true)}
+                style={{
+                  margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--s900)',
+                  cursor: 'text', padding: '6px 4px 6px 10px', borderRadius: 'var(--rs)',
+                }}
+                title="Click to rename"
+              >{agreementLabel || 'Untitled Agreement'}</h2>
+              <button
+                type="button"
+                onClick={() => setEditingLabel(true)}
+                className="btn btn-ghost btn-sm"
+                title="Rename agreement"
+                aria-label="Rename agreement"
+                style={{ padding: '6px 8px', lineHeight: 1 }}
+              >✎</button>
+            </div>
           )}
         </div>
       </div>
