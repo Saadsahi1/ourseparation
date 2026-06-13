@@ -15,7 +15,7 @@ const SUB_TABS = [
   { key: 'special', label: 'Special Clauses' },
 ]
 
-export default function ParentingTab({ bundle, save, user, party1Name, party2Name, registerDirty }) {
+export default function ParentingTab({ bundle, save, user, party1Name, party2Name, registerDirty, registerFooterSave }) {
   const [sub, setSub] = useState('decision')
 
   // Tab-level dirty registry. DecisionMaking and Schedule sub-tabs register
@@ -26,6 +26,9 @@ export default function ParentingTab({ bundle, save, user, party1Name, party2Nam
   useEffect(() => {
     if (registerDirty) registerDirty(registry.isDirty)
   }, [registry.isDirty, registerDirty])
+  useEffect(() => {
+    if (registerFooterSave) registerFooterSave({ registry })
+  }, [registry, registerFooterSave])
 
   if ((bundle.children || []).length === 0) {
     return (

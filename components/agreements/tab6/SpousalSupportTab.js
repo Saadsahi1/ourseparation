@@ -31,7 +31,7 @@ const fmtCAD = (n) => `$${Math.round(Number(n) || 0).toLocaleString('en-CA')}`
 // values, runs the SSAG formula, and SHOWS the result. The only things the
 // user picks here are the agreement-level decisions: who pays, how much,
 // what term structure, and termination triggers.
-export default function SpousalSupportTab({ bundle, save, party1Name, party2Name, user, registerDirty }) {
+export default function SpousalSupportTab({ bundle, save, party1Name, party2Name, user, registerDirty, registerFooterSave }) {
   const a = bundle.agreement
   const children = bundle.children || []
   const hasChildren = children.length > 0
@@ -48,6 +48,9 @@ export default function SpousalSupportTab({ bundle, save, party1Name, party2Name
   useEffect(() => {
     if (registerDirty) registerDirty(registry.isDirty)
   }, [registry.isDirty, registerDirty])
+  useEffect(() => {
+    if (registerFooterSave) registerFooterSave({ registry })
+  }, [registry, registerFooterSave])
 
   const buf = useDirtyBuffer({
     serverValues: bundle.supportCalculations || {},

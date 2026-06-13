@@ -43,7 +43,7 @@ const sectionSub = {
 // until they click "Save Page" (rendered by the <SaveBar>).
 // List operations (Children, Prev-Relationship Children) keep saving
 // immediately per the design.
-export default function InfoTab({ bundle, save, saveNow, user, registerDirty }) {
+export default function InfoTab({ bundle, save, saveNow, user, registerDirty, registerFooterSave }) {
   const a = bundle.agreement
 
   // One buffer for the whole tab's worth of agreement-level fields.
@@ -85,6 +85,10 @@ export default function InfoTab({ bundle, save, saveNow, user, registerDirty }) 
   const missing = Object.entries(required).filter(([, val]) => !val || String(val).trim() === '').map(([k]) => k)
   const canSave = missing.length === 0
   const invalidHint = missing.length > 0 ? `Required: ${missing.join(', ')}` : ''
+
+  useEffect(() => {
+    if (registerFooterSave) registerFooterSave({ registry, canSave, invalidHint })
+  }, [registry, canSave, invalidHint, registerFooterSave])
 
   return (
     <div>
@@ -191,4 +195,3 @@ export default function InfoTab({ bundle, save, saveNow, user, registerDirty }) 
     </div>
   )
 }
-

@@ -23,7 +23,7 @@ const cardStyle = {
   padding: '24px', marginBottom: '20px', boxShadow: 'var(--sh-xs)',
 }
 
-export default function AdditionalTermsTab({ bundle, save, party1Name, party2Name, registerDirty }) {
+export default function AdditionalTermsTab({ bundle, save, party1Name, party2Name, registerDirty, registerFooterSave }) {
   const [sub, setSub] = useState('insurance')
 
   // All four sub-tabs PUT to the same /additional-terms endpoint, so one
@@ -33,6 +33,9 @@ export default function AdditionalTermsTab({ bundle, save, party1Name, party2Nam
   useEffect(() => {
     if (registerDirty) registerDirty(registry.isDirty)
   }, [registry.isDirty, registerDirty])
+  useEffect(() => {
+    if (registerFooterSave) registerFooterSave({ registry })
+  }, [registry, registerFooterSave])
 
   const buf = useDirtyBuffer({
     serverValues: bundle.additionalTerms || {},

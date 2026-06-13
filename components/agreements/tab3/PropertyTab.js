@@ -18,13 +18,16 @@ const SUB_TABS = [
 // immediate-save behavior: adding/removing items is a discrete user action
 // that should persist instantly. Division-details field edits flow through
 // the registry so the user can iterate without each blur producing a save.
-export default function PropertyTab({ bundle, save, party1Name, party2Name, registerDirty }) {
+export default function PropertyTab({ bundle, save, party1Name, party2Name, registerDirty, registerFooterSave }) {
   const [sub, setSub] = useState('assets')
 
   const registry = useDirtyRegistry()
   useEffect(() => {
     if (registerDirty) registerDirty(registry.isDirty)
   }, [registry.isDirty, registerDirty])
+  useEffect(() => {
+    if (registerFooterSave) registerFooterSave({ registry })
+  }, [registry, registerFooterSave])
 
   return (
     <div>

@@ -32,10 +32,14 @@ function EditorContent() {
   // buffered edits change so we can intercept navigation away.
   const dirtyRef = useRef(false)
   const [, forceDirtyTick] = useState(0)  // re-render the strip when ref changes
+  const [footerSave, setFooterSave] = useState(null)
   const registerDirty = useCallback((isDirty) => {
     if (dirtyRef.current === isDirty) return
     dirtyRef.current = isDirty
     forceDirtyTick((n) => n + 1)
+  }, [])
+  const registerFooterSave = useCallback((saveHandle) => {
+    setFooterSave(saveHandle || null)
   }, [])
 
   // Native browser warning on refresh / close / back when a tab has buffered
@@ -59,6 +63,7 @@ function EditorContent() {
   // next render.
   useEffect(() => {
     dirtyRef.current = false
+    setFooterSave(null)
   }, [tab])
 
   // Section completion is computed live from the bundle (see liveCompletion
@@ -133,18 +138,21 @@ function EditorContent() {
               bundle={bundle} save={save} saveNow={saveNow}
               user={bundle.owner || user}
               registerDirty={registerDirty}
+              registerFooterSave={registerFooterSave}
             />
           </>
         )}
         {tab === 'parenting' && (
           <ParentingTab bundle={bundle} save={save} user={bundle.owner || user}
             party1Name={party1Name} party2Name={party2Name}
-            registerDirty={registerDirty} />
+            registerDirty={registerDirty}
+            registerFooterSave={registerFooterSave} />
         )}
         {tab === 'property' && (
           <PropertyTab bundle={bundle} save={save}
             party1Name={party1Name} party2Name={party2Name}
-            registerDirty={registerDirty} />
+            registerDirty={registerDirty}
+            registerFooterSave={registerFooterSave} />
         )}
         {tab === 'income' && (
           <IncomeDocsTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} refresh={refresh} />
@@ -158,12 +166,14 @@ function EditorContent() {
           <SpousalSupportTab bundle={bundle} save={save}
             party1Name={party1Name} party2Name={party2Name}
             user={bundle.owner || user}
-            registerDirty={registerDirty} />
+            registerDirty={registerDirty}
+            registerFooterSave={registerFooterSave} />
         )}
         {tab === 'additional' && (
           <AdditionalTermsTab bundle={bundle} save={save}
             party1Name={party1Name} party2Name={party2Name}
-            registerDirty={registerDirty} />
+            registerDirty={registerDirty}
+            registerFooterSave={registerFooterSave} />
         )}
         {tab === 'preview' && (
           <AgreementPreview bundle={bundle} />
@@ -172,7 +182,7 @@ function EditorContent() {
           <SignaturesTab bundle={bundle} save={save} party1Name={party1Name} party2Name={party2Name} refresh={refresh} />
         )}
 
-        <TabFooter activeTab={tab} guardNavigation={() => {
+        <TabFooter activeTab={tab} footerSave={footerSave} guardNavigation={() => {
           if (!dirtyRef.current) return true
           return confirm('You have unsaved changes on this tab. Leave anyway? Unsaved edits will be lost.')
         }} />
