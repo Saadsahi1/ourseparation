@@ -4,6 +4,7 @@ import {
   generateFullAgreementWithSchedulesHTML,
 } from '@/lib/agreements/templates'
 import api from '@/lib/apiClient'
+import { exportToPDF } from '@/lib/agreements/pdfExport'
 
 const cardStyle = {
   background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r)',
@@ -25,23 +26,36 @@ export default function AgreementPreview({ bundle }) {
 
   const handleExport = async () => {
     setExporting('full')
+    let serverError = null
     try {
-      const res = await api.get(`/api/agreements/${bundle.agreement.id}/pdf`)
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.error || `PDF export failed (${res.status})`)
+      try {
+        const res = await api.get(`/api/agreements/${bundle.agreement.id}/pdf`)
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}))
+          const message = data.details
+            ? `${data.error || `PDF export failed (${res.status})`} — ${data.details}`
+            : (data.error || `PDF export failed (${res.status})`)
+          throw new Error(message)
+        }
+        const blob = await res.blob()
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${baseFilename}.pdf`
+        document.body.appendChild(a)
+        a.click()
+        a.remove()
+        URL.revokeObjectURL(url)
+        return
+      } catch (err) {
+        serverError = err
+        console.warn('Server PDF export failed, falling back to browser export:', err)
       }
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `${baseFilename}.pdf`
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      URL.revokeObjectURL(url)
+
+      await exportToPDF(fullHtml, baseFilename)
     } catch (err) {
-      alert('PDF export failed: ' + err.message)
+      const serverMessage = serverError ? `Server PDF: ${serverError.message}\n` : ''
+      alert(`PDF export failed.\n${serverMessage}Fallback PDF: ${err.message}`)
     } finally {
       setExporting(null)
     }
