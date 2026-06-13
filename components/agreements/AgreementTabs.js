@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import CompletionBadge from './shared/CompletionBadge'
-import SaveStatus from './shared/SaveStatus'
 
 const TABS = [
   { key: 'info',            label: 'Info',            icon: '👤', completionKey: 'info' },
@@ -31,7 +30,7 @@ function computeStatus(tab, completion) {
   return 'not_started'
 }
 
-export default function AgreementTabs({ activeTab, completion, saveStatus, agreementLabel, onLabelChange, guardNavigation }) {
+export default function AgreementTabs({ activeTab, completion, agreementLabel, onLabelChange, guardNavigation }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const pathname = usePathname()
@@ -68,7 +67,7 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
       borderBottom: '1px solid var(--border)',
       position: 'sticky', top: 0, zIndex: 10,
     }}>
-      {/* Top bar with label + save status */}
+      {/* Top bar with label */}
       <div style={{
         maxWidth: '1300px', margin: '0 auto', padding: '14px 24px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px',
@@ -108,7 +107,6 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
             >{agreementLabel || 'Untitled Agreement'}</h2>
           )}
         </div>
-        <SaveStatus status={saveStatus} />
       </div>
 
       {/* Tab strip */}

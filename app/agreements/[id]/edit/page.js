@@ -26,7 +26,7 @@ function EditorContent() {
   const agreementId = params?.id
   const tab = searchParams.get('tab') || 'info'
 
-  const { bundle, loading, error, saveStatus, save, saveNow, refresh } = useAgreementBundle(agreementId)
+  const { bundle, loading, error, save, saveNow, refresh } = useAgreementBundle(agreementId)
 
   // Per-tab dirty state. Each tab calls `registerDirty(boolean)` when its
   // buffered edits change so we can intercept navigation away.
@@ -114,7 +114,6 @@ function EditorContent() {
       <AgreementTabs
         activeTab={tab}
         completion={liveCompletion}
-        saveStatus={saveStatus}
         agreementLabel={bundle.agreement.label}
         onLabelChange={(newLabel) => save('agreement', { label: newLabel })}
         guardNavigation={() => {

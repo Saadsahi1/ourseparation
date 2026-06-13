@@ -161,10 +161,9 @@ export default function InfoTab({ bundle, save, saveNow, user, registerDirty, re
             datalistOptions={ONTARIO_CITIES}
             value={v('marriage_location') ?? ''} onSave={set('marriage_location')}
             placeholder="Choose an Ontario city or type" />
-          <FormField label="Signing City" type="autocomplete"
-            datalistOptions={ONTARIO_CITIES}
+          <FormField label="Signing City"
             value={v('signing_city') ?? ''} onSave={set('signing_city')}
-            placeholder="Where will the agreement be signed?" />
+            placeholder="Type the city where the agreement will be signed" />
         </div>
       </div>
 
