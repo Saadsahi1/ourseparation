@@ -138,18 +138,32 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
   // ── Local state, kept in sync with props when the user isn't actively editing ──
   const [grid, setGrid] = useState(() => gridFromVars(propVars))
   const [transitionDetails, setTransitionDetails] = useState(() => propVars.transitions || {})
+  const gridRef = useRef(grid)
+  const transitionDetailsRef = useRef(transitionDetails)
 
   // Pending-edit flag: while true, prop updates from the parent bundle
   // refresh are IGNORED so the user's in-flight edits aren't clobbered.
   const dirty = useRef(false)
   const saveTimer = useRef(null)
 
+  useEffect(() => {
+    gridRef.current = grid
+  }, [grid])
+
+  useEffect(() => {
+    transitionDetailsRef.current = transitionDetails
+  }, [transitionDetails])
+
   // When the parent's schedule prop changes (e.g. bundle refreshed from server)
   // AND the user isn't mid-edit, accept the new server state.
   useEffect(() => {
     if (dirty.current) return
-    setGrid(gridFromVars(propVars))
-    setTransitionDetails(propVars.transitions || {})
+    const nextGrid = gridFromVars(propVars)
+    const nextTransitions = propVars.transitions || {}
+    gridRef.current = nextGrid
+    transitionDetailsRef.current = nextTransitions
+    setGrid(nextGrid)
+    setTransitionDetails(nextTransitions)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [propVars.weeks, propVars.transitions])
 
@@ -165,42 +179,46 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
     if (saveTimer.current) clearTimeout(saveTimer.current)
     saveTimer.current = setTimeout(() => {
       saveTimer.current = null
-      onChange({
+      Promise.resolve(onChange({
         regular_schedule_template: 'custom_weekly',
         regular_schedule_variables: { ...propVars, weeks: nextGrid, transitions: nextTransitions },
+      })).finally(() => {
+        // Allow the next prop tick to sync server state back into local state.
+        // We wait a beat so the optimistic merge has landed.
+        setTimeout(() => { dirty.current = false }, 50)
       })
-      // Allow the next prop tick to sync server state back into local state.
-      // We wait a beat so the optimistic merge has landed.
-      setTimeout(() => { dirty.current = false }, 50)
     }, SAVE_DEBOUNCE_MS)
   }, [onChange, propVars])
 
   // Click a cell to cycle its value. Updates local state on the next paint;
   // the server save fires SAVE_DEBOUNCE_MS after the LAST click.
   const updateCell = useCallback((w, d) => {
-    setGrid((prev) => {
-      const newGrid = prev.map((row) => row.slice())
-      newGrid[w][d] = nextValue(newGrid[w][d])
-      // If the cell is no longer a transition, drop its transition details.
-      let newTrans = transitionDetails
-      const key = `${w}-${d}`
-      if (newGrid[w][d] !== 'transition' && newTrans[key]) {
-        newTrans = { ...transitionDetails }
-        delete newTrans[key]
-        setTransitionDetails(newTrans)
-      }
-      scheduleSave(newGrid, newTrans)
-      return newGrid
-    })
-  }, [transitionDetails, scheduleSave])
+    const newGrid = gridRef.current.map((row) => row.slice())
+    newGrid[w][d] = nextValue(newGrid[w][d])
+
+    let newTrans = transitionDetailsRef.current
+    const key = `${w}-${d}`
+    if (newGrid[w][d] !== 'transition' && newTrans[key]) {
+      newTrans = { ...newTrans }
+      delete newTrans[key]
+    }
+
+    gridRef.current = newGrid
+    transitionDetailsRef.current = newTrans
+    setGrid(newGrid)
+    setTransitionDetails(newTrans)
+    scheduleSave(newGrid, newTrans)
+  }, [scheduleSave])
 
   const updateTransitionDetail = useCallback((key, patch) => {
-    setTransitionDetails((prev) => {
-      const next = { ...prev, [key]: { ...(prev[key] || {}), ...patch } }
-      scheduleSave(grid, next)
-      return next
-    })
-  }, [grid, scheduleSave])
+    const next = {
+      ...transitionDetailsRef.current,
+      [key]: { ...(transitionDetailsRef.current[key] || {}), ...patch },
+    }
+    transitionDetailsRef.current = next
+    setTransitionDetails(next)
+    scheduleSave(gridRef.current, next)
+  }, [scheduleSave])
 
   // ── Derived (memoized so we don't recompute on unrelated re-renders) ──
   const { party1Percent, party2Percent } = useMemo(() => computePercent(grid), [grid])
@@ -241,6 +259,7 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
               {[0, 1, 2, 3, 4, 5, 6].map((d) => (
                 <button
                   key={d}
+                  type="button"
                   onClick={() => updateCell(w, d)}
                   style={getCellStyle(grid[w][d])}
                   title={`Click to cycle (current: ${grid[w][d] || 'unassigned'})`}
