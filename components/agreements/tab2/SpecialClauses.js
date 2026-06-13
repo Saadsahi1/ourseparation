@@ -68,9 +68,11 @@ export default function SpecialClauses({ bundle, save }) {
             const added = key !== 'other' && addedTypes.has(key)
             // Render preview from defaults so the user sees the actual clause language
             let preview = ''
-            try {
-              preview = tpl.template({ ...(tpl.defaults || {}), customText: '[your custom text here]' })
-            } catch (e) {}
+            if (key !== 'other') {
+              try {
+                preview = tpl.template({ ...(tpl.defaults || {}) })
+              } catch (e) {}
+            }
 
             return (
               <div key={key} style={catalogCardStyle(added)}>
