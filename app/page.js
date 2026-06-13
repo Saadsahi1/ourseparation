@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Nav from '@/components/Nav'
+import BrandGlyph from '@/components/BrandGlyph'
 import { AuthProvider } from '@/components/AuthProvider'
 import './landing.css'
 
@@ -247,8 +248,8 @@ function LandingContent() {
       </section>
 
       <footer className="landing-footer">
-        <div className="nav-logo" style={{color:'white',fontSize:'1.1rem',display:'inline-flex',alignItems:'center',gap:'8px',justifyContent:'center'}}>
-          <img src="/logo-icon.svg" alt="" width="26" height="26" style={{borderRadius:'5px'}}/>
+        <div className="nav-logo" style={{color:'white',fontSize:'1.1rem',display:'inline-flex',alignItems:'center',gap:'10px',justifyContent:'center'}}>
+          <BrandGlyph size={28} style={{color:'#fff'}}/>
           Our<span>Separation</span>
         </div>
         <p>OurSeparation provides informational calculations only. Results are not legal advice. Always consult a qualified Ontario family lawyer before making decisions about support.</p>

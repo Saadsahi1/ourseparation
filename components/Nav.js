@@ -1,13 +1,14 @@
 'use client'
 import Link from 'next/link'
 import { useAuth } from './AuthProvider'
+import BrandGlyph from './BrandGlyph'
 
 export default function Nav() {
   const { user, logout } = useAuth()
   return (
     <nav className="nav">
-      <Link href="/" className="nav-logo" style={{display:'inline-flex',alignItems:'center',gap:'8px'}}>
-        <img src="/logo-icon.svg" alt="" width="28" height="28" style={{borderRadius:'6px'}}/>
+      <Link href="/" className="nav-logo" style={{display:'inline-flex',alignItems:'center',gap:'10px'}}>
+        <BrandGlyph size={30} style={{color:'var(--v)'}}/>
         Our<span>Separation</span>
       </Link>
       <div className="nav-links">

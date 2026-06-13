@@ -159,6 +159,7 @@ function CustomHolidaysCard({ customHolidays, defaultOpts, motherName, fatherNam
                     onSave={(v) => onSave(arr.holiday_name, { arrangement: v })}
                   />
                   <button
+                    type="button"
                     onClick={() => onRemove(arr.holiday_name)}
                     className="btn btn-ghost btn-sm"
                     style={{ color: 'var(--danger)', marginTop: '6px' }}
@@ -187,6 +188,7 @@ function CustomHolidaysCard({ customHolidays, defaultOpts, motherName, fatherNam
           onSave={setNewName}
         />
         <button
+          type="button"
           onClick={handleAdd}
           disabled={!newName.trim()}
           className="btn btn-primary btn-sm"

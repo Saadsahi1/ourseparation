@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --v:    #5B4FE8;
-  --vd:   #3D34C8;
-  --vl:   #7B72F0;
-  --vx:   #EEF0FF;
-  --v9:   #2A2080;
-  --vc:   #C8C4F8;
+  /* Brand palette — Our Separation 2021 Branding Kit (Table Creative).
+     --v  Main Purple   #5849AC
+     --vl Secondary     #796DBD
+     --vc Light Purple  #9B92CD
+     --vx Pale Purple   #DEDBEE
+     --vd / --v9 are darker tones derived from Main for hover / depth. */
+  --v:    #5849AC;
+  --vd:   #4A3B95;
+  --vl:   #796DBD;
+  --vx:   #DEDBEE;
+  --v9:   #2F2370;
+  --vc:   #9B92CD;
 
   --s50:  #F8F8FC;
   --s100: #F0F0F8;

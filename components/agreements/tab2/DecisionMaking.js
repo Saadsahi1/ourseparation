@@ -128,7 +128,6 @@ export default function DecisionMaking({ bundle, save, party1Name, party2Name, r
           }}
           substitutionContext={{ party1: party1Name, party2: party2Name }}
           variableLabels={{
-            appName: 'App Name (e.g. OurFamilyWizard)',
             emailAddress: 'Email Address',
             urgentResponseTime: 'Urgent Response Time (e.g. 4 hours)',
           }}
