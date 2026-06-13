@@ -43,7 +43,7 @@ export default function TabFooter({ activeTab, guardNavigation }) {
     }}>
       <div>
         {prev ? (
-          <button onClick={() => go(prev.key)} className="btn btn-outline">
+          <button type="button" onClick={() => go(prev.key)} className="btn btn-outline">
             ← {prev.label}
           </button>
         ) : <span />}
@@ -53,7 +53,7 @@ export default function TabFooter({ activeTab, guardNavigation }) {
       </div>
       <div>
         {next ? (
-          <button onClick={() => go(next.key)} className="btn btn-primary">
+          <button type="button" onClick={() => go(next.key)} className="btn btn-primary">
             {next.label} →
           </button>
         ) : <span />}

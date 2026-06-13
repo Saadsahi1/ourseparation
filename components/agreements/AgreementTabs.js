@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import CompletionBadge from './shared/CompletionBadge'
 import SaveStatus from './shared/SaveStatus'
 
@@ -34,6 +34,7 @@ function computeStatus(tab, completion) {
 export default function AgreementTabs({ activeTab, completion, saveStatus, agreementLabel, onLabelChange, guardNavigation }) {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const pathname = usePathname()
   const [editingLabel, setEditingLabel] = useState(false)
   const [tempLabel, setTempLabel] = useState(agreementLabel || 'Untitled Agreement')
 
@@ -47,7 +48,7 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
     if (guardNavigation && !guardNavigation()) return
     const params = new URLSearchParams(searchParams.toString())
     params.set('tab', tabKey)
-    router.push(`?${params.toString()}`, { scroll: false })
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
   const navigateBackToList = () => {
@@ -68,6 +69,7 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button
+            type="button"
             onClick={navigateBackToList}
             className="btn btn-ghost btn-sm"
             style={{ fontSize: '0.85rem' }}
@@ -117,6 +119,7 @@ export default function AgreementTabs({ activeTab, completion, saveStatus, agree
             return (
               <button
                 key={t.key}
+                type="button"
                 onClick={() => navigate(t.key)}
                 style={{
                   padding: '12px 16px',
