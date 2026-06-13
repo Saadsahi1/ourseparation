@@ -149,7 +149,18 @@ export default function useAgreementBundle(agreementId) {
 
       if (!res.ok) {
         const j = await res.json().catch(() => ({}))
-        throw new Error(j.error || `Save failed (${res.status})`)
+        // Log the server-side details to the browser console so failures
+        // are diagnosable without opening the Network tab.
+        console.error('Save failed:', {
+          section, status: res.status, url,
+          patch: body,
+          server: j,
+        })
+        const parts = [j.error || `Save failed (${res.status})`]
+        if (j.details) parts.push(j.details)
+        if (j.column) parts.push(`column=${j.column}`)
+        if (j.constraint) parts.push(`constraint=${j.constraint}`)
+        throw new Error(parts.join(' — '))
       }
       const data = await res.json().catch(() => ({}))
 
