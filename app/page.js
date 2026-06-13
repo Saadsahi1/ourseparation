@@ -105,10 +105,6 @@ function LandingContent() {
         </div>
 
         <div className="hero-content">
-          <div className="hero-badge">
-            <span className="hero-dot" />
-            Ontario SSAG Calculator · 2025 Guidelines
-          </div>
           <h1 className="hero-title fade-up">
             Clarity in the<br /><em>hardest chapter</em><br />of your life
           </h1>
