@@ -1,12 +1,13 @@
 'use client'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { TABS } from '../AgreementTabs'
 
-// Sticky-ish footer with Previous / Next buttons so users always have an
-// obvious prompt to move forward through the tabs. Shown at the bottom of
-// each tab's content area in the editor.
+// Footer with Previous / Next buttons. Mirrors the same router.push +
+// useSearchParams flow as AgreementTabs so a click here advances the tab
+// in the same way as the top strip.
 export default function TabFooter({ activeTab, guardNavigation }) {
   const router = useRouter()
+  const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const idx = TABS.findIndex((t) => t.key === activeTab)
@@ -18,12 +19,16 @@ export default function TabFooter({ activeTab, guardNavigation }) {
   const go = (tabKey) => {
     if (!tabKey) return
     if (guardNavigation && !guardNavigation()) return
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(searchParams?.toString() || '')
     params.set('tab', tabKey)
-    router.push(`?${params.toString()}`, { scroll: false })
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    // Push with the full pathname so Next.js treats this as the same route
+    // segment and the editor's useSearchParams hook fires. Scroll to top
+    // after the navigation commits so the user lands at the new tab's
+    // header rather than the previous tab's footer position.
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    })
   }
 
   return (
