@@ -28,6 +28,10 @@ const AGREEMENT_FIELDS = [
   'section_completion',
 ]
 
+// Fields that map to a Postgres DATE column. Empty strings will throw
+// "invalid input syntax for type date" — coerce them to NULL on the way in.
+const DATE_FIELDS = new Set(['party1_dob', 'party2_dob', 'marriage_date', 'cohabitation_date', 'separation_date'])
+
 // Join first + last with a single space (handles either missing). Returns
 // null when both are empty so we don't write empty strings to the DB.
 function joinName(first, last) {
@@ -96,10 +100,16 @@ export async function PUT(req, { params }) {
     for (const f of AGREEMENT_FIELDS) {
       if (Object.prototype.hasOwnProperty.call(body, f)) {
         sets.push(`${f} = $${i}`)
-        if (f === 'section_completion' && body[f] !== null && typeof body[f] === 'object') {
-          vals.push(JSON.stringify(body[f]))
+        let v = body[f]
+        // Empty-string → NULL for date columns and email (avoids Postgres
+        // "invalid input syntax" and "duplicate key value" on unique-email
+        // constraint when the user clears the field).
+        if (DATE_FIELDS.has(f) && v === '') v = null
+        if (f === 'party2_email' && v === '') v = null
+        if (f === 'section_completion' && v !== null && typeof v === 'object') {
+          vals.push(JSON.stringify(v))
         } else {
-          vals.push(body[f])
+          vals.push(v)
         }
         i++
       }
@@ -116,8 +126,13 @@ export async function PUT(req, { params }) {
     return NextResponse.json(r.rows[0], { headers: noStoreHeaders })
   } catch (err) {
     if (err instanceof AuthError) return NextResponse.json({ error: err.message }, { status: 401, headers: noStoreHeaders })
-    console.error('Failed to update agreement:', err.message)
-    return NextResponse.json({ error: 'Failed to update agreement', details: err.message }, { status: 500, headers: noStoreHeaders })
+    console.error('Failed to update agreement:', err.message, err.detail || '', err.hint || '')
+    return NextResponse.json({
+      error: 'Failed to update agreement',
+      details: err.message,
+      column: err.column,
+      constraint: err.constraint,
+    }, { status: 500, headers: noStoreHeaders })
   }
 }
 
