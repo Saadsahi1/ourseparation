@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { AuthProvider, useAuth } from '@/components/AuthProvider'
+import BrandGlyph from '@/components/BrandGlyph'
 import '../auth.css'
 
 const PW_RULES = [
@@ -42,7 +43,7 @@ function RegisterForm() {
       <div className="auth-left">
         <div className="auth-left-inner">
           <Link href="/" className="nav-logo" style={{color:'white',fontSize:'1.3rem',display:'inline-flex',alignItems:'center',gap:'8px'}}>
-            <img src="/logo-icon.svg" alt="" width="30" height="30" style={{borderRadius:'6px'}}/>
+            <BrandGlyph size={30} />
             Our<span style={{color:'#7B72F0'}}>Separation</span>
           </Link>
           <blockquote className="auth-quote">

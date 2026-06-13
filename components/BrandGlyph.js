@@ -1,6 +1,5 @@
-// Our Separation — Brand Glyph (PNG from the 2021 Branding Kit).
-// The PNG lives at /public/logo-icon.png. Pass `variant="white"` to use
-// the white-on-purple square version (favicon-style).
+// Our Separation — Brand Glyph (PNG from the branding kit).
+// The PNG lives at /public/logo-icon.png.
 export default function BrandGlyph({ size = 32, style, className, alt = 'Our Separation' }) {
   return (
     <img
@@ -8,7 +7,7 @@ export default function BrandGlyph({ size = 32, style, className, alt = 'Our Sep
       alt={alt}
       width={size}
       height={size}
-      style={{ display: 'inline-block', borderRadius: '6px', ...style }}
+      style={{ display: 'inline-block', objectFit: 'contain', ...style }}
       className={className}
     />
   )
