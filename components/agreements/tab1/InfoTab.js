@@ -73,10 +73,23 @@ export default function InfoTab({ bundle, save, saveNow, user, registerDirty }) 
   const party2LastName  = v('party2_last_name')  || ''
   const party2FullName  = [party2FirstName, party2LastName].filter(Boolean).join(' ') || a.party2_name || 'Party 2'
 
+  // Required fields gate the Save Page button until they're filled. We
+  // read through the buffer so the gate reacts live while the user types.
+  const required = {
+    'Party 1 first name': v('party1_first_name') || user?.first_name,
+    'Party 1 last name': v('party1_last_name') || user?.last_name,
+    'Party 2 first name': v('party2_first_name'),
+    'Party 2 last name': v('party2_last_name'),
+    'Separation date': v('separation_date') || a.separation_date,
+  }
+  const missing = Object.entries(required).filter(([, val]) => !val || String(val).trim() === '').map(([k]) => k)
+  const canSave = missing.length === 0
+  const invalidHint = missing.length > 0 ? `Required: ${missing.join(', ')}` : ''
+
   return (
     <div>
       <InviteOtherPartyBanner agreement={a} />
-      <SaveBar registry={registry} />
+      <SaveBar registry={registry} canSave={canSave} invalidHint={invalidHint} />
 
       {/* Party 1 */}
       <div style={cardStyle}>
