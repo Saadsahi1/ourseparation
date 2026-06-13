@@ -1,32 +1,5 @@
-<!--
-  Our Separation — Brand Glyph.
-  Per 2021 Branding Kit (Table Creative).
-  Uses currentColor so the mark inherits color from the rendering context:
-    color: #fff      → white-on-purple (avatar)
-    color: #5849AC   → purple-on-white (standalone glyph)
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="currentColor">
-  <!-- Open ring — partial circle opening at the upper-right -->
-  <path d="
-    M 120 40
-    C 76 40, 40 76, 40 120
-    C 40 164, 76 200, 120 200
-    C 152 200, 180 182, 194 154
-    L 167 140
-    C 159 158, 141 170, 120 170
-    C 92 170, 70 148, 70 120
-    C 70 92, 92 70, 120 70
-    L 120 40 Z" />
-  <!-- Leaf / almond with eye cutout and small tail -->
-  <path fill-rule="evenodd" d="
-    M 134 28
-    C 167 28, 195 47, 211 76
-    L 222 96
-    L 198 90
-    C 192 110, 175 122, 154 122
-    C 134 122, 117 110, 110 92
-    C 116 60, 124 42, 134 28 Z
-    M 146 60
-    C 158 74, 174 86, 192 94
-    C 180 80, 165 67, 150 60 Z" />
+<!-- Our Separation — Brand Glyph. Per 2021 Branding Kit. Uses currentColor. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <path d="M 89.5 73.6 A 60 60 0 1 1 170 130" stroke="currentColor" stroke-width="26" stroke-linecap="butt" fill="none"/>
+  <path fill="currentColor" fill-rule="evenodd" d="M 115 138 C 100 55, 145 38, 213 60 C 220 90, 220 112, 200 124 L 224 150 L 208 154 L 190 132 C 165 142, 130 142, 115 138 Z M 132 122 C 122 75, 160 58, 200 78 C 210 105, 182 130, 132 122 Z"/>
 </svg>
