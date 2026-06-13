@@ -18,22 +18,6 @@ import PrefillBanner from '@/components/agreements/shared/PrefillBanner'
 import TabFooter from '@/components/agreements/shared/TabFooter'
 import { computeSectionCompletion, getPartyDisplayName } from '@/lib/agreements/utils'
 
-function deepEqual(a, b) {
-  if (a === b) return true
-  if (typeof a !== 'object' || typeof b !== 'object' || a == null || b == null) return false
-  if (Array.isArray(a) !== Array.isArray(b)) return false
-  if (Array.isArray(a)) {
-    if (a.length !== b.length) return false
-    for (let i = 0; i < a.length; i++) if (!deepEqual(a[i], b[i])) return false
-    return true
-  }
-  const keysA = Object.keys(a)
-  const keysB = Object.keys(b)
-  if (keysA.length !== keysB.length) return false
-  for (const k of keysA) if (!deepEqual(a[k], b[k])) return false
-  return true
-}
-
 function EditorContent() {
   const { user, loading: authLoading } = useAuth()
   const router = useRouter()
@@ -77,23 +61,15 @@ function EditorContent() {
     dirtyRef.current = false
   }, [tab])
 
-  // Recompute and persist section_completion whenever the bundle changes.
-  // Use a deep-equal comparison so we don't fire a save when Postgres returns
-  // the same JSONB with different key ordering.
-  useEffect(() => {
-    if (!bundle?.agreement) return
-    const newCompletion = computeSectionCompletion(bundle)
-    const existing = bundle.agreement.section_completion || {}
-    if (!deepEqual(newCompletion, existing)) {
-      save('agreement', { section_completion: newCompletion })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bundle?.children, bundle?.parentingTerms, bundle?.parentingSchedule,
-      bundle?.holidays, bundle?.specialClauses, bundle?.propertyItems,
-      bundle?.propertyDivisionTerms, bundle?.incomeDocuments,
-      bundle?.supportCalculations, bundle?.section7Expenses,
-      bundle?.retroactivePeriods, bundle?.additionalTerms,
-      bundle?.agreement?.separation_date, bundle?.agreement?.retroactive_support_waived])
+  // Section completion is computed live from the bundle (see liveCompletion
+  // below) and shown in the tab strip. We deliberately do NOT autosave it
+  // to the database — autosave was removed so the editor only persists
+  // when the user clicks "Save Page". The agreements list page will pick
+  // up the latest completion the next time the user saves a tab.
+  const liveCompletion = useMemo(
+    () => bundle ? computeSectionCompletion(bundle) : {},
+    [bundle]
+  )
 
   const party1Name = useMemo(() =>
     getPartyDisplayName(bundle?.agreement, 'party1', bundle?.owner || user),
@@ -132,7 +108,7 @@ function EditorContent() {
       <Nav />
       <AgreementTabs
         activeTab={tab}
-        completion={bundle.agreement.section_completion}
+        completion={liveCompletion}
         saveStatus={saveStatus}
         agreementLabel={bundle.agreement.label}
         onLabelChange={(newLabel) => save('agreement', { label: newLabel })}
