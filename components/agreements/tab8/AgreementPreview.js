@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react'
 import {
   generateFullAgreementWithSchedulesHTML,
 } from '@/lib/agreements/templates'
-import { exportToPDF } from '@/lib/agreements/pdfExport'
+import api from '@/lib/apiClient'
 
 const cardStyle = {
   background: '#fff', border: '1px solid var(--border)', borderRadius: 'var(--r)',
@@ -26,7 +26,20 @@ export default function AgreementPreview({ bundle }) {
   const handleExport = async () => {
     setExporting('full')
     try {
-      await exportToPDF(fullHtml, baseFilename)
+      const res = await api.get(`/api/agreements/${bundle.agreement.id}/pdf`)
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || `PDF export failed (${res.status})`)
+      }
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${baseFilename}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
     } catch (err) {
       alert('PDF export failed: ' + err.message)
     } finally {
