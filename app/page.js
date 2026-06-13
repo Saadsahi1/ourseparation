@@ -249,7 +249,7 @@ function LandingContent() {
 
       <footer className="landing-footer">
         <div className="nav-logo" style={{color:'white',fontSize:'1.1rem',display:'inline-flex',alignItems:'center',gap:'10px',justifyContent:'center'}}>
-          <BrandGlyph size={28} style={{color:'#fff'}}/>
+          <BrandGlyph size={28}/>
           Our<span>Separation</span>
         </div>
         <p>OurSeparation provides informational calculations only. Results are not legal advice. Always consult a qualified Ontario family lawyer before making decisions about support.</p>

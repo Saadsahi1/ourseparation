@@ -1,8 +1,0 @@
-<!-- Favicon — purple background with white glyph (avatar usage per kit). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-  <rect width="240" height="240" rx="28" fill="#5849AC"/>
-  <g stroke="#ffffff" fill="#ffffff">
-    <path d="M 89.5 73.6 A 60 60 0 1 1 170 130" stroke-width="26" stroke-linecap="butt" fill="none"/>
-    <path stroke="none" fill-rule="evenodd" d="M 115 138 C 100 55, 145 38, 213 60 C 220 90, 220 112, 200 124 L 224 150 L 208 154 L 190 132 C 165 142, 130 142, 115 138 Z M 132 122 C 122 75, 160 58, 200 78 C 210 105, 182 130, 132 122 Z"/>
-  </g>
-</svg>

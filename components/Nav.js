@@ -8,7 +8,7 @@ export default function Nav() {
   return (
     <nav className="nav">
       <Link href="/" className="nav-logo" style={{display:'inline-flex',alignItems:'center',gap:'10px'}}>
-        <BrandGlyph size={30} style={{color:'var(--v)'}}/>
+        <BrandGlyph size={30}/>
         Our<span>Separation</span>
       </Link>
       <div className="nav-links">
