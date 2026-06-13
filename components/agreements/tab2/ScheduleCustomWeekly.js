@@ -4,23 +4,11 @@ import FormField from '../shared/FormField'
 import ParentingTimeMeter from './ParentingTimeMeter'
 
 // 4-week × 7-day custom schedule editor.
-// Each cell cycles through: party1 → party2 → transition → party1.
-// Parenting time meter updates live; validation flags missing transitions
-// and isolated single days.
-//
-// Performance design: the grid is held in LOCAL state so clicking a cell
-// updates the UI on the next paint with zero network latency. Changes are
-// batched into a single debounced network save (~400 ms after the last
-// click), so rapid editing of many cells collapses to one round-trip.
+// Cells open a choice menu instead of cycling. Edits stay local until the
+// user clicks Save Schedule, which keeps the grid responsive and avoids
+// stale bundle refreshes overwriting in-progress clicks.
 
 const DAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const CYCLE = ['party1', 'party2', 'transition', null]
-const SAVE_DEBOUNCE_MS = 400
-
-function nextValue(v) {
-  const idx = CYCLE.indexOf(v ?? null)
-  return CYCLE[(idx + 1) % CYCLE.length]
-}
 
 function emptyGrid() {
   return [
@@ -48,7 +36,7 @@ function getCellStyle(value) {
     cursor: 'pointer',
     userSelect: 'none',
     transition: 'background-color 80ms, border-color 80ms',
-    minHeight: '40px',
+    height: '40px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -135,16 +123,16 @@ function validate(grid) {
 export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, party2Name }) {
   const propVars = schedule?.regular_schedule_variables || {}
 
-  // ── Local state, kept in sync with props when the user isn't actively editing ──
   const [grid, setGrid] = useState(() => gridFromVars(propVars))
   const [transitionDetails, setTransitionDetails] = useState(() => propVars.transitions || {})
+  const [activeCell, setActiveCell] = useState(null)
+  const [isDirty, setIsDirty] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+  const [saveMessage, setSaveMessage] = useState('')
   const gridRef = useRef(grid)
   const transitionDetailsRef = useRef(transitionDetails)
-
-  // Pending-edit flag: while true, prop updates from the parent bundle
-  // refresh are IGNORED so the user's in-flight edits aren't clobbered.
-  const dirty = useRef(false)
-  const saveTimer = useRef(null)
+  const isDirtyRef = useRef(false)
+  const isSavingRef = useRef(false)
 
   useEffect(() => {
     gridRef.current = grid
@@ -154,10 +142,17 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
     transitionDetailsRef.current = transitionDetails
   }, [transitionDetails])
 
-  // When the parent's schedule prop changes (e.g. bundle refreshed from server)
-  // AND the user isn't mid-edit, accept the new server state.
   useEffect(() => {
-    if (dirty.current) return
+    isDirtyRef.current = isDirty
+  }, [isDirty])
+
+  useEffect(() => {
+    isSavingRef.current = isSaving
+  }, [isSaving])
+
+  // Accept server state only when there are no local edits waiting to be saved.
+  useEffect(() => {
+    if (isDirtyRef.current || isSavingRef.current) return
     const nextGrid = gridFromVars(propVars)
     const nextTransitions = propVars.transitions || {}
     gridRef.current = nextGrid
@@ -167,34 +162,14 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [propVars.weeks, propVars.transitions])
 
-  // Cleanup the pending save timer on unmount.
-  useEffect(() => () => {
-    if (saveTimer.current) clearTimeout(saveTimer.current)
+  const markDirty = useCallback(() => {
+    setIsDirty(true)
+    setSaveMessage('')
   }, [])
 
-  // Schedule a debounced save. Multiple rapid clicks collapse into one
-  // network round-trip with the final grid state.
-  const scheduleSave = useCallback((nextGrid, nextTransitions) => {
-    dirty.current = true
-    if (saveTimer.current) clearTimeout(saveTimer.current)
-    saveTimer.current = setTimeout(() => {
-      saveTimer.current = null
-      Promise.resolve(onChange({
-        regular_schedule_template: 'custom_weekly',
-        regular_schedule_variables: { ...propVars, weeks: nextGrid, transitions: nextTransitions },
-      })).finally(() => {
-        // Allow the next prop tick to sync server state back into local state.
-        // We wait a beat so the optimistic merge has landed.
-        setTimeout(() => { dirty.current = false }, 50)
-      })
-    }, SAVE_DEBOUNCE_MS)
-  }, [onChange, propVars])
-
-  // Click a cell to cycle its value. Updates local state on the next paint;
-  // the server save fires SAVE_DEBOUNCE_MS after the LAST click.
-  const updateCell = useCallback((w, d) => {
+  const setCellValue = useCallback((w, d, value) => {
     const newGrid = gridRef.current.map((row) => row.slice())
-    newGrid[w][d] = nextValue(newGrid[w][d])
+    newGrid[w][d] = value
 
     let newTrans = transitionDetailsRef.current
     const key = `${w}-${d}`
@@ -207,8 +182,9 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
     transitionDetailsRef.current = newTrans
     setGrid(newGrid)
     setTransitionDetails(newTrans)
-    scheduleSave(newGrid, newTrans)
-  }, [scheduleSave])
+    setActiveCell(null)
+    markDirty()
+  }, [markDirty])
 
   const updateTransitionDetail = useCallback((key, patch) => {
     const next = {
@@ -217,8 +193,32 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
     }
     transitionDetailsRef.current = next
     setTransitionDetails(next)
-    scheduleSave(gridRef.current, next)
-  }, [scheduleSave])
+    markDirty()
+  }, [markDirty])
+
+  const saveSchedule = useCallback(async () => {
+    if (!isDirty || isSaving) return
+    setIsSaving(true)
+    setSaveMessage('')
+    try {
+      const saved = await onChange({
+        regular_schedule_template: 'custom_weekly',
+        regular_schedule_variables: {
+          ...propVars,
+          weeks: gridRef.current,
+          transitions: transitionDetailsRef.current,
+        },
+      })
+      if (saved) {
+        setIsDirty(false)
+        setSaveMessage('Schedule saved')
+      } else {
+        setSaveMessage('Could not save schedule')
+      }
+    } finally {
+      setIsSaving(false)
+    }
+  }, [isDirty, isSaving, onChange, propVars])
 
   // ── Derived (memoized so we don't recompute on unrelated re-renders) ──
   const { party1Percent, party2Percent } = useMemo(() => computePercent(grid), [grid])
@@ -237,6 +237,13 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
     return out
   }, [grid])
 
+  const choiceOptions = [
+    { value: 'party1', label: party1Name, swatch: getCellStyle('party1') },
+    { value: 'party2', label: party2Name, swatch: getCellStyle('party2') },
+    { value: 'transition', label: 'Transition Day', swatch: getCellStyle('transition') },
+    { value: null, label: 'Unassigned', swatch: getCellStyle(null) },
+  ]
+
   return (
     <div>
       <ParentingTimeMeter
@@ -249,25 +256,109 @@ export default function ScheduleCustomWeekly({ schedule, onChange, party1Name, p
       <div style={{ marginTop: '20px' }}>
         <h4 style={{ margin: 0, marginBottom: '6px' }}>4-Week Custom Schedule</h4>
         <p style={{ marginTop: 0, marginBottom: '14px', fontSize: '0.82rem', color: 'var(--s600)' }}>
-          Click on days to cycle through: <strong style={{ color: 'var(--v)' }}>{party1Name}</strong>, <strong>{party2Name}</strong>, or <strong>Transition Day</strong> (split). This 4-week pattern will repeat.
+          Click a day, choose who has parenting time, then save the schedule. This 4-week pattern will repeat.
         </p>
 
         {[0, 1, 2, 3].map((w) => (
           <div key={w} style={{ marginBottom: '12px' }}>
             <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--s600)', marginBottom: '4px' }}>Week {w + 1}</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px' }}>
-              {[0, 1, 2, 3, 4, 5, 6].map((d) => (
-                <button
-                  key={d}
-                  type="button"
-                  onClick={() => updateCell(w, d)}
-                  style={getCellStyle(grid[w][d])}
-                  title={`Click to cycle (current: ${grid[w][d] || 'unassigned'})`}
-                >{DAY_LABELS[d]}</button>
-              ))}
+              {[0, 1, 2, 3, 4, 5, 6].map((d) => {
+                const isActive = activeCell?.w === w && activeCell?.d === d
+                return (
+                  <div key={d} style={{ position: 'relative' }}>
+                    <button
+                      type="button"
+                      onClick={() => setActiveCell(isActive ? null : { w, d })}
+                      style={{
+                        ...getCellStyle(grid[w][d]),
+                        width: '100%',
+                        outline: isActive ? '2px solid var(--v)' : 'none',
+                        outlineOffset: '2px',
+                      }}
+                      aria-expanded={isActive}
+                      title={`Choose schedule value (current: ${grid[w][d] || 'unassigned'})`}
+                    >{DAY_LABELS[d]}</button>
+
+                    {isActive && (
+                      <div style={{
+                        position: 'absolute',
+                        top: '46px',
+                        left: d >= 5 ? 'auto' : 0,
+                        right: d >= 5 ? 0 : 'auto',
+                        zIndex: 20,
+                        width: '190px',
+                        background: '#fff',
+                        border: '1px solid var(--border)',
+                        borderRadius: 'var(--rs)',
+                        boxShadow: 'var(--sh-md)',
+                        padding: '6px',
+                      }}>
+                        {choiceOptions.map((opt) => (
+                          <button
+                            key={opt.value || 'unassigned'}
+                            type="button"
+                            onClick={() => setCellValue(w, d, opt.value)}
+                            style={{
+                              width: '100%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              padding: '8px',
+                              border: 'none',
+                              background: grid[w][d] === opt.value ? 'var(--s50)' : '#fff',
+                              borderRadius: '6px',
+                              cursor: 'pointer',
+                              textAlign: 'left',
+                              font: 'inherit',
+                              color: 'var(--s900)',
+                            }}
+                          >
+                            <span style={{
+                              width: '18px',
+                              height: '18px',
+                              borderRadius: '4px',
+                              flex: '0 0 auto',
+                              background: opt.swatch.background || '#fff',
+                              backgroundImage: opt.swatch.backgroundImage,
+                              border: opt.value === 'party1' ? '1px solid var(--v)' : opt.swatch.border || '1px solid var(--border)',
+                            }} />
+                            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{opt.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </div>
         ))}
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '12px',
+          marginTop: '14px',
+          padding: '12px',
+          background: isDirty ? '#F8F6FF' : 'var(--s50)',
+          border: `1px solid ${isDirty ? 'var(--v)' : 'var(--border)'}`,
+          borderRadius: 'var(--rs)',
+          flexWrap: 'wrap',
+        }}>
+          <span style={{ fontSize: '0.84rem', color: isDirty ? 'var(--v)' : 'var(--s500)', fontWeight: 600 }}>
+            {isDirty ? 'Schedule changes not saved yet' : (saveMessage || 'Schedule is up to date')}
+          </span>
+          <button
+            type="button"
+            onClick={saveSchedule}
+            className="btn btn-primary btn-sm"
+            disabled={!isDirty || isSaving}
+          >
+            {isSaving ? 'Saving...' : 'Save Schedule'}
+          </button>
+        </div>
 
         {/* Legend */}
         <div style={{ display: 'flex', gap: '18px', marginTop: '14px', flexWrap: 'wrap', fontSize: '0.82rem' }}>
