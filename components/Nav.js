@@ -25,6 +25,8 @@ export default function Nav() {
         {user ? (
           <>
             <span className="nav-user">{user.firstName} {user.lastName}</span>
+            <Link href="/resources" prefetch={false} className="btn btn-ghost btn-sm">Resources</Link>
+            <Link href="/products" prefetch={false} className="btn btn-ghost btn-sm">Products</Link>
             <Link href="/calculator" prefetch={false} className="btn btn-ghost btn-sm nav-calculator">
               <CalculatorIcon />
               Calculator
@@ -37,6 +39,8 @@ export default function Nav() {
           </>
         ) : (
           <>
+            <Link href="/resources" prefetch={false} className="btn btn-ghost btn-sm">Resources</Link>
+            <Link href="/products" prefetch={false} className="btn btn-ghost btn-sm">Products</Link>
             <Link href="/calculator" prefetch={false} className="btn btn-ghost btn-sm nav-calculator">
               <CalculatorIcon />
               Calculator
