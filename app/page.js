@@ -110,8 +110,8 @@ function LandingContent() {
             Clarity in the<br /><em>hardest chapter</em><br />of your life
           </h1>
           <p className="hero-sub fade-up-2">
-            Court-grade spousal and child support calculations built on the SSAG —
-            the same framework your lawyer uses. Instant. Accurate. Private.
+            Court-grade spousal and child support calculations built on the SSAG.
+            The same framework your lawyer uses. Instant. Accurate. Private.
           </p>
           <div className="hero-actions fade-up-3">
             <Link href="/agreements" prefetch={false} className="btn btn-primary btn-lg hero-cta">
@@ -120,7 +120,6 @@ function LandingContent() {
             </Link>
             <Link href="/calculator" prefetch={false} className="btn btn-outline btn-lg">Calculate support</Link>
           </div>
-          <p className="hero-legal fade-up-4">No credit card required · For informational purposes only</p>
         </div>
 
         <div className="hero-visual fade-up-3">
