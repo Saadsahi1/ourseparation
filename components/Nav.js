@@ -25,13 +25,13 @@ export default function Nav() {
         {user ? (
           <>
             <span className="nav-user">{user.firstName} {user.lastName}</span>
-            <Link href="/resources" prefetch={false} className="btn btn-ghost btn-sm">Resources</Link>
-            <Link href="/products" prefetch={false} className="btn btn-ghost btn-sm">Products</Link>
             <Link href="/calculator" prefetch={false} className="btn btn-ghost btn-sm nav-calculator">
               <CalculatorIcon />
               Calculator
             </Link>
             <Link href="/dashboard" prefetch={false} className="btn btn-ghost btn-sm">Dashboard</Link>
+            <Link href="/resources" prefetch={false} className="btn btn-ghost btn-sm">Resources</Link>
+            <Link href="/products" prefetch={false} className="btn btn-ghost btn-sm">Products</Link>
             {user.is_admin && (
               <Link href="/admin" prefetch={false} className="btn btn-ghost btn-sm nav-admin">Admin</Link>
             )}
